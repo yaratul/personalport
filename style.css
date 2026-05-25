@@ -2534,3 +2534,24 @@ button, input, textarea {
     font-size: 1.4rem;
   }
 }
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #030712; /* Dark background matching --bg-dark */
+  z-index: 9999;
+  transform: translateY(100%);
+  pointer-events: none;
+  border-top: 3px solid var(--accent-cyan);
+  box-shadow: 0 -20px 40px rgba(0, 240, 255, 0.2);
+}
+
+/* Hide content initial state for research page smooth enter */
+.research-container-prep {
+  opacity: 0 !important;
+  transform: translateY(40px) !important;
+}

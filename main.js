@@ -271,20 +271,6 @@ const initNavigation = () => {
 
   window.addEventListener('resize', updateActivePill);
   
-  // Handle cross-page navigation for subpages
-  const isSubpage = window.location.pathname.includes('research');
-  if (isSubpage) {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      const href = anchor.getAttribute('href');
-      if (href !== '#') {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.location.href = '/' + href;
-        });
-      }
-    });
-  }
-  
   // Run initially and after a short delay to account for font loading / rendering
   updateActivePill();
   setTimeout(updateActivePill, 200);
@@ -712,6 +698,173 @@ const initContactForm = () => {
 };
 
 // ==========================================================================
+// 7. Page Transitions
+// ==========================================================================
+const initPageTransitions = () => {
+  // Create and append transition overlay dynamically
+  const overlay = document.createElement('div');
+  overlay.className = 'page-transition-overlay';
+  document.body.appendChild(overlay);
+
+  const isSubpage = window.location.pathname.includes('research');
+
+  // Entrance transition for research page
+  if (isSubpage) {
+    const researchContainer = document.querySelector('.research-container');
+    const header = document.querySelector('.header');
+    
+    if (researchContainer) {
+      // Temporarily hide to prevent flashing, then animate
+      researchContainer.classList.add('research-container-prep');
+      
+      // Animate overlay sliding up and out
+      const entranceTL = gsap.timeline({
+        onComplete: () => {
+          overlay.style.display = 'none'; // free up resources
+        }
+      });
+      
+      // Set initial overlay to fully covered, then slide out
+      gsap.set(overlay, { translateY: '0%' });
+      
+      entranceTL.to(overlay, {
+        translateY: '-100%',
+        duration: 0.8,
+        ease: 'power4.inOut',
+        delay: 0.1
+      });
+      
+      entranceTL.to(researchContainer, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        clearProps: 'all'
+      }, '-=0.5');
+
+      if (header) {
+        gsap.from(header, {
+          opacity: 0,
+          y: -20,
+          duration: 0.6,
+          ease: 'power2.out'
+        });
+      }
+    }
+  }
+
+  // Handle cross-page navigation exit transitions for subpages
+  if (isSubpage) {
+    document.querySelectorAll('a[href^="#"], .back-home-link, .header-container .logo').forEach(anchor => {
+      const href = anchor.getAttribute('href');
+      if (href && href !== '#') {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          let targetUrl = href;
+          if (href.startsWith('#')) {
+            targetUrl = '/' + href;
+          }
+
+          const exitTL = gsap.timeline({
+            onComplete: () => {
+              window.location.href = targetUrl;
+            }
+          });
+
+          // Show overlay and slide it up to cover
+          gsap.set(overlay, { translateY: '100%', display: 'block' });
+
+          exitTL.to(overlay, {
+            translateY: '0%',
+            duration: 0.7,
+            ease: 'power4.inOut'
+          });
+
+          const researchContainer = document.querySelector('.research-container');
+          const header = document.querySelector('.header');
+
+          if (researchContainer) {
+            exitTL.to(researchContainer, {
+              opacity: 0,
+              y: 30,
+              duration: 0.5,
+              ease: 'power3.inOut'
+            }, '-=0.6');
+          }
+
+          if (header) {
+            exitTL.to(header, {
+              opacity: 0,
+              y: -20,
+              duration: 0.4,
+              ease: 'power2.inOut'
+            }, '-=0.6');
+          }
+        });
+      }
+    });
+  }
+
+  // Exit transition from home page
+  const researchBtn = document.getElementById('hero-research-btn');
+  if (researchBtn) {
+    researchBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetUrl = researchBtn.getAttribute('href');
+
+      const exitTL = gsap.timeline({
+        onComplete: () => {
+          window.location.href = targetUrl;
+        }
+      });
+
+      // Animate transition overlay in
+      gsap.set(overlay, { translateY: '100%', display: 'block' });
+      exitTL.to(overlay, {
+        translateY: '0%',
+        duration: 0.7,
+        ease: 'power4.inOut'
+      });
+
+      // Animate current page elements out
+      const heroContent = document.querySelector('.hero-content');
+      const heroGraphic = document.querySelector('.hero-graphic');
+      const header = document.querySelector('.header');
+
+      if (heroContent) {
+        exitTL.to(heroContent, {
+          opacity: 0,
+          y: -30,
+          scale: 0.95,
+          duration: 0.5,
+          ease: 'power3.inOut'
+        }, '-=0.6');
+      }
+      
+      if (heroGraphic) {
+        exitTL.to(heroGraphic, {
+          opacity: 0,
+          y: 30,
+          scale: 0.95,
+          duration: 0.5,
+          ease: 'power3.inOut'
+        }, '-=0.6');
+      }
+
+      if (header) {
+        exitTL.to(header, {
+          opacity: 0,
+          y: -20,
+          duration: 0.4,
+          ease: 'power2.inOut'
+        }, '-=0.6');
+      }
+    });
+  }
+};
+
+// ==========================================================================
 // 8. Initialize Application
 // ==========================================================================
 window.addEventListener('DOMContentLoaded', () => {
@@ -721,4 +874,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initGSAPAnimations();
   initThemeSwitcher();
   initContactForm();
+  initPageTransitions();
 });
