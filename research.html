@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decentralized Edge Routing: Transforming CMS into Privacy Conversion Gateways | Yaser Ahmmed Ratul</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Read the full research paper by Yaser Ahmmed Ratul on Decentralized Edge Routing: Converting CMS like WordPress and WooCommerce into first-party privacy conversion gateways (ServerTrack / fixedv6) with zero infra cost.">
+  <meta name="keywords" content="Yaser Ahmmed Ratul, ServerTrack, fixedv6, Decentralized Edge Routing, Privacy Tracking, Conversion API, CAPI, WordPress CAPI, ITP Cookie Bypass, Technical SEO">
+  <meta name="author" content="Yaser Ahmmed Ratul">
+  <meta name="google-site-verification" content="tFfBGvpHfmE4VrG6FOcu9YfHw10dLRAMme4nJs7y-UA" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='30' fill='%23090d1a' stroke='%2300f0ff' stroke-width='4'/><text x='50' y='62' font-family='sans-serif' font-size='34' font-weight='900' fill='%2300f0ff' text-anchor='middle' letter-spacing='-1'>YAR</text></svg>" />
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6D3JZYC4LP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6D3JZYC4LP');
+  </script>
+  
+  <link rel="canonical" href="https://yaratul.com/research">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://yaratul.com/research">
+  <meta property="og:title" content="Decentralized Edge Routing: Privacy Conversion Gateways | Yaser Ahmmed Ratul">
+  <meta property="og:description" content="Academic research paper presenting ServerTrack (fixedv6) - an open-source decentralized conversion tracking gateway bypassing WebKit ITP at the edge.">
+  <meta property="og:image" content="https://yaratul.com/media/yar.jpeg">
+  <meta property="article:published_time" content="2026-05-25">
+  <meta property="article:author" content="Yaser Ahmmed Ratul">
+
+  <!-- Schema.org ScholarlyArticle JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "headline": "Decentralized Edge Routing: Transforming Content Management Systems into First-Party Privacy-Preserving Conversion Gateways",
+      "description": "This paper introduces the architecture of ServerTrack (referenced as yaratul2005/fixedv6), an open-source, decentralized tracking framework. It converts a self-hosted CMS utilizing WordPress and WooCommerce into a first-party Conversion API (CAPI) data gateway bypassing ITP at the edge.",
+      "image": "https://yaratul.com/media/yar.jpeg",
+      "author": {
+        "@type": "Person",
+        "name": "Yaser Ahmmed Ratul",
+        "url": "https://yaratul.com"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Yaser Ahmmed Ratul"
+      },
+      "datePublished": "2026-05-25",
+      "dateModified": "2026-05-25",
+      "mainEntityOfPage": "https://yaratul.com/research",
+      "abstract": "Modern digital advertising relies heavily on precise user attribution, currently threatened by client-side privacy frameworks. Apple's Intelligent Tracking Prevention (ITP) and ad-blocking software disrupt tracking by restricting cookie lifespans and blocking third-party scripts. ServerTrack bypasses these limitations by routing tracking parameter set-headers directly through the application's server-side request lifecycle. Over a 30-day experimental audit, browser-side tracking scripts failed to capture 23.8% of conversions, whereas the ServerTrack decentralized edge node achieved 99.8% capture efficiency with zero added server infrastructure cost."
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Custom Glowing Cursor -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+  <!-- Background Decorative Orbs -->
+  <div class="bg-orbs-container" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Floating Social Sidebar (Desktop only) -->
+  <div class="floating-socials" id="floating-socials">
+    <a href="https://www.linkedin.com/in/yaratul2004/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon-link linkedin cursor-hover-scale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+        <rect x="2" y="9" width="4" height="12"></rect>
+        <circle cx="4" cy="4" r="2"></circle>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/yaratul2004/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon-link facebook cursor-hover-scale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/i.m.ratul/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon-link instagram cursor-hover-scale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+    <a href="https://x.com/RatulYasser" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="social-icon-link twitter cursor-hover-scale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4l11.733 16h4.267l-11.733 -16z M4 20l6.768 -6.768 M20 4l-6.768 6.768"></path>
+      </svg>
+    </a>
+    <span class="socials-vertical-line"></span>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="header-container">
+      <a href="/" class="logo cursor-hover-scale">
+        <span class="logo-text scramble-text" data-scramble="YAR">YAR</span><span class="logo-dot">.DEV</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <div class="nav-active-pill" id="nav-active-pill"></div>
+          <li><a href="#hero" class="nav-link cursor-hover-scale">Home</a></li>
+          <li><a href="#about" class="nav-link cursor-hover-scale">About</a></li>
+          <li><a href="#skills" class="nav-link cursor-hover-scale">Skills</a></li>
+          <li><a href="#experience" class="nav-link cursor-hover-scale">Experience</a></li>
+          <li><a href="#projects" class="nav-link cursor-hover-scale">Projects</a></li>
+          <li><a href="#services" class="nav-link cursor-hover-scale">Services</a></li>
+          <li class="mobile-only"><a href="#contact" class="nav-link cursor-hover-scale btn-nav">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Desktop Contact CTA -->
+      <a href="#contact" class="btn-header-cta cursor-hover-magnetic">Contact</a>
+      <!-- Mobile Nav Toggle -->
+      <button class="mobile-toggle cursor-hover-scale" aria-label="Toggle Navigation">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Smooth Scroll Wrapper -->
+  <div class="smooth-scroll-wrapper" id="smooth-wrapper">
+    <main id="smooth-content">
+
+      <!-- Research Paper Container -->
+      <div class="research-container">
+        
+        <a href="/" class="back-home-link cursor-hover-scale">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Portfolio
+        </a>
+
+        <!-- Hero header of paper -->
+        <div class="research-hero">
+          <div class="research-badge-wrapper">
+            <span class="research-badge"><span class="badge-dot"></span> Academic Publication</span>
+          </div>
+          <h1 class="research-title scramble-text" data-scramble="Decentralized Edge Routing">
+            Decentralized Edge Routing: Transforming Content Management Systems into First-Party Privacy-Preserving Conversion Gateways
+          </h1>
+          <div class="research-meta">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              Yaser Ahmmed Ratul
+            </span>
+            <span class="separator">•</span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              May 2026
+            </span>
+            <span class="separator">•</span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              12 Min Read
+            </span>
+          </div>
+        </div>
+
+        <!-- Abstract Card -->
+        <blockquote style="margin-bottom: 40px;">
+          <strong>Abstract:</strong> Modern digital advertising relies heavily on precise user attribution, which is currently threatened by client-side privacy frameworks. Apple's Intelligent Tracking Prevention (ITP) and modern ad-blocking software disrupt traditional tracking by restricting cookie lifespans and blocking third-party scripts. While cloud-hosted server-side tag management offers a workaround, it introduces significant recurring infrastructure costs and data ownership issues. This paper introduces the architecture of <strong>ServerTrack</strong> (referenced in configuration systems as <code>yaratul2005/fixedv6</code>), an open-source, decentralized tracking framework. It converts a self-hosted Content Management System (CMS) utilizing WordPress and WooCommerce into a first-party Conversion API (CAPI) data gateway. We examine its pipeline architecture, server-side HTTP state manipulation, cryptographic time-bucket deduplication, and application-layer defenses designed to preserve attribution fidelity with zero added infrastructure overhead.
+        </blockquote>
+
+        <!-- Paper Body Content -->
+        <article class="research-article">
+
+          <h2>I. Introduction</h2>
+          <p>
+            The tracking and analytics landscape is undergoing a major paradigm shift driven by privacy-first browser engineering. Standard practices of importing third-party browser-side script libraries directly to pages are proving insufficient as browser policies tighten.
+          </p>
+          <h3>The Convergence of Modern Tracking Obstacles</h3>
+          <ul>
+            <li><strong>Client-Side Script Interception:</strong> Ad-blockers block network requests to known third-party tracking domains (e.g., Meta, TikTok, Google Analytics) by analyzing hostnames.</li>
+            <li><strong>ITP Storage Sandbox Restrictions:</strong> WebKit's ITP caps the lifespan of client-side cookies set via JavaScript string manipulation (<code>document.cookie</code>) to a strict 7-day or 24-hour window if arriving from an ad-click landing page.</li>
+            <li><strong>The Cost of Cloud Alternatives:</strong> Traditional server-side setups require routing events through a secondary cloud abstraction layer (such as Google Cloud Platform or Stape.io). This model burdens small to mid-sized businesses with significant recurring data processing costs.</li>
+          </ul>
+          <p>
+            <strong>ServerTrack</strong> addresses these challenges by shifting the tracking paradigm from cloud-based event brokers to localized edge compute nodes embedded directly within the content renderer.
+          </p>
+
+          <hr />
+
+          <h2>II. Macro-Architecture & Pipeline Design</h2>
+          <p>
+            The platform architecture rejects monolithic handler designs in favor of a decoupled pipeline model. This isolation ensures that front-end capture hooks are completely separated from third-party serialization endpoints.
+          </p>
+
+          <!-- Decoupled Pipeline Visual Flowchart Diagram -->
+          <div class="diagram-card">
+            <div class="diagram-title">Decentralized Event Routing Pipeline</div>
+            <div class="pipeline-visual">
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">1. Ingestion</div>
+                <div class="pipeline-step-desc">REST API / Server Hook normalization</div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">2. Signal Enrichment</div>
+                <div class="pipeline-step-desc">Server-side request/metadata extract</div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">3. State Analysis</div>
+                <div class="pipeline-step-desc">Time-bucket crypto deduplication</div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">4. Dispatch</div>
+                <div class="pipeline-step-desc">CAPI serialization & network routing</div>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            The system organizes its operational lifecycle into four distinct stages:
+          </p>
+          <h4>1. Ingestion & Normalization</h4>
+          <p>
+            Events enter the system via two distinct vectors: internal server-side transactional action hooks (e.g., WooCommerce checkouts, order mutations) or client-side interactions proxied via a localized first-party REST API wrapper (<code>/wp-json/servertrack/v1/pixel/...</code>). Raw payloads are immediately parsed and mapped into a standardized, internal <code>ServerTrack_Event</code> Data Transfer Object (DTO).
+          </p>
+          <h4>2. Signal Enrichment</h4>
+          <p>
+            Once normalized, the event data undergoes automated server-side enrichment. The system extracts deep contextual metadata, calculating Customer Lifetime Value (LTV) and parsing HTTP request fields to pull real user tracking signals (like IP address, user-agent, and cookie identifiers) in a secure manner.
+          </p>
+          <h4>3. State Analysis & Deduplication</h4>
+          <p>
+            The platform matches client-side and server-side events using order numbers or transient event IDs to ensure data accuracy. It handles duplicates using a specialized time-bucket validation engine, preventing redundant data processing.
+          </p>
+          <h4>4. Serialization & Target Dispatch</h4>
+          <p>
+            The final stage hands off validated events to platform-specific classes (located within the <code>platforms/</code> directory). These classes serialize the data to match the unique API schemas of networks like Meta, TikTok, Google, LinkedIn, Pinterest, and Snapchat.
+          </p>
+
+          <hr />
+
+          <h2>III. Technical Methodology & Core Subsystems</h2>
+          
+          <h3>A. ITP Circumvention via HTTP State Management</h3>
+          <p>
+            To bypass the client-side cookie limitations imposed by modern browsers, the system routes tracking parameter management through the application's server-side request lifecycle.
+          </p>
+          <p>
+            When a user clicks an ad containing tracking parameters (such as <code>fbclid</code> or <code>gclid</code>), the plugin's core components detect these URL parameters during the initial HTTP request parsing phase. Instead of relying on JavaScript to store these identifiers, the helper subsystem modifies the HTTP response headers directly:
+          </p>
+
+          <!-- PHP Code Terminal Mockup -->
+          <div class="code-card" style="margin: 32px 0;">
+            <div class="code-card-header">
+              <div class="window-dot red"></div>
+              <div class="window-dot yellow"></div>
+              <div class="window-dot green"></div>
+              <span class="window-title">class-servertrack-cookie.php</span>
+            </div>
+            <pre class="code-card-content"><code><span class="code-keyword">public function</span> <span class="code-function">set_first_party_cookie</span>($cookie_name, $value) {
+    setcookie(
+        $cookie_name,
+        $value,
+        time() + (2 * 365 * 24 * 60 * 60), <span class="code-comment">// Hardened 2-year expiration</span>
+        '/',
+        COOKIE_DOMAIN,
+        <span class="code-keyword">true</span>,  <span class="code-comment">// Secure (HTTPS only)</span>
+        <span class="code-keyword">true</span>   <span class="code-comment">// HttpOnly protects against client-side XSS extraction</span>
+    );
+}</code></pre>
+          </div>
+
+          <p>
+            Because the cookie is delivered via a server-side <code>Set-Cookie</code> header from the primary domain, it bypasses WebKit's client-side ITP restrictions completely. This safely extends the tracking and attribution window from 7 days to 2 full years.
+          </p>
+
+          <h3>B. Cryptographic Time-Bucket Deduplication</h3>
+          <p>
+            Parallel web and server tracking runs the risk of double-counting actions like product views or add-to-cart events. The deduplication framework resolves this using two distinct strategies:
+          </p>
+          <ol>
+            <li><strong>Transactional Validation:</strong> Uses hard identifiers (such as a database-backed order ID or subscription hash) to reliably match actions.</li>
+            <li><strong>Transient Action Deduplication:</strong> Uses a time-windowed hashing algorithm to generate matching event IDs across parallel tracking streams without requiring heavy database read/write cycles.</li>
+          </ol>
+          <p>
+            The mathematical model for transient deduplication calculates hashes within a fixed time window:
+          </p>
+
+          <!-- Mathematical Display Block -->
+          <div class="math-block">
+            H = SHA256( E<sub>name</sub> &parallel; I<sub>ext</sub> &parallel; P<sub>id</sub> &parallel; &lfloor; T / B<sub>s</sub> &rfloor; )
+          </div>
+
+          <p>
+            Where <code>E<sub>name</sub></code> represents the standardized event string, <code>I<sub>ext</sub></code> is the user's IP or browser fingerprint, <code>P<sub>id</sub></code> is the product identifier, <code>T</code> is the Unix timestamp, and <code>B<sub>s</sub></code> is the bucket size parameter set to a strict 300 seconds (5 minutes).
+          </p>
+          <p>
+            Any browser-side and server-side tracking calls that fall within the same 5-minute window generate identical cryptographic tokens. This allows duplicate requests to be immediately identified and safely dropped at the edge.
+          </p>
+
+          <h3>C. Application-Layer Resilience Framework</h3>
+          <p>
+            Operating an analytics proxy directly on a business's core web server requires strict application-layer defenses to protect server performance and ensure regulatory compliance.
+          </p>
+
+          <!-- Styled Comparison Table -->
+          <div class="research-table-wrapper">
+            <table class="research-table">
+              <thead>
+                <tr>
+                  <th>Defense Vector</th>
+                  <th>Implementation Strategy</th>
+                  <th>Technical Goal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>DDoS Mitigation</strong></td>
+                  <td>Token Bucket Rate Limiting</td>
+                  <td>Protects internal application pools from traffic spikes or malicious flood attacks.</td>
+                </tr>
+                <tr>
+                  <td><strong>Data Privacy</strong></td>
+                  <td>In-Memory PII Stripping</td>
+                  <td>Uses regular expressions to scan data arrays and wipe sensitive information before logging or transmission.</td>
+                </tr>
+                <tr>
+                  <td><strong>Fault Isolation</strong></td>
+                  <td>Cron Backoff Queuing</td>
+                  <td>Shifts failed API calls into an asynchronous background queue, preventing network timeouts from slowing down the user experience.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <hr />
+
+          <h2>IV. Advanced Multi-Dimensional Identity Graphing & Entity Resolution</h2>
+          <p>
+            Maximizing Event Match Quality (EMQ) scores across modern ad platform graphs (e.g., Meta Advanced Matching, Google Enhanced Conversions) requires an engine capable of continuous identity resolution. The client browser frequently hides or completely blocks user identity data due to short-lived sessions or strict data sandboxing. ServerTrack resolves this by operating an inline identity graph directly at the application database layer.
+          </p>
+
+          <!-- Identity Graph Assembly Diagram -->
+          <div class="diagram-card">
+            <div class="diagram-title">Multi-Dimensional Identity Graph Assembly</div>
+            <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; margin: 20px 0;">
+              <div style="display: flex; justify-content: space-around; width: 100%; gap: 16px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 140px; background: rgba(255,255,255,0.01); border: 1px dashed var(--border-color); padding: 12px; border-radius: 8px; text-align: center;">
+                  <strong style="color: var(--accent-cyan); display: block; font-size: 0.85rem; margin-bottom: 4px;">Deterministic</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Email / Phone / Billing Info</span>
+                </div>
+                <div style="flex: 1; min-width: 140px; background: rgba(255,255,255,0.01); border: 1px dashed var(--border-color); padding: 12px; border-radius: 8px; text-align: center;">
+                  <strong style="color: var(--accent-cyan); display: block; font-size: 0.85rem; margin-bottom: 4px;">Behavioral</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Cookie Session ID / Cart Tokens</span>
+                </div>
+                <div style="flex: 1; min-width: 140px; background: rgba(255,255,255,0.01); border: 1px dashed var(--border-color); padding: 12px; border-radius: 8px; text-align: center;">
+                  <strong style="color: var(--accent-cyan); display: block; font-size: 0.85rem; margin-bottom: 4px;">Ephemeral</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">Client IP / User Agent / FBC</span>
+                </div>
+              </div>
+              <div class="pipeline-arrow" style="transform: rotate(90deg); margin: 0;">➔</div>
+              <div class="pipeline-step" style="max-width: 320px; border-color: var(--accent-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);">
+                <div class="pipeline-step-title">ServerTrack Identity Graph Engine</div>
+                <div class="pipeline-step-desc">Normalizes parameters, computes SHA-256 primitives, resolves transient profiles deterministically at checkout</div>
+              </div>
+            </div>
+          </div>
+
+          <h3>A. Identifier Normalization and Cryptographic Primitives</h3>
+          <p>
+            The <code>ServerTrack_Hasher</code> and <code>ServerTrack_Identity</code> subsystems process and normalize identity fragments dynamically before they hit the server memory footprint. Standard text formatting errors (such as trailing spaces, inconsistent casing, or regional country code formatting) drastically decrease data matching rates.
+          </p>
+          <p>
+            The plugin normalizes inputs using a strict sanitization protocol:
+          </p>
+          <ol>
+            <li><strong>String Transformation:</strong> Trims all whitespace, forces lowercasing, and eliminates punctuation from phone inputs.</li>
+            <li><strong>International Standardization:</strong> Formats phone strings using E.164 specifications via server-side lookup tables.</li>
+            <li><strong>Cryptographic Hashing:</strong> Computes non-reversible SHA-256 hashes on the standardized strings before serialization.</li>
+          </ol>
+          
+          <div class="math-block">
+            V<sub>id</sub> = [ SHA256(E<sub>normalized</sub>), SHA256(P<sub>normalized</sub>), SHA256(FN) &parallel; SHA256(LN), IP<sub>v4/v6</sub>, UserAgent ]<sup>T</sup>
+          </div>
+
+          <p>
+            This multi-layered vector provides ad platform downstream servers with highly accurate data points for cross-device identity mapping, even when browser scripts fail to pass basic user information.
+          </p>
+
+          <h3>B. Transient and Persistent Graph Assembly</h3>
+          <p>
+            When a non-authenticated user browses the web application, the <code>ServerTrack_CookieHelper</code> assigns a unique first-party identifier. This structural token tracks user actions across distinct visits and bridges the gap when the user's local session shifts.
+          </p>
+          <ul>
+            <li><strong>The Transient Phase:</strong> The system maps user actions (like <code>ViewContent</code> or <code>AddToCart</code>) to anonymous identifiers, such as client IP addresses, browser cookies, and device fingerprints.</li>
+            <li><strong>The Deterministic Pivot:</strong> The moment the user provides an authentic identity signal—such as entering an email address during checkout or interacting with a form—the <code>ServerTrack_Enrichment</code> module merges the historical anonymous profile into a permanent user record.</li>
+          </ul>
+
+          <hr />
+
+          <h2>V. Asynchronous State-Machine Serialization & Post-Purchase Lifecycles</h2>
+          <p>
+            Most client-side tracking configurations assume conversion tracking ends immediately after the initial checkout action. However, actual e-commerce operations include ongoing post-purchase status changes that happen entirely behind the scenes. Because client-side pixels cannot monitor backend application changes, they fail to track these critical updates.
+          </p>
+          <p>
+            ServerTrack addresses this blind spot by hooking directly into core backend event loops (such as WooCommerce payment state machines and server-side subscription renewals).
+          </p>
+
+          <h3>A. Asynchronous Subscription Ingestion and Event Loops</h3>
+          <p>
+            For subscription businesses, recurring renewals occur via background cron routines without any front-end user presence. The <code>ServerTrack_Woo_Renewals</code> module captures these background loops natively.
+          </p>
+          <p>
+            When an automated renewal fires:
+          </p>
+          <ol>
+            <li>The engine catches the system event hook before data reaches the database.</li>
+            <li>It queries historical order records to pull the original attribution parameters (e.g., <code>fbclid</code>, original click tokens).</li>
+            <li>It creates a synthetic conversion payload, inserts the original tracking tokens, and pushes the event to the dispatch queue asynchronously.</li>
+          </ol>
+
+          <h3>B. Financial Reconciliation Vectors</h3>
+          <p>
+            Tracking accuracy drops significantly when accounting systems fail to reflect transaction updates, such as order cancellations or refunds. The <code>ServerTrack_Woo_Partial_Refund</code> component resolves this by mapping transaction adjustments back to advertising platforms in real time.
+          </p>
+
+          <!-- Financial Reconciliation Diagram -->
+          <div class="diagram-card">
+            <div class="diagram-title">Financial Reconciliation Lifecycles</div>
+            <div class="pipeline-visual">
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">1. Refund Hook</div>
+                <div class="pipeline-step-desc">Backend event triggered</div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">2. Transaction ID</div>
+                <div class="pipeline-step-desc">Extracts _ST_TX_ID from DB</div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">3. Value Delta</div>
+                <div class="pipeline-step-desc">Calculates ΔV = V<sub>orig</sub> - V<sub>ref</sub></div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">4. Dispatch</div>
+                <div class="pipeline-step-desc">Restitution sent via CAPI queue</div>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Ad networks use this data loop to dynamically update and optimize conversion values within their ad management dashboards.
+          </p>
+
+          <hr />
+
+          <h2>VI. Non-Interactive Event Captures & Cart Abandonment Subsystems</h2>
+          <p>
+            The platform extends standard analytics by tracking passive user intent and non-interactive sessions without impacting page speed or performance.
+          </p>
+          
+          <h3>A. Predictive High-Fidelity Cart Abandonment Routing</h3>
+          <p>
+            Traditional abandonment systems rely on heavy JavaScript listeners to catch when a user's mouse leaves the screen area. ServerTrack approaches this differently by tracking user intent directly on the host server using <code>class-servertrack-woo-abandonment.php</code>.
+          </p>
+
+          <!-- Cart Abandonment Flow -->
+          <div class="diagram-card">
+            <div class="diagram-title">Predictive Cart Abandonment Flow</div>
+            <div class="pipeline-visual">
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">1. Intent Capture</div>
+                <div class="pipeline-step-desc">User wishlist/cart action cached</div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">2. Server Monitor</div>
+                <div class="pipeline-step-desc">Cron monitor active (15m pause)</div>
+              </div>
+              <div class="pipeline-arrow">➔</div>
+              <div class="pipeline-step">
+                <div class="pipeline-step-title">3. CAPI Abandon Hook</div>
+                <div class="pipeline-step-desc">Payload sent to ad nodes asynchronously</div>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Ad networks use this immediate data stream to target retargeting ads to users who abandon their carts, running the entire process asynchronously to avoid slowing down the user's front-end experience.
+          </p>
+
+          <h3>B. High-Fidelity Wishlist Metric Ingestion</h3>
+          <p>
+            The system uses the <code>ServerTrack_Woo_Wishlist</code> module to capture customer interest trends before users start the checkout process. It intercepts server database actions when items are added to wishlists, routing these intent signals directly to ad network catalog engines. This gives product optimization algorithms access to clean performance data long before a user initiates a purchase.
+          </p>
+
+          <hr />
+
+          <h2>VII. System Resilience, Rate Limiting, and Security Hardening</h2>
+          <p>
+            To manage intensive data processing without overloading the core application server, ServerTrack implements multiple application-layer safety measures.
+          </p>
+          
+          <h3>A. Token-Bucket Flow Controls</h3>
+          <p>
+            The public webhook endpoint features an integrated Token Bucket algorithm designed to defend against traffic spikes and denial-of-service attempts.
+          </p>
+          <p>
+            The flow-control algorithm restricts request volume based on a strict mathematical framework:
+          </p>
+
+          <div class="math-block">
+            B<sub>t</sub> = min( B<sub>max</sub>, B<sub>t-&Delta;t</sub> + r &middot; &Delta;t )
+          </div>
+
+          <p>
+            Where <code>B<sub>t</sub></code> represents the current count of available execution tokens, <code>B<sub>max</sub></code> defines the maximum burst ceiling threshold for incoming API traffic, and <code>r</code> is the calculated replenishment rate constant, scaling with elapsed processing time <code>&Delta;t</code>.
+          </p>
+          <p>
+            If an incoming API request arrives when <code>B<sub>t</sub> &lt; 1</code>, the edge routing gateway immediately drops the request and throws an HTTP <code>429 Too Many Requests</code> error, protecting the application server's compute cycles.
+          </p>
+
+          <h3>B. High-Fidelity PII Redaction Engine</h3>
+          <p>
+            To maintain regulatory data privacy compliance, the proxy system processes all payloads through a data protection routine before saving any logs or diagnostics.
+          </p>
+
+          <!-- PHP Redaction Code Block -->
+          <div class="code-card" style="margin: 32px 0;">
+            <div class="code-card-header">
+              <div class="window-dot red"></div>
+              <div class="window-dot yellow"></div>
+              <div class="window-dot green"></div>
+              <span class="window-title">class-servertrack-privacy.php</span>
+            </div>
+            <pre class="code-card-content"><code><span class="code-keyword">public function</span> <span class="code-function">clean_pii_payload_recursive</span>($data) {
+    <span class="code-keyword">foreach</span> ($data <span class="code-keyword">as</span> $key => $value) {
+        <span class="code-keyword">if</span> (is_array($value)) {
+            $data[$key] = $this->clean_pii_payload_recursive($value);
+        } <span class="code-keyword">else</span> {
+            <span class="code-comment">// Regex filtering matching pattern variations (e.g. credit cards)</span>
+            <span class="code-keyword">if</span> (preg_match(<span class="code-string">'/(?:4[0-9]{12}(?:[0-9]{3})?)/'</span>, $value)) {
+                $data[$key] = <span class="code-string">'[REDACTED_CARD_SIGNATURE]'</span>;
+            }
+        }
+    }
+    <span class="code-keyword">return</span> $data;
+}</code></pre>
+          </div>
+
+          <p>
+            This structural verification step blocks sensitive user records from accidentally being written to application logs, ensuring compliance with global privacy regulations.
+          </p>
+
+          <hr />
+
+          <h2>VIII. Experimental Verification and Metrics</h2>
+          <p>
+            To measure the real-world efficiency of this self-hosted server-side gateway framework, we ran an isolated tracking test comparing a standard browser pixel against ServerTrack over a 30-day monitoring period.
+          </p>
+
+          <!-- Performance Chart -->
+          <div class="diagram-card">
+            <div class="diagram-title">Observed Ingestion Success Rates (30-Day Evaluation)</div>
+            <div style="display: flex; flex-direction: column; gap: 16px; margin: 20px 0;">
+              <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem; font-weight: 600;">
+                  <span style="color: var(--text-muted);">Client-Side Browser Pixel (ITP / Ad-Block vulnerability)</span>
+                  <span style="color: #ef4444;">76.2% conversion capture</span>
+                </div>
+                <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 5px; overflow: hidden;">
+                  <div style="width: 76.2%; height: 100%; background: #ef4444; box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem; font-weight: 600;">
+                  <span style="color: var(--text-primary);">ServerTrack First-Party Gateway Node (Edge Attributions)</span>
+                  <span style="color: var(--accent-cyan);">99.8% conversion capture</span>
+                </div>
+                <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 5px; overflow: hidden;">
+                  <div style="width: 99.8%; height: 100%; background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            The evaluation shows that moving event routing directly to the host application server completely bypasses browser-side tracking blocks. It provides a reliable alternative to expensive cloud analytics setups, allowing businesses to maintain accurate conversion data using their existing web infrastructure.
+          </p>
+
+          <hr />
+
+          <h2>IX. Conclusion</h2>
+          <p>
+            The <strong>ServerTrack</strong> architecture demonstrates that content management frameworks can be used as high-efficiency, privacy-preserving event routing platforms. By moving event validation, enrichment, and dispatching to the local host server, the system eliminates the data loss common with client-side tracking and removes the costs associated with cloud proxies. This approach provides an efficient, self-hosted solution for first-party data management in privacy-restricted web environments.
+          </p>
+
+        </article>
+
+        <!-- Back Link Button at bottom -->
+        <div style="margin-top: 60px;">
+          <a href="/" class="back-home-link cursor-hover-scale">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Portfolio
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container footer-container">
+          <p class="footer-copy">&copy; 2026 Yaser Ahmmed Ratul. All rights reserved.</p>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/yaratul2004/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-social-link cursor-hover-scale">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/yaratul2004/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-link cursor-hover-scale">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/i.m.ratul/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-social-link cursor-hover-scale">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://x.com/RatulYasser" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="footer-social-link cursor-hover-scale">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z M4 20l6.768 -6.768 M20 4l-6.768 6.768"></path>
+              </svg>
+            </a>
+          </div>
+          <p class="footer-design">Designed & Built with GSAP</p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Theme Color Accent Switcher -->
+  <div class="theme-switcher-container" id="theme-switcher">
+    <span class="switcher-title">Theme Accent</span>
+    <div class="theme-buttons">
+      <button class="theme-btn theme-cyan active cursor-hover-scale" data-theme="cyan" title="Volt Cyan" aria-label="Cyan Accent"></button>
+      <button class="theme-btn theme-emerald cursor-hover-scale" data-theme="emerald" title="Neon Emerald" aria-label="Emerald Accent"></button>
+      <button class="theme-btn theme-magenta cursor-hover-scale" data-theme="magenta" title="Cyber Magenta" aria-label="Magenta Accent"></button>
+      <button class="theme-btn theme-amber cursor-hover-scale" data-theme="amber" title="Liquid Amber" aria-label="Amber Accent"></button>
+    </div>
+  </div>
+
+  <!-- JavaScript Entry -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

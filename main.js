@@ -271,6 +271,20 @@ const initNavigation = () => {
 
   window.addEventListener('resize', updateActivePill);
   
+  // Handle cross-page navigation for subpages
+  const isSubpage = window.location.pathname.includes('research');
+  if (isSubpage) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      const href = anchor.getAttribute('href');
+      if (href !== '#') {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = '/' + href;
+        });
+      }
+    });
+  }
+  
   // Run initially and after a short delay to account for font loading / rendering
   updateActivePill();
   setTimeout(updateActivePill, 200);
@@ -283,20 +297,26 @@ const initGSAPAnimations = () => {
   // --- Hero Section Initial Reveal ---
   const heroTL = gsap.timeline();
   
-  heroTL.to('.title-word', {
-    y: '0%',
-    duration: 1.2,
-    stagger: 0.1,
-    ease: 'power4.out'
-  });
+  const titleWords = document.querySelectorAll('.title-word');
+  if (titleWords.length > 0) {
+    heroTL.to(titleWords, {
+      y: '0%',
+      duration: 1.2,
+      stagger: 0.1,
+      ease: 'power4.out'
+    });
+  }
 
-  heroTL.from('#hero .reveal-fade', {
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out'
-  }, '-=0.8');
+  const heroReveal = document.querySelectorAll('#hero .reveal-fade');
+  if (heroReveal.length > 0) {
+    heroTL.from(heroReveal, {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out'
+    }, '-=0.8');
+  }
 
   // Parallax / tilt on code card
   const codeCard = document.querySelector('.code-card');
