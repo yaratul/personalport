@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yaser Ahmmed Ratul | Full-Stack Developer & SEO Specialist</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Portfolio of Yaser Ahmmed Ratul - Full-Stack Developer, WordPress & SEO Specialist, DevOps, and Digital Marketer. Discover key projects, web apps, and expert marketing strategies.">
+  <meta name="keywords" content="Yaser Ahmmed Ratul, Ratul, Full-Stack Developer, WordPress Developer, SEO Specialist, DevOps, Digital Marketer, Bangladesh, Cumilla, Great 10, Davida, PHP Developer">
+  <meta name="author" content="Yaser Ahmmed Ratul">
+  
+    <link rel="canonical" href="https://yaratul.com">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yaratul.com">
+    <meta property="og:title" content="Yaser Ahmmed Ratul | Full-Stack Developer & SEO Specialist">
+    <meta property="og:description" content="Portfolio of Yaser Ahmmed Ratul - Full-Stack Developer, WordPress & SEO Specialist, DevOps, and Digital Marketer.">
+    <meta property="og:image" content="https://yaratul.com/media/yar.jpeg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Custom Glowing Cursor -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+  <!-- Floating Social Sidebar (Desktop only, hidden on mobile) -->
+  <div class="floating-socials" id="floating-socials">
+    <a href="https://www.facebook.com/yaratul2004/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon-link facebook cursor-hover-scale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/i.m.ratul/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon-link instagram cursor-hover-scale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+    <a href="https://x.com/RatulYasser" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="social-icon-link twitter cursor-hover-scale">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4l11.733 16h4.267l-11.733 -16z M4 20l6.768 -6.768 M20 4l-6.768 6.768"></path>
+      </svg>
+    </a>
+    <span class="socials-vertical-line"></span>
+  </div>
+
+  <!-- Background Decorative Glowing Orbs Container -->
+  <div class="bg-orbs-container" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="header-container">
+      <a href="#" class="logo cursor-hover-scale">
+        <span class="logo-text scramble-text" data-scramble="YAR">YAR</span><span class="logo-dot">.DEV</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <div class="nav-active-pill" id="nav-active-pill"></div>
+          <li><a href="#hero" class="nav-link cursor-hover-scale active">Home</a></li>
+          <li><a href="#about" class="nav-link cursor-hover-scale">About</a></li>
+          <li><a href="#skills" class="nav-link cursor-hover-scale">Skills</a></li>
+          <li><a href="#experience" class="nav-link cursor-hover-scale">Experience</a></li>
+          <li><a href="#projects" class="nav-link cursor-hover-scale">Projects</a></li>
+          <li><a href="#services" class="nav-link cursor-hover-scale">Services</a></li>
+          <li class="mobile-only"><a href="#contact" class="nav-link cursor-hover-scale btn-nav">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Desktop Contact Button -->
+      <a href="#contact" class="btn-header-cta cursor-hover-magnetic">Contact</a>
+      <!-- Mobile Nav Toggle -->
+      <button class="mobile-toggle cursor-hover-scale" aria-label="Toggle Navigation">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Smooth Scroll Wrapper (Lenis) -->
+  <div class="smooth-scroll-wrapper" id="smooth-wrapper">
+    <main id="smooth-content">
+
+      <!-- Hero Section -->
+      <section id="hero" class="hero-section">
+        <div class="hero-grid-bg"></div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <div class="hero-badge-wrapper reveal-fade">
+              <span class="hero-badge"><span class="badge-dot"></span> Open for Freelance & Remote Work</span>
+            </div>
+            
+            <h1 class="hero-title">
+              <span class="title-line"><span class="title-word">DESIGNING</span></span>
+              <span class="title-line"><span class="title-word">SCALABLE</span></span>
+              <span class="title-line"><span class="title-word accent-text">DIGITAL</span></span>
+              <span class="title-line"><span class="title-word accent-text">EXPERIENCES</span></span>
+            </h1>
+            
+            <p class="hero-subtitle reveal-fade">
+              I am <span class="highlight">Yaser Ahmmed Ratul</span>, a Full-Stack Developer & SEO Specialist bridging the gap between pixel-perfect WordPress development, robust backend systems, and high-performance digital marketing.
+            </p>
+            
+            <div class="hero-ctas reveal-fade">
+              <a href="#projects" class="btn btn-primary cursor-hover-magnetic">
+                <span>View Projects</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="#contact" class="btn btn-secondary cursor-hover-magnetic">
+                <span>Let's Talk</span>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Hero Interactive Element -->
+          <div class="hero-graphic reveal-fade">
+            <div class="code-card">
+              <div class="code-card-header">
+                <div class="window-dot red"></div>
+                <div class="window-dot yellow"></div>
+                <div class="window-dot green"></div>
+                <span class="window-title">developer.js</span>
+              </div>
+              <pre class="code-card-content"><code><span class="code-keyword">const</span> developer = {
+  name: <span class="code-string">'Yaser Ahmmed Ratul'</span>,
+  role: <span class="code-string">'Full-Stack Developer'</span>,
+  skills: [<span class="code-string">'PHP/WordPress'</span>, <span class="code-string">'Python'</span>, <span class="code-string">'SEO'</span>, <span class="code-string">'DevOps'</span>],
+  location: <span class="code-string">'Cumilla, Bangladesh'</span>,
+  passion: <span class="code-string">'Building high-performance apps'</span>,
+  vibeCoding: <span class="code-keyword">true</span>,
+  readyForHire: <span class="code-keyword">true</span>
+};
+
+<span class="code-keyword">function</span> <span class="code-function">optimizePerformance</span>(site) {
+  <span class="code-keyword">return</span> site
+    .integrateSEO()
+    .hardenDevOps()
+    .boostConversion();
+}</code></pre>
+            </div>
+            
+            <!-- Tech Floating Tags -->
+            <div class="tech-tag tag-1 cursor-hover-scale">PHP & MySQL</div>
+            <div class="tech-tag tag-2 cursor-hover-scale">WordPress</div>
+            <div class="tech-tag tag-3 cursor-hover-scale">SEO</div>
+            <div class="tech-tag tag-4 cursor-hover-scale">Meta Ads</div>
+            <div class="tech-tag tag-5 cursor-hover-scale">Linux/SSH</div>
+          </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+          <span class="scroll-text">Scroll to explore</span>
+          <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+        </div>
+      </section>
+
+      <!-- Infinite Tech Loop Marquee -->
+      <div class="tech-marquee-wrapper">
+        <div class="tech-marquee-content">
+          <span class="marquee-item">WordPress</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">PHP & MySQL</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Python (Flask)</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Linux / SSH</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">SEO Specialist</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Meta Ads Manager</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Lead Generation</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">SaaS Development</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">WordPress</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">PHP & MySQL</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Python (Flask)</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Linux / SSH</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">SEO Specialist</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Meta Ads Manager</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">Lead Generation</span>
+          <span class="marquee-dot">✦</span>
+          <span class="marquee-item">SaaS Development</span>
+          <span class="marquee-dot">✦</span>
+        </div>
+      </div>
+
+      <!-- About Section -->
+      <section id="about" class="about-section section-padding">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tagline">01 / WHO I AM</span>
+            <h2 class="section-title reveal-text scramble-text" data-scramble="Professional Summary">Professional Summary</h2>
+          </div>
+          
+          <div class="about-grid">
+            <div class="about-text-content reveal-fade">
+              <p class="lead-text">
+                Results-driven <span class="text-highlight">Full-Stack Developer</span> with hands-on experience in <span class="text-highlight">WordPress full-site development</span>, <span class="text-highlight">SEO optimization</span>, PHP/MySQL backend development, and <span class="text-highlight">DevOps practices</span>.
+              </p>
+              <p class="body-text">
+                I have a proven track record of building and deploying <span class="text-highlight">production-ready web applications</span> on shared hosting environments. Skilled in <span class="text-highlight">Meta Ads marketing</span> with demonstrated <span class="text-highlight">lead generation</span> results. Experienced with <span class="text-highlight">API integration</span>, Python (Flask), TypeScript, MongoDB, and <span class="text-highlight">advanced prompt engineering</span>. Currently pursuing a BSc in Computer Science and Engineering at the Institute of Science and Technology, Dhanmondi, Dhaka.
+              </p>
+              <div class="about-stats-container">
+                <div class="stat-box cursor-hover-scale">
+                  <span class="stat-number" data-count="100">0</span><span class="stat-plus">%</span>
+                  <span class="stat-label">Client Satisfaction</span>
+                </div>
+                <div class="stat-box cursor-hover-scale">
+                  <span class="stat-number" data-count="10">0</span><span class="stat-plus">+</span>
+                  <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-box cursor-hover-scale">
+                  <span class="stat-number" data-count="3">0</span><span class="stat-plus">+</span>
+                  <span class="stat-label">Years Experience</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="about-photo-wrapper reveal-fade">
+              <div class="about-card-glow-base">
+                <div class="about-image-card cursor-hover-scale" id="profile-image-card">
+                  <img src="/media/yar.jpeg" alt="Yaser Ahmmed Ratul" class="profile-img">
+                  <div class="profile-img-overlay"></div>
+                  <div class="profile-img-frame"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills-section section-padding">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tagline">02 / EXPERTISE</span>
+            <h2 class="section-title reveal-text scramble-text" data-scramble="Technical Skills">Technical Skills</h2>
+          </div>
+          
+          <div class="skills-grid">
+            <!-- Skill Category 1 -->
+            <div class="skill-card reveal-fade cursor-hover-scale">
+              <div class="skill-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <h3>Web Development</h3>
+              <ul class="skill-list">
+                <li><span>WordPress (Full-Site)</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 95%"></span></span></li>
+                <li><span>PHP & MySQL</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 90%"></span></span></li>
+                <li><span>TypeScript & JS</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 80%"></span></span></li>
+                <li><span>HTML5 & CSS3</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 95%"></span></span></li>
+              </ul>
+            </div>
+
+            <!-- Skill Category 2 -->
+            <div class="skill-card reveal-fade cursor-hover-scale">
+              <div class="skill-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 17L10 11L4 5"/>
+                  <line x1="12" y1="19" x2="20" y2="19"/>
+                </svg>
+              </div>
+              <h3>Backend & APIs</h3>
+              <ul class="skill-list">
+                <li><span>Python (Flask)</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 75%"></span></span></li>
+                <li><span>REST API Integration</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 90%"></span></span></li>
+                <li><span>Database Management</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 85%"></span></span></li>
+                <li><span>API Development</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 80%"></span></span></li>
+              </ul>
+            </div>
+
+            <!-- Skill Category 3 -->
+            <div class="skill-card reveal-fade cursor-hover-scale">
+              <div class="skill-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                  <path d="M3 5V19C3 20.66 7.03 22 12 22C16.97 22 21 20.66 21 19V5"/>
+                  <path d="M3 12C3 13.66 7.03 15 12 15C16.97 15 21 13.66 21 12"/>
+                </svg>
+              </div>
+              <h3>DevOps & DB</h3>
+              <ul class="skill-list">
+                <li><span>Linux / SSH</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 85%"></span></span></li>
+                <li><span>Git & Version Control</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 90%"></span></span></li>
+                <li><span>Shared Hosting DevOps</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 95%"></span></span></li>
+                <li><span>MySQL & MongoDB</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 85%"></span></span></li>
+              </ul>
+            </div>
+
+            <!-- Skill Category 4 -->
+            <div class="skill-card reveal-fade cursor-hover-scale">
+              <div class="skill-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M23 6L13.5 15.5L8.5 10.5L1 18"/>
+                  <polyline points="17 6 23 6 23 12"/>
+                </svg>
+              </div>
+              <h3>Digital Marketing</h3>
+              <ul class="skill-list">
+                <li><span>Meta Ads Manager</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 90%"></span></span></li>
+                <li><span>Lead Generation</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 92%"></span></span></li>
+                <li><span>SEO (On-Page/Off-Page)</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 88%"></span></span></li>
+                <li><span>Campaign Optimization</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 85%"></span></span></li>
+              </ul>
+            </div>
+
+            <!-- Skill Category 5 -->
+            <div class="skill-card reveal-fade cursor-hover-scale">
+              <div class="skill-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                </svg>
+              </div>
+              <h3>Emerging Tech</h3>
+              <ul class="skill-list">
+                <li><span>Prompt Engineering</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 95%"></span></span></li>
+                <li><span>AI Model Integration</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 80%"></span></span></li>
+                <li><span>Canva & Design</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 85%"></span></span></li>
+                <li><span>Vibe Coding</span><span class="skill-level-bar"><span class="skill-level-fill" style="width: 90%"></span></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="experience-section section-padding">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tagline">03 / JOURNEY</span>
+            <h2 class="section-title reveal-text scramble-text" data-scramble="Work Experience & Education">Work Experience & Education</h2>
+          </div>
+          
+          <div class="timeline-container">
+            <!-- SVG Drawing Line for GSAP ScrollTrigger -->
+            <div class="timeline-line-wrapper">
+              <svg class="timeline-line-svg" width="10" height="100%" viewBox="0 0 10 100" preserveAspectRatio="none">
+                <path d="M5,0 L5,100" class="timeline-path-bg" stroke="rgba(255, 255, 255, 0.1)" stroke-width="4" stroke-linecap="round"></path>
+                <path d="M5,0 L5,100" class="timeline-path-active" stroke="url(#timeline-glow)" stroke-width="4" stroke-linecap="round"></path>
+                <defs>
+                  <linearGradient id="timeline-glow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#00f0ff" />
+                    <stop offset="50%" stop-color="#3b82f6" />
+                    <stop offset="100%" stop-color="#00f0ff" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            
+            <div class="timeline-items">
+              <!-- Timeline Item 1 -->
+              <div class="timeline-item reveal-fade">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content cursor-hover-scale">
+                  <span class="timeline-date">2025 – Present</span>
+                  <h3 class="timeline-title">Founder & Full-Stack Developer</h3>
+                  <h4 class="timeline-company">Great 10 (great10.xyz)</h4>
+                  <ul class="timeline-bullets">
+                    <li>Designed and developed a custom SaaS licensing and digital product distribution platform optimized for shared hosting environments.</li>
+                    <li>Architected backend with PHP & MySQL, building validation API endpoints for real-time license verification and software authorization.</li>
+                    <li>Integrated automated license key activation, user account dashboard, and product subscription flows.</li>
+                    <li>Applied advanced prompt engineering (Vibe Coding) to accelerate development cycles and maintain high code quality standards.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Timeline Item 2 -->
+              <div class="timeline-item reveal-fade">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content cursor-hover-scale">
+                  <span class="timeline-date">2024 – Present</span>
+                  <h3 class="timeline-title">Business Developer</h3>
+                  <h4 class="timeline-company">Davida</h4>
+                  <ul class="timeline-bullets">
+                    <li>Led full-site WordPress development with continuous updates, creative content management, and pixel-perfect UI.</li>
+                    <li>Implemented and managed SEO strategies improving organic search visibility and performance.</li>
+                    <li>Executed Meta Ads (Facebook & Instagram) marketing campaigns generating a significant volume of qualified leads.</li>
+                    <li>Maintained performance through regular monitoring, A/B testing, and audience optimization.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Timeline Item 3 (Education) -->
+              <div class="timeline-item reveal-fade">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content education-card cursor-hover-scale">
+                  <span class="timeline-date">2025 – Present</span>
+                  <h3 class="timeline-title">BSc in Computer Science & Engineering (BSc in CSE)</h3>
+                  <h4 class="timeline-company">Institute of Science and Technology, Dhanmondi, Dhaka</h4>
+                  <p class="timeline-desc">Currently pursuing higher studies in Computer Science, focusing on core software engineering and design principles.</p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 4 (HSC) -->
+              <div class="timeline-item reveal-fade">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content education-card cursor-hover-scale">
+                  <span class="timeline-date">2021 – 2023</span>
+                  <h3 class="timeline-title">Higher Secondary Certificate (HSC) – Science</h3>
+                  <h4 class="timeline-company">Ispahani Public School and College, Cantonment, Cumilla</h4>
+                  <p class="timeline-desc">Graduated with a science background with distinction.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section (Horizontal Scroll Pin) -->
+      <section id="projects" class="projects-section">
+        <div class="projects-sticky-wrapper">
+          <div class="container projects-title-container">
+            <div class="section-header">
+              <span class="section-tagline">04 / CREATIVE WORK</span>
+              <h2 class="section-title reveal-text scramble-text" data-scramble="Featured Projects">Featured Projects</h2>
+            </div>
+          </div>
+          
+          <div class="projects-horizontal-track">
+            <!-- Project 1 -->
+            <div class="project-slide">
+              <div class="project-card cursor-hover-scale">
+                <div class="project-image-wrapper">
+                  <div class="project-placeholder-bg p-bg-1">
+                    <span class="project-badge-tag">SaaS / PHP & Licensing</span>
+                    <!-- Code overlay graphics -->
+                    <div class="project-graphic-overlay">
+                      <div class="terminal-header">
+                        <span>great10.xyz</span>
+                      </div>
+                      <div class="terminal-body">
+                        <p class="t-line"><span class="t-green">✔</span> Licensing System online (PHP 8.2)</p>
+                        <p class="t-line"><span class="t-blue">ℹ</span> 34 Active software/tool licenses</p>
+                        <p class="t-line"><span class="t-yellow">★</span> Automatic key validation active</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <span class="project-number">01</span>
+                  <h3>Great 10 Software & Licensing SaaS</h3>
+                  <p class="project-desc">
+                    A custom-built SaaS licensing, client management, and digital distribution platform built with PHP & MySQL. Designed to organize, validate, and sell custom plugins, themes, and web software tools, featuring real-time license key validation APIs and webhooks, optimized to load instantly in shared hosting environments.
+                  </p>
+                  <div class="project-tags">
+                    <span>PHP</span>
+                    <span>MySQL</span>
+                    <span>SaaS Licensing</span>
+                    <span>Verification API</span>
+                    <span>Vibe Coding</span>
+                  </div>
+                  <div class="project-links" style="margin-top: 24px; display: flex; gap: 14px;">
+                    <a href="https://great10.xyz" target="_blank" class="btn btn-primary cursor-hover-magnetic" style="padding: 10px 22px; font-size: 0.85rem;">
+                      <span>Visit great10.xyz</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-slide">
+              <div class="project-card cursor-hover-scale">
+                <div class="project-image-wrapper">
+                  <div class="project-placeholder-bg p-bg-2">
+                    <span class="project-badge-tag">WordPress & E-Commerce</span>
+                    <div class="project-graphic-overlay">
+                      <div class="seo-gauge">
+                        <span class="seo-num">98</span>
+                        <span class="seo-label">SEO SCORE</span>
+                      </div>
+                      <div class="leads-chart">
+                        <div class="bar bar-1"></div>
+                        <div class="bar bar-2"></div>
+                        <div class="bar bar-3"></div>
+                        <div class="bar bar-4"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <span class="project-number">02</span>
+                  <h3>Davida E-Commerce & SEO</h3>
+                  <p class="project-desc">
+                    A complete WordPress and WooCommerce digital transition for Davida. Created with optimized SEO layouts, custom schema markup, page caching architectures, and a high-converting marketing strategy integrated with Meta Ads campaigns.
+                  </p>
+                  <div class="project-tags">
+                    <span>WordPress</span>
+                    <span>WooCommerce</span>
+                    <span>SEO</span>
+                    <span>Meta Ads</span>
+                    <span>Canva</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-slide">
+              <div class="project-card cursor-hover-scale">
+                <div class="project-image-wrapper">
+                  <div class="project-placeholder-bg p-bg-3">
+                    <span class="project-badge-tag">Open Source WordPress Plugin</span>
+                    <div class="project-graphic-overlay servertrack-graphic">
+                      <div class="track-flow">
+                        <div class="flow-node node-wp">WordPress</div>
+                        <div class="flow-arrow">➔</div>
+                        <div class="flow-node node-st">ServerTrack</div>
+                        <div class="flow-arrow">➔</div>
+                        <div class="flow-targets">
+                          <div class="target-badge">Meta CAPI</div>
+                          <div class="target-badge">Google Ads</div>
+                          <div class="target-badge">TikTok API</div>
+                        </div>
+                      </div>
+                      <div class="flow-status">
+                        <span class="pulse-green-dot"></span> Deduplication Active (v6.0.6)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-info">
+                  <span class="project-number">03</span>
+                  <h3>ServerTrack (WordPress CAPI)</h3>
+                  <p class="project-desc">
+                    A professional server-side Conversion API tracking plugin for WordPress & WooCommerce. Fires events to Meta (Facebook), TikTok, and Google Ads simultaneously—handling server-side deduplication, user consent, and identity stitching. Replaces costly $20/month trackers for free.
+                  </p>
+                  <div class="project-tags">
+                    <span>WordPress</span>
+                    <span>PHP</span>
+                    <span>Conversion API</span>
+                    <span>Meta CAPI</span>
+                    <span>Google Ads</span>
+                    <span>TikTok</span>
+                  </div>
+                  <div class="project-links" style="margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap;">
+                    <a href="https://github.com/yaratul2005/ServerTrack" target="_blank" class="btn btn-secondary cursor-hover-magnetic" style="padding: 10px 22px; font-size: 0.85rem;">
+                      <span>GitHub Code</span>
+                    </a>
+                    <a href="https://github.com/yaratul2005/ServerTrack/releases/tag/v6.0.6" target="_blank" class="btn btn-primary cursor-hover-magnetic" style="padding: 10px 22px; font-size: 0.85rem;">
+                      <span>Download v6.0.6</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="services-section section-padding">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tagline">05 / SERVICES</span>
+            <h2 class="section-title reveal-text scramble-text" data-scramble="What I Offer">What I Offer</h2>
+          </div>
+          
+          <div class="services-grid">
+            <!-- Service Card 1 -->
+            <div class="service-card cursor-hover-scale reveal-fade">
+              <div class="service-glow-effect"></div>
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <h3>WordPress & Web Development</h3>
+                <p>Full-site custom design, plugin integration, WooCommerce optimization, and custom PHP themes that rank high and load fast.</p>
+              </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-card cursor-hover-scale reveal-fade">
+              <div class="service-glow-effect"></div>
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    <polyline points="8 11 10 13 14 9"/>
+                  </svg>
+                </div>
+                <h3>Search Engine Optimization</h3>
+                <p>In-depth technical SEO, site speed audits, schema markup implementation, and on-page optimization to rank higher on search engines.</p>
+              </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="service-card cursor-hover-scale reveal-fade">
+              <div class="service-glow-effect"></div>
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                    <line x1="6" y1="6" x2="6.01" y2="6"/>
+                    <line x1="6" y1="18" x2="6.01" y2="18"/>
+                  </svg>
+                </div>
+                <h3>DevOps & Deployment</h3>
+                <p>Linux server setup, secure SSH key management, version control, and deploying applications on low-cost shared hosting environments.</p>
+              </div>
+            </div>
+
+            <!-- Service Card 4 -->
+            <div class="service-card cursor-hover-scale reveal-fade">
+              <div class="service-glow-effect"></div>
+              <div class="service-content">
+                <div class="service-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <h3>Meta Ads Lead Generation</h3>
+                <p>Planning and running profitable campaign architectures on Facebook and Instagram. Optimized for quality leads and low acquisition cost.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact-section section-padding">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tagline">06 / GET IN TOUCH</span>
+            <h2 class="section-title reveal-text scramble-text" data-scramble="Let's Connect">Let's Connect</h2>
+          </div>
+          
+          <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info reveal-fade">
+              <h3>Have a project in mind?</h3>
+              <p class="contact-info-desc">Feel free to reach out. I am open to freelance projects, remote positions, and collaborative full-stack or digital marketing roles.</p>
+              
+              <div class="contact-methods">
+                <a href="tel:+8801722081109" class="contact-method-card cursor-hover-scale">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </div>
+                  <div class="method-detail">
+                    <span class="method-label">Phone & WhatsApp</span>
+                    <span class="method-value">+880 1722-081109</span>
+                  </div>
+                </a>
+
+                <a href="mailto:ratul41g@gmail.com" class="contact-method-card cursor-hover-scale">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                  </div>
+                  <div class="method-detail">
+                    <span class="method-label">Email</span>
+                    <span class="method-value">ratul41g@gmail.com</span>
+                  </div>
+                </a>
+
+                <div class="contact-method-card cursor-hover-scale">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  </div>
+                  <div class="method-detail">
+                    <span class="method-label">Location</span>
+                    <span class="method-value">Cantonment, Cumilla, Bangladesh</span>
+                  </div>
+                </div>
+
+                <div class="contact-method-card socials-method-card cursor-hover-scale">
+                  <div class="method-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="2" y1="12" x2="22" y2="12"></line>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                  </div>
+                  <div class="method-detail">
+                    <span class="method-label">Social Handles</span>
+                    <div class="social-inline-links">
+                      <a href="https://www.facebook.com/yaratul2004/" target="_blank" rel="noopener noreferrer" class="social-link-inline cursor-hover-scale" title="Facebook">Facebook</a>
+                      <span class="separator">•</span>
+                      <a href="https://www.instagram.com/i.m.ratul/" target="_blank" rel="noopener noreferrer" class="social-link-inline cursor-hover-scale" title="Instagram">Instagram</a>
+                      <span class="separator">•</span>
+                      <a href="https://x.com/RatulYasser" target="_blank" rel="noopener noreferrer" class="social-link-inline cursor-hover-scale" title="Twitter/X">Twitter/X</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-wrapper reveal-fade">
+              <form class="contact-form" id="portfolio-contact-form">
+                <div class="form-group">
+                  <input type="text" id="form-name" required class="form-input cursor-hover-scale" placeholder=" " />
+                  <label for="form-name" class="form-label">Full Name</label>
+                  <span class="form-line"></span>
+                </div>
+                
+                <div class="form-group">
+                  <input type="email" id="form-email" required class="form-input cursor-hover-scale" placeholder=" " />
+                  <label for="form-email" class="form-label">Email Address</label>
+                  <span class="form-line"></span>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" id="form-subject" required class="form-input cursor-hover-scale" placeholder=" " />
+                  <label for="form-subject" class="form-label">Subject</label>
+                  <span class="form-line"></span>
+                </div>
+
+                <div class="form-group">
+                  <textarea id="form-message" required class="form-input form-textarea cursor-hover-scale" placeholder=" " rows="4"></textarea>
+                  <label for="form-message" class="form-label">Your Message</label>
+                  <span class="form-line"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-submit cursor-hover-magnetic">
+                  <span>Send Message</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container footer-container">
+          <p class="footer-copy">&copy; 2026 Yaser Ahmmed Ratul. All rights reserved.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/yaratul2004/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-link cursor-hover-scale">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/i.m.ratul/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer-social-link cursor-hover-scale">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://x.com/RatulYasser" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="footer-social-link cursor-hover-scale">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z M4 20l6.768 -6.768 M20 4l-6.768 6.768"></path>
+              </svg>
+            </a>
+          </div>
+          <p class="footer-design">Designed & Built with GSAP</p>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Theme Color Accent Switcher -->
+  <div class="theme-switcher-container" id="theme-switcher">
+    <span class="switcher-title">Theme Accent</span>
+    <div class="theme-buttons">
+      <button class="theme-btn theme-cyan active cursor-hover-scale" data-theme="cyan" title="Volt Cyan" aria-label="Cyan Accent"></button>
+      <button class="theme-btn theme-emerald cursor-hover-scale" data-theme="emerald" title="Neon Emerald" aria-label="Emerald Accent"></button>
+      <button class="theme-btn theme-magenta cursor-hover-scale" data-theme="magenta" title="Cyber Magenta" aria-label="Magenta Accent"></button>
+      <button class="theme-btn theme-amber cursor-hover-scale" data-theme="amber" title="Liquid Amber" aria-label="Amber Accent"></button>
+    </div>
+  </div>
+
+  <!-- JavaScript Entry -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
