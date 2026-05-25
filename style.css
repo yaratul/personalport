@@ -1929,6 +1929,29 @@ button, input, textarea {
     right: 20px;
     padding: 8px 14px;
   }
+
+  .contact-method-card {
+    padding: 16px 20px;
+    gap: 16px;
+  }
+
+  .method-icon {
+    flex-shrink: 0;
+  }
+
+  .method-detail {
+    min-width: 0;
+  }
+
+  .method-value {
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+
+  .social-inline-links {
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
 }
 
 /* --- ServerTrack Custom Project Graphic --- */
