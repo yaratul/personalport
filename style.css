@@ -2552,6 +2552,6 @@ button, input, textarea {
 
 /* Hide content initial state for research page smooth enter */
 .research-container-prep {
-  opacity: 0 !important;
-  transform: translateY(40px) !important;
+  opacity: 0;
+  transform: translateY(40px);
 }

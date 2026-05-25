@@ -714,9 +714,6 @@ const initPageTransitions = () => {
     const header = document.querySelector('.header');
     
     if (researchContainer) {
-      // Temporarily hide to prevent flashing, then animate
-      researchContainer.classList.add('research-container-prep');
-      
       // Animate overlay sliding up and out
       const entranceTL = gsap.timeline({
         onComplete: () => {
@@ -739,6 +736,9 @@ const initPageTransitions = () => {
         y: 0,
         duration: 0.8,
         ease: 'power3.out',
+        onStart: () => {
+          researchContainer.classList.remove('research-container-prep');
+        },
         clearProps: 'all'
       }, '-=0.5');
 
