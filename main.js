@@ -500,6 +500,36 @@ const initGSAPAnimations = () => {
     });
   });
 
+  // --- Projects 3D Card Hover / Tilt Effect ---
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const rotateX = -(y - rect.height / 2) / (rect.height / 25);
+      const rotateY = (x - rect.width / 2) / (rect.width / 25);
+
+      gsap.to(card, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        transformPerspective: 800,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.6,
+        ease: 'power2.out'
+      });
+    });
+  });
+
   // --- Skills Card Hover Glow coordinates ---
   const skCards = document.querySelectorAll('.skill-card');
   skCards.forEach((card) => {
@@ -865,6 +895,168 @@ const initPageTransitions = () => {
 };
 
 // ==========================================================================
+// Ambient Background Animations (Floating Orbs & Canvas Particles)
+// ==========================================================================
+const initFloatingOrbs = () => {
+  const orbs = document.querySelectorAll('.orb');
+  orbs.forEach((orb, index) => {
+    gsap.to(orb, {
+      x: () => (Math.random() - 0.5) * window.innerWidth * 0.15,
+      y: () => (Math.random() - 0.5) * window.innerHeight * 0.15,
+      scale: () => 0.9 + Math.random() * 0.3,
+      duration: () => 15 + Math.random() * 15,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      delay: index * 2
+    });
+  });
+};
+
+const initParticleBackground = () => {
+  const canvas = document.getElementById('live-particles-canvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  let particlesArray = [];
+  let mouse = {
+    x: null,
+    y: null,
+    radius: 120
+  };
+
+  window.addEventListener('mousemove', (event) => {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  const resizeCanvas = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  class Particle {
+    constructor(x, y, directionX, directionY, size, color) {
+      this.x = x;
+      this.y = y;
+      this.directionX = directionX;
+      this.directionY = directionY;
+      this.size = size;
+      this.color = color;
+      this.baseX = this.x;
+      this.baseY = this.y;
+      this.density = (Math.random() * 30) + 15;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+
+    update() {
+      this.x += this.directionX;
+      this.y += this.directionY;
+
+      if (this.x > canvas.width || this.x < 0) {
+        this.directionX = -this.directionX;
+      }
+      if (this.y > canvas.height || this.y < 0) {
+        this.directionY = -this.directionY;
+      }
+
+      if (mouse.x !== null && mouse.y !== null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < mouse.radius) {
+          let forceDirectionX = dx / distance;
+          let forceDirectionY = dy / distance;
+          let force = (mouse.radius - distance) / mouse.radius;
+          let directionX = forceDirectionX * force * this.density * 0.4;
+          let directionY = forceDirectionY * force * this.density * 0.4;
+
+          this.x -= directionX;
+          this.y -= directionY;
+        }
+      }
+    }
+  }
+
+  const init = () => {
+    particlesArray = [];
+    let numberOfParticles = (canvas.height * canvas.width) / 12000;
+    numberOfParticles = Math.min(numberOfParticles, 120);
+
+    const rootStyle = getComputedStyle(document.documentElement);
+    let accentColor = rootStyle.getPropertyValue('--accent-cyan').trim() || '#00f0ff';
+    
+    for (let i = 0; i < numberOfParticles; i++) {
+      let size = (Math.random() * 2) + 1;
+      let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+      let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+      let directionX = (Math.random() * 0.4) - 0.2;
+      let directionY = (Math.random() * 0.4) - 0.2;
+      
+      let color = Math.random() > 0.45 ? accentColor : 'rgba(255, 255, 255, 0.4)';
+
+      particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+    }
+  };
+
+  const connect = () => {
+    let opacityValue = 1;
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        let dx = particlesArray[a].x - particlesArray[b].x;
+        let dy = particlesArray[a].y - particlesArray[b].y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 95) {
+          opacityValue = 1 - (distance / 95);
+          ctx.strokeStyle = `rgba(0, 240, 255, ${opacityValue * 0.12})`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+          ctx.stroke();
+        }
+      }
+    }
+  };
+
+  const animate = () => {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update();
+      particlesArray[i].draw();
+    }
+    connect();
+  };
+
+  init();
+  animate();
+
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTimeout(init, 200);
+    });
+  });
+};
+
+// ==========================================================================
 // 8. Initialize Application
 // ==========================================================================
 window.addEventListener('DOMContentLoaded', () => {
@@ -875,4 +1067,6 @@ window.addEventListener('DOMContentLoaded', () => {
   initThemeSwitcher();
   initContactForm();
   initPageTransitions();
+  initFloatingOrbs();
+  initParticleBackground();
 });

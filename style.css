@@ -2555,3 +2555,206 @@ button, input, textarea {
   opacity: 0;
   transform: translateY(40px);
 }
+
+/* Interactive Live Canvas Particles */
+.live-particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+
+/* --- Project Gradients & Custom Graphics --- */
+.p-bg-4 {
+  background: linear-gradient(135deg, rgba(3, 7, 18, 0.95) 0%, rgba(88, 71, 35, 0.9) 100%);
+}
+.p-bg-5 {
+  background: linear-gradient(135deg, rgba(3, 7, 18, 0.95) 0%, rgba(58, 12, 163, 0.9) 100%);
+}
+.p-bg-6 {
+  background: linear-gradient(135deg, rgba(3, 7, 18, 0.95) 0%, rgba(157, 2, 8, 0.9) 100%);
+}
+
+/* --- Adrift Memoir Custom Project Graphic --- */
+.adrift-graphic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90% !important;
+  width: 90% !important;
+  padding: 20px;
+  gap: 16px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.book-mockup {
+  width: 110px;
+  height: 160px;
+  background-color: #121824;
+  border: 1.5px solid #d4af37; /* Gold border */
+  border-radius: 4px 12px 12px 4px;
+  box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  text-align: center;
+  position: relative;
+  transition: transform var(--transition-normal);
+  transform-style: preserve-3d;
+}
+
+.project-card:hover .book-mockup {
+  transform: rotateY(-15deg) rotateX(10deg);
+}
+
+.book-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #d4af37;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.book-subtitle {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  letter-spacing: 0.25em;
+  font-family: monospace;
+}
+
+.client-badge {
+  background-color: rgba(212, 175, 55, 0.1);
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* --- TechPlus BD Custom Project Graphic --- */
+.techplus-graphic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90% !important;
+  width: 90% !important;
+  padding: 20px;
+  gap: 16px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.cart-flow {
+  background-color: rgba(9, 13, 26, 0.85);
+  border: 1.5px solid var(--border-color);
+  padding: 14px 20px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.project-card:hover .cart-flow {
+  border-color: #3f0ca3;
+  box-shadow: 0 0 15px rgba(63, 12, 163, 0.4);
+}
+
+.cart-item {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cart-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  text-shadow: 0 0 5px var(--accent-cyan);
+}
+
+.telemetry-badge {
+  background-color: rgba(0, 240, 255, 0.1);
+  border: 1.5px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.telemetry-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: #00f0ff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00f0ff;
+  animation: pulse-dot-green 1.8s infinite ease-in-out;
+}
+
+/* --- WirePhoenix Custom Project Graphic --- */
+.wirephoenix-graphic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90% !important;
+  width: 90% !important;
+  padding: 20px;
+  gap: 12px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.wirephoenix-graphic .terminal-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: rgba(157, 2, 8, 0.2);
+  border: 1px solid rgba(157, 2, 8, 0.3);
+  border-bottom: none;
+  padding: 10px 16px;
+  width: 85%;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.wirephoenix-graphic .terminal-body {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgba(9, 13, 26, 0.85);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  width: 85%;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+  transition: border-color var(--transition-normal);
+}
+
+.project-card:hover .wirephoenix-graphic .terminal-body {
+  border-color: rgba(157, 2, 8, 0.5);
+}
