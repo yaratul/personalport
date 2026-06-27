@@ -2574,7 +2574,7 @@ button, input, textarea {
   background: linear-gradient(135deg, rgba(3, 7, 18, 0.95) 0%, rgba(88, 71, 35, 0.9) 100%);
 }
 .p-bg-5 {
-  background: linear-gradient(135deg, rgba(3, 7, 18, 0.95) 0%, rgba(58, 12, 163, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(3, 7, 18, 0.95) 0%, rgba(135, 196, 64, 0.25) 100%);
 }
 .p-bg-6 {
   background: linear-gradient(135deg, rgba(3, 7, 18, 0.95) 0%, rgba(157, 2, 8, 0.9) 100%);
@@ -2659,35 +2659,36 @@ button, input, textarea {
   box-shadow: none !important;
 }
 
-.cart-flow {
-  background-color: rgba(9, 13, 26, 0.85);
-  border: 1.5px solid var(--border-color);
-  padding: 14px 20px;
-  border-radius: 14px;
+.techplus-logo-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: rgba(9, 13, 26, 0.8);
+  border: 1.5px solid rgba(135, 196, 64, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(135, 196, 64, 0.15);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
+  backdrop-filter: blur(8px);
 }
 
-.project-card:hover .cart-flow {
-  border-color: #3f0ca3;
-  box-shadow: 0 0 15px rgba(63, 12, 163, 0.4);
+.techplus-brand-img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  transition: transform var(--transition-normal);
 }
 
-.cart-item {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-primary);
+.project-card:hover .techplus-logo-container {
+  border-color: #87c440;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(135, 196, 64, 0.45);
+  transform: translateY(-5px) scale(1.05);
 }
 
-.cart-price {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--accent-cyan);
-  text-shadow: 0 0 5px var(--accent-cyan);
+.project-card:hover .techplus-brand-img {
+  transform: rotate(5deg) scale(1.05);
 }
 
 .telemetry-badge {
