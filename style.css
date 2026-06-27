@@ -2595,42 +2595,30 @@ button, input, textarea {
   box-shadow: none !important;
 }
 
-.book-mockup {
-  width: 110px;
-  height: 160px;
-  background-color: #121824;
-  border: 1.5px solid #d4af37; /* Gold border */
-  border-radius: 4px 12px 12px 4px;
-  box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(212, 175, 55, 0.25);
+.adrift-book-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 12px;
-  text-align: center;
-  position: relative;
+  justify-content: center;
+  width: 140px;
+  height: 170px;
   transition: transform var(--transition-normal);
   transform-style: preserve-3d;
 }
 
-.project-card:hover .book-mockup {
-  transform: rotateY(-15deg) rotateX(10deg);
+.adrift-book-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(10px 15px 25px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.2));
+  transition: transform var(--transition-normal);
 }
 
-.book-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #d4af37;
-  letter-spacing: 0.1em;
-  margin-bottom: 4px;
+.project-card:hover .adrift-book-container {
+  transform: rotateY(-18deg) rotateX(12deg) translateY(-5px);
 }
 
-.book-subtitle {
-  font-size: 0.55rem;
-  color: var(--text-muted);
-  letter-spacing: 0.25em;
-  font-family: monospace;
+.project-card:hover .adrift-book-img {
+  filter: drop-shadow(15px 20px 35px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 25px rgba(212, 175, 55, 0.45));
 }
 
 .client-badge {
@@ -2729,33 +2717,35 @@ button, input, textarea {
   box-shadow: none !important;
 }
 
-.wirephoenix-graphic .terminal-header {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background-color: rgba(157, 2, 8, 0.2);
-  border: 1px solid rgba(157, 2, 8, 0.3);
-  border-bottom: none;
-  padding: 10px 16px;
-  width: 85%;
-  font-family: monospace;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.wirephoenix-graphic .terminal-body {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+.wirephoenix-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 160px;
+  border-radius: 12px;
   background-color: rgba(9, 13, 26, 0.85);
-  border: 1px solid var(--border-color);
-  padding: 16px;
-  width: 85%;
-  font-family: monospace;
-  font-size: 0.8rem;
-  color: var(--text-primary);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-  transition: border-color var(--transition-normal);
+  border: 1.5px solid rgba(157, 2, 8, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(157, 2, 8, 0.15);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
 }
 
-.project-card:hover .wirephoenix-graphic .terminal-body {
-  border-color: rgba(157, 2, 8, 0.5);
+.wirephoenix-brand-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  transition: transform var(--transition-normal);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+.project-card:hover .wirephoenix-image-container {
+  border-color: rgba(157, 2, 8, 0.6);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(157, 2, 8, 0.45);
+  transform: translateY(-5px) scale(1.03);
+}
+
+.project-card:hover .wirephoenix-brand-img {
+  transform: scale(1.05);
 }
