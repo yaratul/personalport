@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.BREVO_API_KEY;
   const senderEmail = process.env.BREVO_SENDER_EMAIL || 'a367a5001@smtp-brevo.com';
-  const receiverEmail = process.env.BREVO_RECEIVER_EMAIL || 'ratul41g@gmail.com';
+  const receiverEmail = process.env.BREVO_RECEIVER_EMAIL || 'owner@yaratul.com';
 
   if (!apiKey) {
     console.error('Missing BREVO_API_KEY environment variable.');

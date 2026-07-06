@@ -2,7 +2,7 @@
 
 ### Full-Stack Developer | WordPress & SEO Specialist | DevOps | Digital Marketer
 
-**Phone:** +8801722081109 **| Email:** ratul41g@gmail.com **| Location:** Cantonment, Cumilla, Bangladesh
+**Phone:** +8801722081109 **| Email:** owner@yaratul.com **| Location:** Cantonment, Cumilla, Bangladesh
 
 ## PROFESSIONAL SUMMARY
 
