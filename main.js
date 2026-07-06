@@ -530,6 +530,36 @@ const initGSAPAnimations = () => {
     });
   });
 
+  // --- Certifications 3D Card Hover / Tilt Effect ---
+  const certCard = document.getElementById('google-ai-cert-card');
+  if (certCard) {
+    certCard.addEventListener('mousemove', (e) => {
+      const rect = certCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const rotateX = -(y - rect.height / 2) / (rect.height / 20);
+      const rotateY = (x - rect.width / 2) / (rect.width / 20);
+
+      gsap.to(certCard, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        transformPerspective: 800,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    });
+
+    certCard.addEventListener('mouseleave', () => {
+      gsap.to(certCard, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.6,
+        ease: 'power2.out'
+      });
+    });
+  }
+
   // --- Skills Card Hover Glow coordinates ---
   const skCards = document.querySelectorAll('.skill-card');
   skCards.forEach((card) => {
