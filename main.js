@@ -1087,6 +1087,76 @@ const initParticleBackground = () => {
 };
 
 // ==========================================================================
+// Certifications Slider & Lightbox Interactions
+// ==========================================================================
+const initCertSlider = () => {
+  const track = document.querySelector('.cert-courses-track');
+  const prevBtn = document.querySelector('.slider-arrow.prev');
+  const nextBtn = document.querySelector('.slider-arrow.next');
+
+  if (track && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -340, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: 340, behavior: 'smooth' });
+    });
+    
+    const updateButtons = () => {
+      const scrollLeft = track.scrollLeft;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      
+      prevBtn.style.opacity = scrollLeft <= 10 ? '0.4' : '1';
+      prevBtn.style.pointerEvents = scrollLeft <= 10 ? 'none' : 'auto';
+      
+      nextBtn.style.opacity = scrollLeft >= maxScroll - 10 ? '0.4' : '1';
+      nextBtn.style.pointerEvents = scrollLeft >= maxScroll - 10 ? 'none' : 'auto';
+    };
+
+    track.addEventListener('scroll', updateButtons);
+    setTimeout(updateButtons, 500);
+    window.addEventListener('resize', updateButtons);
+  }
+};
+
+const initCertLightbox = () => {
+  const certCard = document.getElementById('google-ai-cert-card');
+  const lightbox = document.getElementById('cert-lightbox');
+  const lightboxImg = lightbox ? lightbox.querySelector('.lightbox-img') : null;
+  const closeBtn = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+
+  if (certCard && lightbox && lightboxImg) {
+    certCard.addEventListener('click', (e) => {
+      if (e.target.closest('.btn')) return;
+
+      const imgSrc = certCard.querySelector('.cert-img').src;
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+  }
+};
+
+// ==========================================================================
 // 8. Initialize Application
 // ==========================================================================
 window.addEventListener('DOMContentLoaded', () => {
@@ -1099,4 +1169,6 @@ window.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
   initFloatingOrbs();
   initParticleBackground();
+  initCertSlider();
+  initCertLightbox();
 });

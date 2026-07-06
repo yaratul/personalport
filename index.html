@@ -516,55 +516,67 @@
                 <span class="competency-tag">Research Automation</span>
               </div>
               
-              <h4 class="cert-courses-heading">Curriculum Specialization (7 Courses)</h4>
-              <div class="cert-courses-grid">
-                <div class="cert-course-item">
-                  <span class="course-num">1</span>
-                  <div class="course-detail">
-                    <span class="course-name">AI Fundamentals</span>
-                    <span class="course-desc">Core artificial intelligence concepts, neural networks, and applications.</span>
-                  </div>
+              <div class="cert-courses-header-row">
+                <h4 class="cert-courses-heading">Curriculum Specialization (7 Courses)</h4>
+                <div class="slider-controls">
+                  <button class="slider-arrow prev" aria-label="Previous Course">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                  </button>
+                  <button class="slider-arrow next" aria-label="Next Course">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </button>
                 </div>
-                <div class="cert-course-item">
-                  <span class="course-num">2</span>
-                  <div class="course-detail">
-                    <span class="course-name">AI for Brainstorming and Planning</span>
-                    <span class="course-desc">Accelerating ideation and structured business planning processes.</span>
+              </div>
+              <div class="cert-courses-slider-container">
+                <div class="cert-courses-track">
+                  <div class="cert-course-item">
+                    <span class="course-num">1</span>
+                    <div class="course-detail">
+                      <span class="course-name">AI Fundamentals</span>
+                      <span class="course-desc">Core artificial intelligence concepts, neural networks, and applications.</span>
+                    </div>
                   </div>
-                </div>
-                <div class="cert-course-item">
-                  <span class="course-num">3</span>
-                  <div class="course-detail">
-                    <span class="course-name">AI for Research and Insights</span>
-                    <span class="course-desc">Synthesizing intelligence and automated metadata extraction pipelines.</span>
+                  <div class="cert-course-item">
+                    <span class="course-num">2</span>
+                    <div class="course-detail">
+                      <span class="course-name">AI for Brainstorming and Planning</span>
+                      <span class="course-desc">Accelerating ideation and structured business planning processes.</span>
+                    </div>
                   </div>
-                </div>
-                <div class="cert-course-item">
-                  <span class="course-num">4</span>
-                  <div class="course-detail">
-                    <span class="course-name">AI for Writing and Communicating</span>
-                    <span class="course-desc">Optimizing copy, tone, and formatting for complex communications.</span>
+                  <div class="cert-course-item">
+                    <span class="course-num">3</span>
+                    <div class="course-detail">
+                      <span class="course-name">AI for Research and Insights</span>
+                      <span class="course-desc">Synthesizing intelligence and automated metadata extraction pipelines.</span>
+                    </div>
                   </div>
-                </div>
-                <div class="cert-course-item">
-                  <span class="course-num">5</span>
-                  <div class="course-detail">
-                    <span class="course-name">AI for Content Creation</span>
-                    <span class="course-desc">Designing multi-format dynamic digital content systems.</span>
+                  <div class="cert-course-item">
+                    <span class="course-num">4</span>
+                    <div class="course-detail">
+                      <span class="course-name">AI for Writing and Communicating</span>
+                      <span class="course-desc">Optimizing copy, tone, and formatting for complex communications.</span>
+                    </div>
                   </div>
-                </div>
-                <div class="cert-course-item">
-                  <span class="course-num">6</span>
-                  <div class="course-detail">
-                    <span class="course-name">AI for Data Analysis</span>
-                    <span class="course-desc">Performing regression, clustering, and descriptive analytics on datasets.</span>
+                  <div class="cert-course-item">
+                    <span class="course-num">5</span>
+                    <div class="course-detail">
+                      <span class="course-name">AI for Content Creation</span>
+                      <span class="course-desc">Designing multi-format dynamic digital content systems.</span>
+                    </div>
                   </div>
-                </div>
-                <div class="cert-course-item">
-                  <span class="course-num">7</span>
-                  <div class="course-detail">
-                    <span class="course-name">AI for App Building</span>
-                    <span class="course-desc">Developing functional software applications and systems via vibe coding.</span>
+                  <div class="cert-course-item">
+                    <span class="course-num">6</span>
+                    <div class="course-detail">
+                      <span class="course-name">AI for Data Analysis</span>
+                      <span class="course-desc">Performing regression, clustering, and descriptive analytics on datasets.</span>
+                    </div>
+                  </div>
+                  <div class="cert-course-item">
+                    <span class="course-num">7</span>
+                    <div class="course-detail">
+                      <span class="course-name">AI for App Building</span>
+                      <span class="course-desc">Developing functional software applications and systems via vibe coding.</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1069,6 +1081,14 @@
       <button class="theme-btn theme-emerald cursor-hover-scale" data-theme="emerald" title="Neon Emerald" aria-label="Emerald Accent"></button>
       <button class="theme-btn theme-magenta cursor-hover-scale" data-theme="magenta" title="Cyber Magenta" aria-label="Magenta Accent"></button>
       <button class="theme-btn theme-amber cursor-hover-scale" data-theme="amber" title="Liquid Amber" aria-label="Amber Accent"></button>
+    </div>
+  </div>
+
+  <!-- Certificate Lightbox Modal -->
+  <div id="cert-lightbox" class="cert-lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close Lightbox">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="Certificate Enlarged View" class="lightbox-img">
     </div>
   </div>
 

@@ -2783,6 +2783,7 @@ button, input, textarea {
   overflow: hidden;
   transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
   transform-style: preserve-3d;
+  cursor: pointer;
 }
 
 .cert-card-3d:hover {
@@ -2947,10 +2948,65 @@ button, input, textarea {
   padding-bottom: 10px;
 }
 
-.cert-courses-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+.cert-courses-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.cert-courses-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.slider-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.slider-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.slider-arrow:hover {
+  border-color: var(--border-glow);
+  color: var(--accent-cyan);
+  background-color: rgba(0, 240, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+}
+
+.cert-courses-slider-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-courses-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  padding: 10px 0;
+}
+
+.cert-courses-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .cert-course-item {
@@ -2961,12 +3017,13 @@ button, input, textarea {
   padding: 16px 20px;
   border-radius: 14px;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  flex: 0 0 320px; /* slider card width */
 }
 
 .cert-course-item:hover {
   border-color: var(--border-glow);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  transform: translateX(4px);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
 .course-num {
@@ -3076,5 +3133,76 @@ button, input, textarea {
   
   .cert-title {
     font-size: 1.8rem;
+  }
+}
+
+/* Certificate Lightbox Modal */
+.cert-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(3, 7, 18, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.cert-lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 85%;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cert-lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 3rem;
+  cursor: pointer;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  z-index: 10002;
+  line-height: 1;
+}
+
+.lightbox-close:hover {
+  color: var(--accent-cyan);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: 20px;
+    right: 20px;
+    font-size: 2.5rem;
   }
 }
