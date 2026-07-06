@@ -2769,7 +2769,9 @@ button, input, textarea {
   position: sticky;
   top: 120px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
   z-index: 10;
 }
 
@@ -3069,9 +3071,10 @@ button, input, textarea {
   border: 1px solid var(--border-color);
   padding: 20px 28px;
   border-radius: 16px;
-  margin-top: 15px;
   gap: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 420px;
 }
 
 .verification-meta {
