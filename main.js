@@ -533,6 +533,15 @@ const initGSAPAnimations = () => {
   // --- Certifications 3D Card Hover / Tilt Effect ---
   const certCard = document.getElementById('google-ai-cert-card');
   if (certCard) {
+    const defaultTilt = { rotateX: 8, rotateY: -12 };
+    
+    // Set default static 3D tilt initially
+    gsap.set(certCard, {
+      rotateX: defaultTilt.rotateX,
+      rotateY: defaultTilt.rotateY,
+      transformPerspective: 800
+    });
+
     certCard.addEventListener('mousemove', (e) => {
       const rect = certCard.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -552,8 +561,9 @@ const initGSAPAnimations = () => {
 
     certCard.addEventListener('mouseleave', () => {
       gsap.to(certCard, {
-        rotateX: 0,
-        rotateY: 0,
+        rotateX: defaultTilt.rotateX,
+        rotateY: defaultTilt.rotateY,
+        transformPerspective: 800,
         duration: 0.6,
         ease: 'power2.out'
       });
@@ -1091,32 +1101,111 @@ const initParticleBackground = () => {
 // ==========================================================================
 const initCertSlider = () => {
   const track = document.querySelector('.cert-courses-track');
+  const items = document.querySelectorAll('.cert-course-item');
   const prevBtn = document.querySelector('.slider-arrow.prev');
   const nextBtn = document.querySelector('.slider-arrow.next');
 
-  if (track && prevBtn && nextBtn) {
+  if (track && items.length > 0 && prevBtn && nextBtn) {
+    let currentIndex = 0;
+    let autoplayTimer = null;
+    const intervalTime = 3000; // 3 seconds per slide
+
+    const getScrollOffset = (index) => {
+      if (items[index]) {
+        return items[index].offsetLeft - track.offsetLeft;
+      }
+      return 0;
+    };
+
+    const scrollToSlide = (index) => {
+      const offset = getScrollOffset(index);
+      track.scrollTo({ left: offset, behavior: 'smooth' });
+      currentIndex = index;
+      updateButtons();
+    };
+
+    const updateButtons = () => {
+      prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
+      prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+      nextBtn.style.opacity = currentIndex === items.length - 1 ? '0.4' : '1';
+      nextBtn.style.pointerEvents = currentIndex === items.length - 1 ? 'none' : 'auto';
+    };
+
+    const nextSlide = () => {
+      if (currentIndex < items.length - 1) {
+        scrollToSlide(currentIndex + 1);
+      } else {
+        scrollToSlide(0); // wrap around
+      }
+    };
+
+    const prevSlide = () => {
+      if (currentIndex > 0) {
+        scrollToSlide(currentIndex - 1);
+      } else {
+        scrollToSlide(items.length - 1); // wrap to last
+      }
+    };
+
+    const startAutoplay = () => {
+      if (!autoplayTimer) {
+        autoplayTimer = setInterval(nextSlide, intervalTime);
+      }
+    };
+
+    const stopAutoplay = () => {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    };
+
+    // Prev/Next manual triggers
     prevBtn.addEventListener('click', () => {
-      track.scrollBy({ left: -340, behavior: 'smooth' });
+      prevSlide();
+      stopAutoplay();
+      startAutoplay(); // reset timer on manual click
     });
 
     nextBtn.addEventListener('click', () => {
-      track.scrollBy({ left: 340, behavior: 'smooth' });
+      nextSlide();
+      stopAutoplay();
+      startAutoplay(); // reset timer on manual click
     });
-    
-    const updateButtons = () => {
-      const scrollLeft = track.scrollLeft;
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      
-      prevBtn.style.opacity = scrollLeft <= 10 ? '0.4' : '1';
-      prevBtn.style.pointerEvents = scrollLeft <= 10 ? 'none' : 'auto';
-      
-      nextBtn.style.opacity = scrollLeft >= maxScroll - 10 ? '0.4' : '1';
-      nextBtn.style.pointerEvents = scrollLeft >= maxScroll - 10 ? 'none' : 'auto';
-    };
 
-    track.addEventListener('scroll', updateButtons);
+    // Hover/Click to pause slider
+    const sliderContainer = document.querySelector('.cert-courses-slider-container');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', stopAutoplay);
+      sliderContainer.addEventListener('mouseleave', startAutoplay);
+      sliderContainer.addEventListener('click', stopAutoplay);
+    }
+
+    // Keep slider index on scroll manual action (e.g. mobile swipe)
+    let scrollTimeout;
+    track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollLeft = track.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        items.forEach((item, idx) => {
+          const offset = item.offsetLeft - track.offsetLeft;
+          const diff = Math.abs(offset - scrollLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+        if (closestIndex !== currentIndex) {
+          currentIndex = closestIndex;
+          updateButtons();
+        }
+      }, 100);
+    });
+
+    startAutoplay();
     setTimeout(updateButtons, 500);
-    window.addEventListener('resize', updateButtons);
   }
 };
 

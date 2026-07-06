@@ -2790,69 +2790,7 @@ button, input, textarea {
 
 .cert-card-3d:hover {
   border-color: var(--border-glow);
-  box-shadow: var(--shadow-glow);
-}
-
-.cert-img-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background-color: #0c1020;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cert-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.cert-card-3d:hover .cert-img {
-  transform: scale(1.05);
-}
-
-.cert-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(3, 7, 18, 0.9) 0%, rgba(3, 7, 18, 0.4) 60%, rgba(3, 7, 18, 0.1) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 30px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 2;
-}
-
-.cert-card-3d:hover .cert-overlay {
-  opacity: 1;
-}
-
-.cert-overlay-tag {
-  color: var(--accent-cyan);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-}
-
-.cert-overlay .btn {
-  transform: translateY(20px);
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.cert-card-3d:hover .cert-overlay .btn {
-  transform: translateY(0);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.35), 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
 /* Right Column Details */
@@ -3006,6 +2944,7 @@ button, input, textarea {
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   padding: 10px 0;
+  scroll-snap-type: x mandatory;
 }
 
 .cert-courses-track::-webkit-scrollbar {
@@ -3020,7 +2959,8 @@ button, input, textarea {
   padding: 16px 20px;
   border-radius: 14px;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
-  flex: 0 0 320px; /* slider card width */
+  flex: 0 0 100%; /* Show one course at once */
+  scroll-snap-align: start;
 }
 
 .cert-course-item:hover {
