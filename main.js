@@ -1245,6 +1245,44 @@ const initCertLightbox = () => {
   }
 };
 
+const initCookieConsent = () => {
+  const banner = document.getElementById('cookie-consent-banner');
+  const acceptBtn = document.getElementById('consent-accept');
+  const rejectBtn = document.getElementById('consent-reject');
+
+  if (banner && acceptBtn && rejectBtn) {
+    const consent = localStorage.getItem('cookieConsent');
+    
+    const grantGAConsent = () => {
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted'
+        });
+      }
+    };
+
+    if (!consent) {
+      setTimeout(() => {
+        banner.classList.add('show');
+      }, 1500);
+    } else if (consent === 'accepted') {
+      grantGAConsent();
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'accepted');
+      grantGAConsent();
+      banner.classList.remove('show');
+    });
+
+    rejectBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'rejected');
+      banner.classList.remove('show');
+    });
+  }
+};
+
 // ==========================================================================
 // 8. Initialize Application
 // ==========================================================================
@@ -1260,4 +1298,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initParticleBackground();
   initCertSlider();
   initCertLightbox();
+  initCookieConsent();
 });
