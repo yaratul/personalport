@@ -531,8 +531,8 @@ const initGSAPAnimations = () => {
   });
 
   // --- Certifications 3D Card Hover / Tilt Effect ---
-  const certCard = document.getElementById('google-ai-cert-card');
-  if (certCard) {
+  const certCards = document.querySelectorAll('.cert-card-3d');
+  certCards.forEach((certCard) => {
     const defaultTilt = { rotateX: 8, rotateY: -12 };
     
     // Set default static 3D tilt initially
@@ -568,7 +568,7 @@ const initGSAPAnimations = () => {
         ease: 'power2.out'
       });
     });
-  }
+  });
 
   // --- Skills Card Hover Glow coordinates ---
   const skCards = document.querySelectorAll('.skill-card');
@@ -1100,129 +1100,136 @@ const initParticleBackground = () => {
 // Certifications Slider & Lightbox Interactions
 // ==========================================================================
 const initCertSlider = () => {
-  const track = document.querySelector('.cert-courses-track');
-  const items = document.querySelectorAll('.cert-course-item');
-  const prevBtn = document.querySelector('.slider-arrow.prev');
-  const nextBtn = document.querySelector('.slider-arrow.next');
+  const sliderContainers = document.querySelectorAll('.cert-courses-slider-container');
+  sliderContainers.forEach((sliderContainer) => {
+    const track = sliderContainer.querySelector('.cert-courses-track');
+    const items = sliderContainer.querySelectorAll('.cert-course-item');
+    const details = sliderContainer.closest('.cert-details');
+    const headerRow = details ? details.querySelector('.cert-courses-header-row') : null;
+    const prevBtn = headerRow ? headerRow.querySelector('.slider-arrow.prev') : null;
+    const nextBtn = headerRow ? headerRow.querySelector('.slider-arrow.next') : null;
 
-  if (track && items.length > 0 && prevBtn && nextBtn) {
-    let currentIndex = 0;
-    let autoplayTimer = null;
-    const intervalTime = 3000; // 3 seconds per slide
+    if (track && items.length > 0 && prevBtn && nextBtn) {
+      let currentIndex = 0;
+      let autoplayTimer = null;
+      const intervalTime = 3000; // 3 seconds per slide
 
-    const getScrollOffset = (index) => {
-      if (items[index]) {
-        return items[index].offsetLeft - track.offsetLeft;
-      }
-      return 0;
-    };
+      const getScrollOffset = (index) => {
+        if (items[index]) {
+          return items[index].offsetLeft - track.offsetLeft;
+        }
+        return 0;
+      };
 
-    const scrollToSlide = (index) => {
-      const offset = getScrollOffset(index);
-      track.scrollTo({ left: offset, behavior: 'smooth' });
-      currentIndex = index;
-      updateButtons();
-    };
+      const scrollToSlide = (index) => {
+        const offset = getScrollOffset(index);
+        track.scrollTo({ left: offset, behavior: 'smooth' });
+        currentIndex = index;
+        updateButtons();
+      };
 
-    const updateButtons = () => {
-      prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
-      prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
-      nextBtn.style.opacity = currentIndex === items.length - 1 ? '0.4' : '1';
-      nextBtn.style.pointerEvents = currentIndex === items.length - 1 ? 'none' : 'auto';
-    };
+      const updateButtons = () => {
+        prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
+        prevBtn.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+        nextBtn.style.opacity = currentIndex === items.length - 1 ? '0.4' : '1';
+        nextBtn.style.pointerEvents = currentIndex === items.length - 1 ? 'none' : 'auto';
+      };
 
-    const nextSlide = () => {
-      if (currentIndex < items.length - 1) {
-        scrollToSlide(currentIndex + 1);
-      } else {
-        scrollToSlide(0); // wrap around
-      }
-    };
+      const nextSlide = () => {
+        if (currentIndex < items.length - 1) {
+          scrollToSlide(currentIndex + 1);
+        } else {
+          scrollToSlide(0); // wrap around
+        }
+      };
 
-    const prevSlide = () => {
-      if (currentIndex > 0) {
-        scrollToSlide(currentIndex - 1);
-      } else {
-        scrollToSlide(items.length - 1); // wrap to last
-      }
-    };
+      const prevSlide = () => {
+        if (currentIndex > 0) {
+          scrollToSlide(currentIndex - 1);
+        } else {
+          scrollToSlide(items.length - 1); // wrap to last
+        }
+      };
 
-    const startAutoplay = () => {
-      if (!autoplayTimer) {
-        autoplayTimer = setInterval(nextSlide, intervalTime);
-      }
-    };
+      const startAutoplay = () => {
+        if (!autoplayTimer) {
+          autoplayTimer = setInterval(nextSlide, intervalTime);
+        }
+      };
 
-    const stopAutoplay = () => {
-      if (autoplayTimer) {
-        clearInterval(autoplayTimer);
-        autoplayTimer = null;
-      }
-    };
+      const stopAutoplay = () => {
+        if (autoplayTimer) {
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      };
 
-    // Prev/Next manual triggers
-    prevBtn.addEventListener('click', () => {
-      prevSlide();
-      stopAutoplay();
-      startAutoplay(); // reset timer on manual click
-    });
+      // Prev/Next manual triggers
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        stopAutoplay();
+        startAutoplay(); // reset timer on manual click
+      });
 
-    nextBtn.addEventListener('click', () => {
-      nextSlide();
-      stopAutoplay();
-      startAutoplay(); // reset timer on manual click
-    });
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopAutoplay();
+        startAutoplay(); // reset timer on manual click
+      });
 
-    // Hover/Click to pause slider
-    const sliderContainer = document.querySelector('.cert-courses-slider-container');
-    if (sliderContainer) {
+      // Hover/Click to pause slider
       sliderContainer.addEventListener('mouseenter', stopAutoplay);
       sliderContainer.addEventListener('mouseleave', startAutoplay);
       sliderContainer.addEventListener('click', stopAutoplay);
-    }
 
-    // Keep slider index on scroll manual action (e.g. mobile swipe)
-    let scrollTimeout;
-    track.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const scrollLeft = track.scrollLeft;
-        let closestIndex = 0;
-        let minDiff = Infinity;
-        items.forEach((item, idx) => {
-          const offset = item.offsetLeft - track.offsetLeft;
-          const diff = Math.abs(offset - scrollLeft);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestIndex = idx;
+      // Keep slider index on scroll manual action (e.g. mobile swipe)
+      let scrollTimeout;
+      track.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          const scrollLeft = track.scrollLeft;
+          let closestIndex = 0;
+          let minDiff = Infinity;
+          items.forEach((item, idx) => {
+            const offset = item.offsetLeft - track.offsetLeft;
+            const diff = Math.abs(offset - scrollLeft);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestIndex = idx;
+            }
+          });
+          if (closestIndex !== currentIndex) {
+            currentIndex = closestIndex;
+            updateButtons();
           }
-        });
-        if (closestIndex !== currentIndex) {
-          currentIndex = closestIndex;
-          updateButtons();
-        }
-      }, 100);
-    });
+        }, 100);
+      });
 
-    startAutoplay();
-    setTimeout(updateButtons, 500);
-  }
+      startAutoplay();
+      setTimeout(updateButtons, 500);
+    }
+  });
 };
 
 const initCertLightbox = () => {
-  const certCard = document.getElementById('google-ai-cert-card');
+  const certCards = document.querySelectorAll('.cert-card-3d');
   const lightbox = document.getElementById('cert-lightbox');
   const lightboxImg = lightbox ? lightbox.querySelector('.lightbox-img') : null;
   const closeBtn = lightbox ? lightbox.querySelector('.lightbox-close') : null;
 
-  if (certCard && lightbox && lightboxImg) {
-    certCard.addEventListener('click', (e) => {
-      if (e.target.closest('.btn')) return;
+  if (certCards.length > 0 && lightbox && lightboxImg) {
+    certCards.forEach((certCard) => {
+      certCard.addEventListener('click', (e) => {
+        if (e.target.closest('.btn')) return;
 
-      const imgSrc = certCard.querySelector('.cert-img').src;
-      lightboxImg.src = imgSrc;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
+        const img = certCard.querySelector('.cert-img');
+        if (img) {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt || 'Certificate View';
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
     });
 
     const closeLightbox = () => {
@@ -1230,7 +1237,7 @@ const initCertLightbox = () => {
       document.body.style.overflow = '';
     };
 
-    closeBtn.addEventListener('click', closeLightbox);
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
         closeLightbox();

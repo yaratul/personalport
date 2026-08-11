@@ -2765,6 +2765,12 @@ button, input, textarea {
   margin-top: 40px;
 }
 
+.cert-grid + .cert-grid {
+  margin-top: 80px;
+  padding-top: 80px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .cert-preview-wrapper {
   position: sticky;
   top: 120px;
@@ -2807,7 +2813,8 @@ button, input, textarea {
   gap: 16px;
 }
 
-.cert-google-logo {
+.cert-google-logo,
+.cert-issuer-logo {
   display: flex;
   align-items: center;
   justify-content: center;
