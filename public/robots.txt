@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# AI Crawlers & LLM Scrapers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Sitemap & LLM Knowledge Base
+Sitemap: https://yaratul.com/sitemap.xml
+llms-txt: https://yaratul.com/llms.txt

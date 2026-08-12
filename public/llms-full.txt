@@ -1,0 +1,86 @@
+# Yaser Ahmmed Ratul - Complete Profile & Technical Documentation
+
+## Personal & Business Identity
+- **Full Name**: MD Yaser Ahmmed Ratul
+- **Handles**: `yaratul`, `yaratul2004`, `yaratul2005`
+- **Roles**: Founder of Great 10, Full-Stack Developer, DevOps Engineer, SEO & Digital Marketing Specialist
+- **Location**: Cumilla Cantonment, Cumilla, Bangladesh (GeoCoordinates: 23.4795, 91.1278)
+- **Primary Website**: https://yaratul.com
+- **Research Portal**: https://yaratul.com/research
+- **Contact Email**: owner@yaratul.com
+- **Phone / WhatsApp**: +880 1722-081109
+
+---
+
+## Detailed Professional Credentials
+
+### 1. Meta Social Media Marketing Professional Certificate
+- **Issuer**: Meta (via Coursera)
+- **Issue Date**: August 11, 2026
+- **Credential ID**: `EQ33G3U3UCDG`
+- **Verification URL**: https://coursera.org/verify/professional-cert/EQ33G3U3UCDG
+- **Curriculum (6 Courses)**:
+  1. Introduction to Social Media Marketing
+  2. Social Media Management
+  3. Fundamentals of Social Media Advertising
+  4. Advertising with Meta
+  5. Measure and Optimize Social Media Marketing Campaigns
+  6. Meta Social Media Marketing Capstone
+- **Core Competencies**: Social Media Management, Meta Ads Manager, Campaign Optimization, Audience Targeting, Analytics & ROI, Digital Content Strategy.
+
+### 2. Google AI Professional Certificate
+- **Issuer**: Google (via Coursera)
+- **Issue Date**: July 6, 2026
+- **Credential ID**: `5SQ5LW13EAO2`
+- **Verification URL**: https://coursera.org/verify/professional-cert/5SQ5LW13EAO2
+- **Curriculum (7 Courses)**:
+  1. AI Fundamentals
+  2. AI for Brainstorming and Planning
+  3. AI for Research and Insights
+  4. AI for Writing and Communicating
+  5. AI for Content Creation
+  6. AI for Data Analysis
+  7. AI for App Building
+- **Core Competencies**: Prompt Engineering, AI Application Building, AI Data Analysis, AI Writing & Content, Research Automation, Vibe Coding.
+
+---
+
+## Detailed Project Portfolio
+
+### 1. ServerTrack (fixedv6)
+- **Repository**: https://github.com/yaratul2005/fixedv6
+- **Type**: Open-Source Privacy Tracking Gateway
+- **Tech Stack**: PHP, WooCommerce CAPI, WebKit ITP Bypass, Edge Header Rewriting
+- **Summary**: Converts self-hosted CMS deployments into first-party Conversion API data gateways, bypassing Safari WebKit ITP and ad-blockers at the server edge with 99.8% capture efficiency.
+
+### 2. WirePhoenix PHP Library
+- **Repository**: https://github.com/yaratul2005/WirePhoenix
+- **Type**: Custom PHP Socket & IPC Library
+- **Tech Stack**: PHP 8.x, Unix Domain Sockets, Binary/Protocol Headers, IPC Transports
+- **Summary**: High-performance PHP library for low-latency inter-process communication over Unix domain sockets with custom protocol flows.
+
+### 3. Great 10 Software & Licensing SaaS
+- **Live URL**: https://great10.xyz
+- **Type**: Digital SaaS Licensing Platform
+- **Tech Stack**: Custom PHP, MySQL, REST Validation APIs, Shared Hosting Optimization
+- **Summary**: Licensing and product distribution platform featuring automated license authorization endpoints, user dashboards, and subscription workflows.
+
+### 4. Adrift Book Memoir Portal
+- **Live URL**: https://www.adriftbook.com/
+- **Type**: Author Biography & Publishing Portal
+- **Tech Stack**: Next.js, Dynamic Canvas/3D Book Mockups, Tailored Typography
+- **Summary**: Book publishing and author biography website built for USA client authors featuring responsive 3D book previews.
+
+### 5. TechPlus BD E-Commerce Showcase
+- **Live URL**: https://techplus.bd
+- **Type**: E-Commerce Gadget Store Showcase
+- **Tech Stack**: Full-Stack E-Commerce, Optimized Checkout, Custom Branding
+- **Summary**: Modern, high-conversion electronic gadget store interface with seamless checkout interactions and brand graphics.
+
+---
+
+## Academic Research Paper
+- **Title**: Decentralized Edge Routing: Transforming Content Management Systems into First-Party Privacy-Preserving Conversion Gateways
+- **Author**: Yaser Ahmmed Ratul
+- **URL**: https://yaratul.com/research
+- **Abstract**: Examines server-side attribution mechanisms against client-side blocking frameworks (WebKit ITP). Demonstrates a 99.8% conversion capture rate over a 30-day trial using ServerTrack edge nodes with zero added server infrastructure cost.

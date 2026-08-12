@@ -12,6 +12,10 @@
   <meta name="google-site-verification" content="tFfBGvpHfmE4VrG6FOcu9YfHw10dLRAMme4nJs7y-UA" />
   <meta name="msvalidate.01" content="A6E21CCF64017A3745EBC644FAE9E6BA" />
   
+  <!-- Sitemap & AI Knowledge Base Meta Links -->
+  <link rel="sitemap" type="application/xml" href="https://yaratul.com/sitemap.xml">
+  <link rel="alternate" type="text/plain" href="https://yaratul.com/llms.txt" title="AI Profile Knowledge Graph">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="https://z1kabhoziryzqnyx.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-11%20at%201.56.07%20PM.jpeg" />
   
@@ -213,6 +217,46 @@
             }
           }
         ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://yaratul.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Research",
+            "item": "https://yaratul.com/research"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "WirePhoenix",
+        "programmingLanguage": "PHP",
+        "codeRepository": "https://github.com/yaratul2005/WirePhoenix",
+        "author": {
+          "@id": "https://yaratul.com/#person"
+        },
+        "description": "High-performance PHP library for low-latency Unix domain socket transport and IPC protocol communication."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "ServerTrack (fixedv6)",
+        "programmingLanguage": "PHP",
+        "codeRepository": "https://github.com/yaratul2005/fixedv6",
+        "author": {
+          "@id": "https://yaratul.com/#person"
+        },
+        "description": "Open-source decentralized Conversion API gateway bypassing WebKit ITP at the edge with 99.8% capture efficiency."
       }
     ]
   </script>
@@ -655,8 +699,15 @@
             <span class="section-tagline">04 / CREDENTIALS</span>
             <h2 class="section-title reveal-text scramble-text" data-scramble="Professional Certifications">Professional Certifications</h2>
           </div>
+
+          <!-- Certificate Filter Bar -->
+          <div class="cert-filter-bar reveal-fade">
+            <button class="cert-tab-btn active cursor-hover-scale" data-cert="all">All Credentials</button>
+            <button class="cert-tab-btn cursor-hover-scale" data-cert="meta">Meta Digital Marketing</button>
+            <button class="cert-tab-btn cursor-hover-scale" data-cert="google">Google AI</button>
+          </div>
           
-          <div class="cert-grid">
+          <div class="cert-grid" data-cert-type="meta">
             <!-- Left Column: 3D Certificate Preview Card -->
             <div class="cert-preview-wrapper reveal-fade">
               <div class="cert-card-3d cursor-hover-scale" id="meta-cert-card">
@@ -764,7 +815,7 @@
             </div>
           </div>
 
-          <div class="cert-grid">
+          <div class="cert-grid" data-cert-type="google">
             <!-- Left Column: 3D Certificate Preview Card -->
             <div class="cert-preview-wrapper reveal-fade">
               <div class="cert-card-3d cursor-hover-scale" id="google-ai-cert-card">
@@ -891,11 +942,19 @@
               <span class="section-tagline">05 / CREATIVE WORK</span>
               <h2 class="section-title reveal-text scramble-text" data-scramble="Featured Projects">Featured Projects</h2>
             </div>
+            
+            <!-- Category Filter Pills -->
+            <div class="projects-filter-bar">
+              <button class="project-filter-pill active cursor-hover-scale" data-filter="all">All Projects</button>
+              <button class="project-filter-pill cursor-hover-scale" data-filter="fullstack">Full-Stack & PHP</button>
+              <button class="project-filter-pill cursor-hover-scale" data-filter="saas">SaaS / Products</button>
+              <button class="project-filter-pill cursor-hover-scale" data-filter="ecommerce">E-Commerce</button>
+            </div>
           </div>
           
           <div class="projects-horizontal-track">
             <!-- Project 1 -->
-            <div class="project-slide">
+            <div class="project-slide" data-category="saas fullstack">
               <div class="project-card cursor-hover-scale">
                 <div class="project-image-wrapper">
                   <div class="project-placeholder-bg p-bg-1">
@@ -936,7 +995,7 @@
             </div>
 
             <!-- Project 2 -->
-            <div class="project-slide">
+            <div class="project-slide" data-category="ecommerce fullstack">
               <div class="project-card cursor-hover-scale">
                 <div class="project-image-wrapper">
                   <div class="project-placeholder-bg p-bg-2">
@@ -973,7 +1032,7 @@
             </div>
 
             <!-- Project 3 -->
-            <div class="project-slide">
+            <div class="project-slide" data-category="fullstack saas">
               <div class="project-card cursor-hover-scale">
                 <div class="project-image-wrapper">
                   <div class="project-placeholder-bg p-bg-3">
@@ -1023,7 +1082,7 @@
             </div>
 
             <!-- Project 4 -->
-            <div class="project-slide">
+            <div class="project-slide" data-category="saas">
               <div class="project-card cursor-hover-scale">
                 <div class="project-image-wrapper">
                   <div class="project-placeholder-bg p-bg-4">
@@ -1060,7 +1119,7 @@
             </div>
 
             <!-- Project 5 -->
-            <div class="project-slide">
+            <div class="project-slide" data-category="ecommerce fullstack">
               <div class="project-card cursor-hover-scale">
                 <div class="project-image-wrapper">
                   <div class="project-placeholder-bg p-bg-5">
@@ -1096,7 +1155,7 @@
             </div>
 
             <!-- Project 6 -->
-            <div class="project-slide">
+            <div class="project-slide" data-category="fullstack saas">
               <div class="project-card cursor-hover-scale">
                 <div class="project-image-wrapper">
                   <div class="project-placeholder-bg p-bg-6">
@@ -1400,6 +1459,33 @@
     <div class="consent-buttons">
       <button class="btn-consent reject cursor-hover-scale" id="consent-reject">Reject</button>
       <button class="btn-consent accept cursor-hover-scale" id="consent-accept">Accept All</button>
+    </div>
+  </div>
+
+  <!-- Project Case Study Modal Drawer -->
+  <div id="project-modal" class="project-modal" aria-hidden="true">
+    <div class="project-modal-backdrop"></div>
+    <div class="project-modal-content">
+      <button class="project-modal-close" id="project-modal-close" aria-label="Close Modal">&times;</button>
+      <div class="project-modal-body">
+        <span class="project-modal-tag" id="p-modal-tag">SaaS / PHP</span>
+        <h3 class="project-modal-title" id="p-modal-title">Great 10 Software & Licensing SaaS</h3>
+        <p class="project-modal-desc" id="p-modal-desc">Detailed architecture & deployment metrics.</p>
+        
+        <div class="project-modal-highlights">
+          <h4>Technical Highlights</h4>
+          <ul id="p-modal-bullets">
+            <li>High-performance PHP 8.2 & MySQL authorization backend.</li>
+            <li>Real-time REST API endpoint validation and automated key issuing.</li>
+            <li>Optimized shared-hosting memory utilization with zero latency impact.</li>
+          </ul>
+        </div>
+
+        <div class="project-modal-actions">
+          <a id="p-modal-repo" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary cursor-hover-scale">GitHub Repo</a>
+          <a id="p-modal-live" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary cursor-hover-scale">Live Demo ➔</a>
+        </div>
+      </div>
     </div>
   </div>
 

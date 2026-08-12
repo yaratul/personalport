@@ -1290,6 +1290,80 @@ const initCookieConsent = () => {
   }
 };
 
+const initCertTabs = () => {
+  const tabs = document.querySelectorAll('.cert-tab-btn');
+  const certGrids = document.querySelectorAll('.cert-grid');
+
+  if (tabs.length > 0 && certGrids.length > 0) {
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const filter = tab.getAttribute('data-cert');
+        
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        certGrids.forEach(grid => {
+          const certType = grid.getAttribute('data-cert-type');
+          if (filter === 'all' || filter === certType) {
+            grid.style.display = 'grid';
+            gsap.fromTo(grid, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
+          } else {
+            grid.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+};
+
+const initProjectFilters = () => {
+  const filterPills = document.querySelectorAll('.project-filter-pill');
+  const projectSlides = document.querySelectorAll('.project-slide');
+
+  if (filterPills.length > 0 && projectSlides.length > 0) {
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filter = pill.getAttribute('data-filter');
+
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        projectSlides.forEach(slide => {
+          const categories = slide.getAttribute('data-category') || '';
+          if (filter === 'all' || categories.includes(filter)) {
+            slide.style.display = 'block';
+            gsap.fromTo(slide, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
+          } else {
+            slide.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+};
+
+const initProjectModal = () => {
+  const modal = document.getElementById('project-modal');
+  const closeBtn = document.getElementById('project-modal-close');
+  const backdrop = modal ? modal.querySelector('.project-modal-backdrop') : null;
+
+  if (modal && closeBtn) {
+    const closeModal = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+};
+
 // ==========================================================================
 // 8. Initialize Application
 // ==========================================================================
@@ -1306,4 +1380,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initCertSlider();
   initCertLightbox();
   initCookieConsent();
+  initCertTabs();
+  initProjectFilters();
+  initProjectModal();
 });

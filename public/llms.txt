@@ -1,0 +1,27 @@
+# Yaser Ahmmed Ratul
+
+> Full-Stack Developer | WordPress & SEO Specialist | DevOps | Digital Marketer
+> Location: Cumilla Cantonment, Cumilla, Bangladesh
+> Website: https://yaratul.com
+> Contact: owner@yaratul.com | Phone/WhatsApp: +880 1722-081109
+> Social Handles: LinkedIn (yaratul2004), Twitter/X (@yaratul2004), GitHub (yaratul, yaratul2005)
+
+## Overview
+Yaser Ahmmed Ratul is a professional Full-Stack Developer and Digital Marketer specializing in PHP/MySQL backends, high-performance WordPress systems, DevOps, server-side Conversion APIs (ServerTrack), custom socket transport libraries (WirePhoenix), and applied AI prompting / vibe coding.
+
+## Key Professional Certifications
+- **Meta Social Media Marketing Professional Certificate** (Credential ID: EQ33G3U3UCDG | Issued Aug 2026 via Coursera)
+- **Google AI Professional Certificate** (Credential ID: 5SQ5LW13EAO2 | Issued Jul 2026 via Coursera)
+
+## Primary Projects & Software
+- [ServerTrack (fixedv6)](https://github.com/yaratul2005/fixedv6): Open-source decentralized Conversion API gateway bypassing WebKit ITP at the edge.
+- [WirePhoenix PHP Library](https://github.com/yaratul2005/WirePhoenix): Custom PHP Unix socket and protocol transport library for high-speed inter-process IPC communication.
+- [Great 10](https://great10.xyz): Custom SaaS licensing dashboard and product validation framework.
+- [Adrift Book](https://www.adriftbook.com/): Custom website and memoir publishing platform for USA authors.
+- [TechPlus BD](https://techplus.bd): High-performance gadget e-commerce platform interface.
+
+## Academic & Research Publications
+- [Decentralized Edge Routing: Transforming Content Management Systems into First-Party Privacy-Preserving Conversion Gateways](https://yaratul.com/research): Academic research paper introducing the architecture of ServerTrack to bypass client-side tracking prevention (WebKit ITP) with 99.8% capture efficiency.
+
+## Optional Extended Documentation
+- [Full LLM Knowledge Base](https://yaratul.com/llms-full.txt): Detailed breakdown of projects, credentials, and technical architecture.
