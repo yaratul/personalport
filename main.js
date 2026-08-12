@@ -1364,6 +1364,29 @@ const initProjectModal = () => {
   }
 };
 
+const initFAQAccordion = () => {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (question) {
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('active');
+          const otherQ = otherItem.querySelector('.faq-question');
+          if (otherQ) otherQ.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isActive) {
+          item.classList.add('active');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+  });
+};
+
 // ==========================================================================
 // 8. Initialize Application
 // ==========================================================================
@@ -1383,4 +1406,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initCertTabs();
   initProjectFilters();
   initProjectModal();
+  initFAQAccordion();
 });

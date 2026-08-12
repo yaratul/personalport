@@ -6,7 +6,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        research: resolve(__dirname, 'research.html')
+        research: resolve(__dirname, 'research.html'),
+        wordpressDevelopment: resolve(__dirname, 'wordpress-development.html'),
+        conversionApi: resolve(__dirname, 'conversion-api-setup.html')
       }
     }
   }

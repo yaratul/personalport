@@ -20,6 +20,10 @@ Yaser Ahmmed Ratul is a professional Full-Stack Developer and Digital Marketer s
 - [Adrift Book](https://www.adriftbook.com/): Custom website and memoir publishing platform for USA authors.
 - [TechPlus BD](https://techplus.bd): High-performance gadget e-commerce platform interface.
 
+## Organic Client Services
+- [Hire WordPress & WooCommerce Developer](https://yaratul.com/wordpress-development): Custom theme/plugin development, PageSpeed 95+ optimization, and technical SEO.
+- [Meta Conversion API Setup & iOS 14 Tracking Fix](https://yaratul.com/conversion-api-setup): First-party CAPI server tracking setup bypassing WebKit ITP and ad-blockers.
+
 ## Academic & Research Publications
 - [Decentralized Edge Routing: Transforming Content Management Systems into First-Party Privacy-Preserving Conversion Gateways](https://yaratul.com/research): Academic research paper introducing the architecture of ServerTrack to bypass client-side tracking prevention (WebKit ITP) with 99.8% capture efficiency.
 
