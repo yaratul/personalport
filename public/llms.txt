@@ -23,6 +23,7 @@ Yaser Ahmmed Ratul is a professional Full-Stack Developer and Digital Marketer s
 ## Organic Client Services
 - [Hire WordPress & WooCommerce Developer](https://yaratul.com/wordpress-development): Custom theme/plugin development, PageSpeed 95+ optimization, and technical SEO.
 - [Meta Conversion API Setup & iOS 14 Tracking Fix](https://yaratul.com/conversion-api-setup): First-party CAPI server tracking setup bypassing WebKit ITP and ad-blockers.
+- [Vibe Coding Experimental Lab](https://yaratul.com/lab): Maximalist/Brutalist sandbox showcasing Unix sockets, CLI terminal, and AI prompt engineering experiments.
 
 ## Client-Intent FAQ & Consultation Answers
 - **Looking for a web developer — what to check before hiring**: Verify live projects, matching tech stack, and post-launch capabilities (speed, SEO, CAPI tracking).

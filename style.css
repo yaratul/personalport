@@ -3575,3 +3575,208 @@ button, input, textarea {
   transform: scale(1.1);
   box-shadow: 0 14px 30px rgba(37, 211, 102, 0.6);
 }
+
+/* ==========================================================================
+   AESTHETIC SYSTEM ARCHITECTURE MAPPING
+   ========================================================================== */
+
+/* 1. Liquid Glass (Hero & Navbar) */
+.liquid-glass-nav {
+  background: rgba(10, 16, 28, 0.65) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.liquid-glass-badge {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 9999px;
+  padding: 8px 18px;
+}
+
+/* 2. Minimalism (About Section) */
+.minimalist-about-card {
+  background: rgba(13, 19, 32, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. Neomorphism (Skills Section) */
+.neomorphic-tile {
+  background: #0d1320 !important;
+  border-radius: 18px !important;
+  box-shadow: 8px 8px 18px rgba(5, 8, 14, 0.8), -6px -6px 14px rgba(23, 33, 54, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.neomorphic-tile:hover {
+  box-shadow: 12px 12px 24px rgba(5, 8, 14, 0.9), -8px -8px 18px rgba(23, 33, 54, 0.5) !important;
+  transform: translateY(-4px);
+}
+
+.neomorphic-pill {
+  background: #0d1320 !important;
+  box-shadow: inset 3px 3px 6px rgba(5, 8, 14, 0.8), inset -3px -3px 6px rgba(23, 33, 54, 0.4) !important;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+}
+
+/* 4. Skeuomorphism (Credentials Section) */
+.skeuomorphic-cert-card {
+  background: linear-gradient(145deg, #121927, #0a0f19) !important;
+  border: 1px solid rgba(255, 215, 0, 0.35) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 215, 0, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.8) !important;
+  position: relative;
+}
+
+.skeuomorphic-ribbon {
+  position: absolute;
+  top: -10px;
+  right: 24px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #000;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  padding: 6px 16px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+/* 5. Claymorphism (Projects Section) */
+.claymorphic-card {
+  background: linear-gradient(145deg, #141c2c, #0e1523) !important;
+  border-radius: 24px !important;
+  box-shadow: inset -5px -5px 12px rgba(0, 0, 0, 0.4), inset 5px 5px 12px rgba(255, 255, 255, 0.08), 0 16px 32px rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.claymorphic-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: inset -6px -6px 14px rgba(0, 0, 0, 0.5), inset 6px 6px 14px rgba(255, 255, 255, 0.12), 0 24px 48px rgba(0, 240, 255, 0.2) !important;
+}
+
+.claymorphic-pill {
+  background: linear-gradient(145deg, #1a2438, #111826) !important;
+  box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4), inset 2px 2px 5px rgba(255, 255, 255, 0.1) !important;
+  border-radius: 9999px !important;
+}
+
+/* 6. Spatial UI (Services Section) */
+.spatial-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  background: rgba(18, 26, 42, 0.7) !important;
+  border: 1px solid rgba(0, 240, 255, 0.2) !important;
+  border-radius: 22px !important;
+  backdrop-filter: blur(18px) !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.spatial-icon-pane {
+  transform: translateZ(35px);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(112, 0, 255, 0.2));
+  border-radius: 16px;
+  padding: 14px;
+  display: inline-flex;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 240, 255, 0.25);
+  margin-bottom: 20px;
+}
+
+/* 7. Glassmorphism (FAQ & Contact Sections) */
+.glassmorphic-panel {
+  background: rgba(15, 22, 36, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 8. Maximalism & Brutalism (/lab Route) */
+.brutalist-card {
+  background: #000000;
+  border: 3px solid #00ff66;
+  box-shadow: 8px 8px 0px #ff0055;
+  border-radius: 0px;
+  color: #00ff66;
+  font-family: 'Fira Code', monospace;
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.brutalist-card:hover {
+  box-shadow: 12px 12px 0px #00f0ff;
+  transform: translate(-3px, -3px);
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #ff0055;
+  color: #ffffff;
+  padding: 12px 0;
+  font-family: 'Fira Code', monospace;
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  width: 100%;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee-scroll 18s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+.cyber-terminal {
+  background: #05080e;
+  border: 2px solid #00ff66;
+  box-shadow: 0 0 25px rgba(0, 255, 102, 0.25);
+  border-radius: 8px;
+  font-family: 'Fira Code', monospace;
+  padding: 20px;
+  max-width: 860px;
+  margin: 30px auto;
+}
+
+.terminal-line {
+  margin: 6px 0;
+  color: #00ff66;
+  line-height: 1.5;
+}
+
+.terminal-prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  color: #00ff66;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  outline: none;
+  flex: 1;
+}

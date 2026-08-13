@@ -8,7 +8,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         research: resolve(__dirname, 'research.html'),
         wordpressDevelopment: resolve(__dirname, 'wordpress-development.html'),
-        conversionApi: resolve(__dirname, 'conversion-api-setup.html')
+        conversionApi: resolve(__dirname, 'conversion-api-setup.html'),
+        lab: resolve(__dirname, 'lab.html')
       }
     }
   }
