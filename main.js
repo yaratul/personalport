@@ -1387,6 +1387,143 @@ const initFAQAccordion = () => {
   });
 };
 
+const initGallery = () => {
+  const galleryGrid = document.getElementById('gallery-grid');
+  const filterPills = document.querySelectorAll('.gallery-filter-pill');
+  const lightboxModal = document.getElementById('gallery-lightbox-modal');
+  
+  if (!galleryGrid && !lightboxModal) return;
+
+  const cards = Array.from(document.querySelectorAll('.gallery-card'));
+  let activeCards = [...cards];
+  let currentIndex = 0;
+
+  // 1. Filter Pills
+  if (filterPills.length > 0) {
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filter = pill.getAttribute('data-filter');
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        activeCards = [];
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+            activeCards.push(card);
+            if (typeof gsap !== 'undefined') {
+              gsap.fromTo(card, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
+            } else {
+              card.style.opacity = '1';
+            }
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // 2. Lightbox
+  if (lightboxModal) {
+    const lbImg = document.getElementById('gallery-lightbox-img');
+    const lbTitle = document.getElementById('gallery-lightbox-title');
+    const lbTag = document.getElementById('gallery-lightbox-tag');
+    const lbEra = document.getElementById('gallery-lightbox-era');
+    const lbDesc = document.getElementById('gallery-lightbox-desc');
+    const lbPills = document.getElementById('gallery-lightbox-pills');
+    const lbRawBtn = document.getElementById('gallery-lightbox-raw-btn');
+    const closeBtn = document.getElementById('gallery-lightbox-close');
+    const backdrop = document.getElementById('gallery-lightbox-backdrop');
+    const prevBtn = document.getElementById('gallery-lightbox-prev');
+    const nextBtn = document.getElementById('gallery-lightbox-next');
+
+    const updateLightbox = (index) => {
+      if (activeCards.length === 0) return;
+      currentIndex = (index + activeCards.length) % activeCards.length;
+      const card = activeCards[currentIndex];
+
+      const img = card.getAttribute('data-img') || '';
+      const title = card.getAttribute('data-title') || '';
+      const era = card.getAttribute('data-era') || '';
+      const tag = card.getAttribute('data-tag') || '';
+      const desc = card.getAttribute('data-desc') || '';
+      const pills = (card.getAttribute('data-pills') || '').split(',').filter(Boolean);
+
+      if (lbImg) {
+        lbImg.src = img;
+        lbImg.alt = title;
+      }
+      if (lbTitle) lbTitle.textContent = title;
+      if (lbTag) lbTag.textContent = tag;
+      if (lbEra) lbEra.textContent = era;
+      if (lbDesc) lbDesc.textContent = desc;
+      if (lbRawBtn) lbRawBtn.href = img;
+
+      if (lbPills) {
+        lbPills.innerHTML = '';
+        pills.forEach(p => {
+          const span = document.createElement('span');
+          span.className = 'gallery-meta-pill';
+          span.textContent = `#${p.trim()}`;
+          lbPills.appendChild(span);
+        });
+      }
+    };
+
+    const openLightbox = (card) => {
+      const idx = activeCards.indexOf(card);
+      if (idx !== -1) {
+        updateLightbox(idx);
+      }
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeLightbox = () => {
+      lightboxModal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => openLightbox(card));
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (backdrop) backdrop.addEventListener('click', closeLightbox);
+    if (prevBtn) prevBtn.addEventListener('click', () => updateLightbox(currentIndex - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => updateLightbox(currentIndex + 1));
+
+    window.addEventListener('keydown', (e) => {
+      if (!lightboxModal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') updateLightbox(currentIndex - 1);
+      if (e.key === 'ArrowRight') updateLightbox(currentIndex + 1);
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    lightboxModal.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightboxModal.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diffX = touchEndX - touchStartX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          updateLightbox(currentIndex - 1);
+        } else {
+          updateLightbox(currentIndex + 1);
+        }
+      }
+    }, { passive: true });
+  }
+};
+
 // ==========================================================================
 // 8. Initialize Application
 // ==========================================================================
@@ -1407,4 +1544,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initProjectFilters();
   initProjectModal();
   initFAQAccordion();
+  initGallery();
 });

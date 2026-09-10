@@ -9,7 +9,8 @@ export default defineConfig({
         research: resolve(__dirname, 'research.html'),
         wordpressDevelopment: resolve(__dirname, 'wordpress-development.html'),
         conversionApi: resolve(__dirname, 'conversion-api-setup.html'),
-        lab: resolve(__dirname, 'lab.html')
+        lab: resolve(__dirname, 'lab.html'),
+        gallery: resolve(__dirname, 'gallery.html')
       }
     }
   }
