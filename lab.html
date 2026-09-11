@@ -14,6 +14,7 @@
   <link rel="icon" type="image/jpeg" href="https://z1kabhoziryzqnyx.public.blob.vercel-storage.com/WhatsApp%20Image%202026-06-11%20at%201.56.07%20PM.jpeg" />
   <link rel="sitemap" type="application/xml" href="https://yaratul.com/sitemap.xml">
   <link rel="alternate" type="text/plain" href="https://yaratul.com/llms.txt" title="AI Profile Knowledge Graph">
+  <link rel="canonical" href="https://yaratul.com/lab">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6D3JZYC4LP"></script>
@@ -28,59 +29,96 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Outfit:wght@800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Outfit:wght@800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/style.css">
-
-  <style>
-    body {
-      background-color: #000000 !important;
-      color: #00ff66 !important;
-      font-family: 'Fira Code', monospace !important;
-    }
-  </style>
 </head>
-<body>
-  <!-- Custom Cursor -->
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursor-follower"></div>
+<body class="section-white">
+  <!-- Custom Dual-State Magnetic Cursor -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-ring" id="cursor-ring"></div>
 
-  <!-- Header Marquee Ticker (Brutalist Top) -->
-  <div class="marquee-container">
-    <div class="marquee-content">
-      ⚡ VIBE CODING EXPERIMENTAL LAB 🧪 // MAXIMALIST BRUTALISM // UNIX SOCKETS & CAPI TELEMETRY // TRY 'HELP' IN TERMINAL BELOW // ⚡ VIBE CODING EXPERIMENTAL LAB 🧪 // MAXIMALIST BRUTALISM // UNIX SOCKETS & CAPI TELEMETRY //
+  <!-- Red Ticker Ribbon -->
+  <div class="ticker-marquee ticker-red" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">⚡ VIBE CODING EXPERIMENTAL LAB 🧪 <span class="ticker-star">★</span></span>
+      <span class="ticker-item">UNIX SOCKETS &amp; CAPI TELEMETRY <span class="ticker-star">★</span></span>
+      <span class="ticker-item">INTERACTIVE TERMINAL CLI ACTIVE <span class="ticker-star">★</span></span>
+      <span class="ticker-item">TYPE 'HELP' FOR SYSTEM COMMANDS <span class="ticker-star">★</span></span>
+      <!-- Loop -->
+      <span class="ticker-item">⚡ VIBE CODING EXPERIMENTAL LAB 🧪 <span class="ticker-star">★</span></span>
+      <span class="ticker-item">UNIX SOCKETS &amp; CAPI TELEMETRY <span class="ticker-star">★</span></span>
+      <span class="ticker-item">INTERACTIVE TERMINAL CLI ACTIVE <span class="ticker-star">★</span></span>
+      <span class="ticker-item">TYPE 'HELP' FOR SYSTEM COMMANDS <span class="ticker-star">★</span></span>
     </div>
   </div>
 
-  <header class="navbar" style="background: #000; border-bottom: 3px solid #00ff66; padding: 20px 0;">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-      <a href="/" style="color: #ff0055; font-size: 1.4rem; font-weight: 900; text-decoration: none;">&lt;YAR.DEV / LAB&gt;</a>
-      <a href="/" style="background: #00ff66; color: #000; padding: 8px 16px; font-weight: 900; text-decoration: none; border: 2px solid #fff;">[ Back to Main Portfolio ]</a>
+  <!-- Floating Navigation Capsule -->
+  <header class="header">
+    <div class="header-container">
+      <a href="/" class="logo" aria-label="Yaser Ahmmed Ratul Homepage">
+        <span>YAR</span><span class="logo-brand">.DEV</span>
+        <span class="logo-tag">LAB 🧪</span>
+      </a>
+      
+      <nav class="nav">
+        <ul class="nav-list">
+          <div class="nav-active-pill" id="nav-active-pill"></div>
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/research" class="nav-link">Research</a></li>
+          <li><a href="/gallery" class="nav-link">Gallery</a></li>
+          <li><a href="/lab" class="nav-link active">Lab</a></li>
+          <li><a href="/#services" class="nav-link">Services</a></li>
+          <li><a href="/#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="/" class="btn-header-cta">
+        <span>Back to Main</span>
+      </a>
+
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+      </button>
     </div>
   </header>
 
-  <main class="container" style="padding: 60px 20px;">
+  <main class="container" style="max-width: 1100px; margin: 0 auto; padding: 8.5rem 1.5rem 5rem;">
     <!-- Lab Hero Title -->
-    <div style="margin-bottom: 60px; text-align: center;">
-      <h1 style="font-size: 3rem; font-weight: 900; color: #ff0055; text-shadow: 4px 4px 0 #00f0ff; letter-spacing: -0.02em;">
-        EXPERIMENTAL CODE PLAYGROUND
+    <div style="margin-bottom: 3.5rem; text-align: center;">
+      <div class="section-eyebrow" style="justify-content: center;">
+        <span class="eyebrow-line"></span>
+        <span>EXPERIMENTAL SANDBOX // BRUTALIST PROTOTYPES</span>
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="section-title">
+        CODE PLAYGROUND &amp;<br><span class="accent-red">VIBE CODING LAB.</span>
       </h1>
-      <p style="color: #00ff66; font-size: 1.1rem; max-width: 700px; margin: 20px auto 0 auto; background: rgba(0,255,102,0.05); padding: 16px; border: 1px dashed #00ff66;">
-        Welcome to the raw, unedited side of my stack. Here I test custom PHP socket protocols, AI prompt engineering workflows, and edge WebKit ITP bypass implementations.
+      <p style="color: var(--text-black); font-size: 1.1rem; max-width: 720px; margin: 1.5rem auto 0; line-height: 1.7; background: var(--bg-offwhite); border: 1.5px solid var(--border-black); border-radius: 12px; padding: 1.2rem; box-shadow: var(--shadow-tactile);">
+        Welcome to the raw, unedited side of my stack. Here I test custom Unix domain socket protocols, rapid AI prompt engineering loops, and edge WebKit ITP bypass implementations.
       </p>
     </div>
 
     <!-- Interactive Terminal Sandbox -->
-    <section style="margin-bottom: 80px;">
-      <h2 style="color: #00f0ff; font-size: 1.5rem; margin-bottom: 16px;">&gt; INTERACTIVE_TERMINAL_CLI</h2>
+    <section style="margin-bottom: 5rem;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+        <h2 style="font-family: var(--font-title); font-size: 1.4rem; font-weight: 800; color: var(--text-red);">
+          &gt; INTERACTIVE_TERMINAL_CLI
+        </h2>
+        <span style="font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; color: var(--text-gray);">
+          v2.6.4 · ONLINE
+        </span>
+      </div>
       
       <div class="cyber-terminal" id="terminal">
-        <div class="terminal-line" style="color: #ff0055;">[YAR-OS v2.6.4 CLI Ready]</div>
-        <div class="terminal-line">Type <span style="color: #00f0ff; font-weight: 700;">'help'</span> to see available system commands.</div>
+        <div class="terminal-line" style="color: var(--bg-red); font-weight: 800;">[YAR-OS v2.6.4 CLI Ready]</div>
+        <div class="terminal-line">Type <span style="color: #ffffff; font-weight: 700;">'help'</span> to see available system commands.</div>
         <div class="terminal-output-area" id="terminal-output"></div>
         
         <div class="terminal-prompt-row">
-          <span style="color: #ff0055; font-weight: 700;">visitor@yar-lab:~$</span>
+          <span style="color: var(--bg-red); font-weight: 800;">visitor@yar-lab:~$</span>
           <input type="text" class="terminal-input" id="terminal-input" placeholder="type a command..." autofocus autocomplete="off" />
         </div>
       </div>
@@ -88,126 +126,130 @@
 
     <!-- Experimental Grid (Brutalist Style) -->
     <section>
-      <h2 style="color: #ff0055; font-size: 1.5rem; margin-bottom: 24px;">&gt; ACTIVE_LAB_EXPERIMENTS</h2>
+      <div class="section-heading-wrap" style="margin-bottom: 2.5rem;">
+        <h2 style="font-family: var(--font-title); font-size: 1.8rem; font-weight: 800; color: var(--text-black);">
+          &gt; ACTIVE_LAB_EXPERIMENTS
+        </h2>
+      </div>
       
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
         <!-- Card 1 -->
         <div class="brutalist-card">
-          <span style="background: #ff0055; color: #fff; padding: 4px 8px; font-weight: 900; font-size: 0.8rem;">EXP-01</span>
-          <h3 style="font-size: 1.3rem; margin: 12px 0; color: #fff;">WirePhoenix IPC Engine</h3>
-          <p style="font-size: 0.9rem; color: #a0aec0; line-height: 1.6;">
+          <span style="background: var(--bg-red); color: #ffffff; padding: 4px 10px; font-weight: 800; font-size: 0.78rem; border-radius: 4px; font-family: var(--font-mono);">EXP-01</span>
+          <h3 style="font-family: var(--font-title); font-size: 1.35rem; font-weight: 800; margin: 1rem 0 0.5rem; color: var(--text-black);">WirePhoenix IPC Engine</h3>
+          <p style="font-size: 0.92rem; color: var(--text-gray); line-height: 1.6;">
             Low-latency Unix domain socket transport library built in PHP 8.2 for zero-overhead inter-process memory communication.
           </p>
-          <a href="https://github.com/yaratul2005/WirePhoenix" target="_blank" style="display: inline-block; margin-top: 16px; color: #00ff66; font-weight: 700; text-decoration: underline;">Inspect Source Code ➔</a>
+          <a href="https://github.com/yaratul2005/WirePhoenix" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 1.2rem; color: var(--text-red); font-weight: 700; text-decoration: underline;">Inspect Source Code ➔</a>
         </div>
 
         <!-- Card 2 -->
-        <div class="brutalist-card" style="box-shadow: 8px 8px 0px #00f0ff;">
-          <span style="background: #00f0ff; color: #000; padding: 4px 8px; font-weight: 900; font-size: 0.8rem;">EXP-02</span>
-          <h3 style="font-size: 1.3rem; margin: 12px 0; color: #fff;">ServerTrack CAPI Telemetry</h3>
-          <p style="font-size: 0.9rem; color: #a0aec0; line-height: 1.6;">
+        <div class="brutalist-card">
+          <span style="background: var(--text-black); color: #ffffff; padding: 4px 10px; font-weight: 800; font-size: 0.78rem; border-radius: 4px; font-family: var(--font-mono);">EXP-02</span>
+          <h3 style="font-family: var(--font-title); font-size: 1.35rem; font-weight: 800; margin: 1rem 0 0.5rem; color: var(--text-black);">ServerTrack CAPI Telemetry</h3>
+          <p style="font-size: 0.92rem; color: var(--text-gray); line-height: 1.6;">
             Decentralized Conversion API gateway routing event signals directly through first-party domain edge servers to bypass Safari ITP.
           </p>
-          <a href="https://github.com/yaratul2005/fixedv6" target="_blank" style="display: inline-block; margin-top: 16px; color: #00f0ff; font-weight: 700; text-decoration: underline;">Inspect Source Code ➔</a>
+          <a href="https://github.com/yaratul2005/fixedv6" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 1.2rem; color: var(--text-red); font-weight: 700; text-decoration: underline;">Inspect Source Code ➔</a>
         </div>
 
         <!-- Card 3 -->
-        <div class="brutalist-card" style="box-shadow: 8px 8px 0px #ffff00;">
-          <span style="background: #ffff00; color: #000; padding: 4px 8px; font-weight: 900; font-size: 0.8rem;">EXP-03</span>
-          <h3 style="font-size: 1.3rem; margin: 12px 0; color: #fff;">SaaS License Verification API</h3>
-          <p style="font-size: 0.9rem; color: #a0aec0; line-height: 1.6;">
+        <div class="brutalist-card">
+          <span style="background: var(--bg-red); color: #ffffff; padding: 4px 10px; font-weight: 800; font-size: 0.78rem; border-radius: 4px; font-family: var(--font-mono);">EXP-03</span>
+          <h3 style="font-family: var(--font-title); font-size: 1.35rem; font-weight: 800; margin: 1rem 0 0.5rem; color: var(--text-black);">SaaS License Verification API</h3>
+          <p style="font-size: 0.92rem; color: var(--text-gray); line-height: 1.6;">
             High-concurrency REST authentication server engineered on shared hosting with instant sub-50ms validation response times.
           </p>
-          <a href="https://great10.xyz" target="_blank" style="display: inline-block; margin-top: 16px; color: #ffff00; font-weight: 700; text-decoration: underline;">Launch Demo ➔</a>
+          <a href="/#projects" style="display: inline-block; margin-top: 1.2rem; color: var(--text-red); font-weight: 700; text-decoration: underline;">View Case Study ➔</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer style="border-top: 3px solid #ff0055; padding: 30px 0; text-align: center; margin-top: 80px; background: #05080e;">
-    <p style="color: #00ff66; font-size: 0.9rem; margin-bottom: 12px;">© 2026 Yaser Ahmmed Ratul — Vibe Coding Experimental Lab</p>
-    <div style="display: flex; justify-content: center; gap: 20px; font-size: 0.85rem;">
-      <a href="/" style="color: #00f0ff; text-decoration: none;">[ Home ]</a>
-      <a href="/research" style="color: #00f0ff; text-decoration: none;">[ Research ]</a>
-      <a href="/gallery" style="color: #00ff66; text-decoration: none; font-weight: 700;">[ Gallery 📸 ]</a>
-      <a href="/#contact" style="color: #ff0055; text-decoration: none;">[ Contact ]</a>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-logo">
+          YAR<span>.DEV</span>
+        </div>
+        <div class="footer-nav">
+          <a href="/" class="footer-link">Home</a>
+          <a href="/research" class="footer-link">Research</a>
+          <a href="/gallery" class="footer-link">Gallery</a>
+          <a href="/lab" class="footer-link" style="color: var(--bg-red); font-weight: 700;">Lab</a>
+          <a href="/#services" class="footer-link">Services</a>
+          <a href="/#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Yaser Ahmmed Ratul. All rights reserved.
+        </div>
+        <div>
+          Coordinates: 23.4795° N, 91.1278° E · Cumilla Cantonment, Bangladesh
+        </div>
+      </div>
     </div>
   </footer>
 
+  <!-- Terminal Script -->
   <script>
-    // Terminal CLI Interactive System
-    const termInput = document.getElementById('terminal-input');
-    const termOutput = document.getElementById('terminal-output');
+    const terminalInput = document.getElementById('terminal-input');
+    const terminalOutput = document.getElementById('terminal-output');
 
     const commands = {
-      help: `AVAILABLE COMMANDS:
-  - skills    : Output primary engineering stack
-  - projects  : List featured open-source repositories
-  - gallery   : Launch curated portrait & visual archive
-  - contact   : Display direct communication channels
-  - sudo hire : Execute instant project inquiry
-  - clear     : Clear terminal history
-  - matrix    : Launch matrix vibe code mode`,
-
-      gallery: `📸 CURATED VISUAL ARCHIVE:
-  View noir chiaroscuro, 1970s analog, and modern executive portraits:
-  Opening https://yaratul.com/gallery ... (or click the link below)`,
-
-      skills: `CORE ENGINEERING STACK:
-  [PHP 8.2 & MySQL]   : 99% (Custom IPC Libraries, REST APIs)
-  [WordPress/WooCommerce]: 98% (Theme/Plugin Development, CAPI)
-  [Python & Flask]    : 92% (Data Analytics, Machine Learning)
-  [DevOps & Linux]    : 90% (SSH, Apache/Nginx, Caching, Edge Routing)
-  [Technical SEO & Ads]: 95% (Schema JSON-LD, PageSpeed 95+, Meta CAPI)`,
-
-      projects: `FEATURED OPEN-SOURCE REPOSITORIES:
-  1. WirePhoenix  : Unix Domain Socket Library (https://github.com/yaratul2005/WirePhoenix)
-  2. ServerTrack  : Decentralized Conversion API Gateway (https://github.com/yaratul2005/fixedv6)
-  3. Great 10     : SaaS Licensing Engine (https://great10.xyz)`,
-
-      contact: `DIRECT CONTACT CHANNELS:
-  Email   : owner@yaratul.com
-  WhatsApp: +8801722081109
-  LinkedIn: linkedin.com/in/yaratul2004`,
-
-      'sudo hire': `🚀 INITIATING PROJECT DISCOVERY...
-  Routing inquiry to Yaser Ahmmed Ratul. Please email owner@yaratul.com or WhatsApp +8801722081109 with your project specs!`
+      help: "Available commands:\n- help: show this manual\n- skills: list core technical competencies\n- projects: view flagship open-source repositories\n- research: link to academic paper on edge routing\n- contact: show direct WhatsApp & email channels\n- sudo hire: fast-track your contract inquiry\n- clear: wipe terminal screen",
+      skills: "CORE STACK:\n- Languages: PHP 8.3, JavaScript (ESNext), Python, SQL, Bash\n- Ad-Tech: Meta CAPI, GTM Server-Side, TikTok Events API\n- Systems: Unix Domain Sockets, IPC, Cloudflare Edge\n- CMS: Custom WordPress & High-Speed WooCommerce",
+      projects: "FEATURED SYSTEMS:\n1. WirePhoenix - PHP Unix Domain Socket Protocol Library (0.12ms)\n2. ServerTrack (fixedv6) - First-Party CAPI Edge Routing Gateway\n3. TechPlus BD - High-Converting Gadget Storefront\n4. Adrift - Next.js 3D Book Memoir Launch Portal",
+      research: "Decentralized Edge Routing: Transforming Content Management Systems into First-Party Privacy-Preserving Conversion Gateways (2026).\nURL: https://yaratul.com/research",
+      contact: "DIRECT CHANNELS:\n- WhatsApp: +880 1722-081109 (Instant)\n- Email: yaratul2005@gmail.com\n- GitHub: https://github.com/yaratul\n- Location: Cumilla Cantonment, Bangladesh (GMT+6)",
+      "sudo hire": ">>> ACCESS GRANTED: CONTRACT FAST-TRACK <<<\nRouting directly to WhatsApp (+880 1722-081109)... Redirecting in 2 seconds.",
+      clear: ""
     };
 
-    if (termInput) {
-      termInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          const cmd = termInput.value.trim().toLowerCase();
-          termInput.value = '';
+    terminalInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const raw = terminalInput.value.trim();
+        const cmd = raw.toLowerCase();
+        terminalInput.value = '';
 
-          const cmdRow = document.createElement('div');
-          cmdRow.className = 'terminal-line';
-          cmdRow.innerHTML = `<span style="color: #ff0055; font-weight: 700;">visitor@yar-lab:~$</span> ${cmd}`;
-          termOutput.appendChild(cmdRow);
+        const userRow = document.createElement('div');
+        userRow.className = 'terminal-line';
+        userRow.innerHTML = `<span style="color: var(--bg-red); font-weight: 800;">visitor@yar-lab:~$</span> ${raw}`;
+        terminalOutput.appendChild(userRow);
 
-          if (cmd === 'clear') {
-            termOutput.innerHTML = '';
-            return;
-          }
-
-          const responseRow = document.createElement('div');
-          responseRow.className = 'terminal-line';
-          responseRow.style.whiteSpace = 'pre-wrap';
-
-          if (commands[cmd]) {
-            responseRow.innerText = commands[cmd];
-          } else if (cmd === '') {
-            return;
-          } else {
-            responseRow.innerText = `Command not recognized: '${cmd}'. Type 'help' for available commands.`;
-            responseRow.style.color = '#ff0055';
-          }
-
-          termOutput.appendChild(responseRow);
-          termOutput.scrollTop = termOutput.scrollHeight;
+        if (cmd === 'clear') {
+          terminalOutput.innerHTML = '';
+          return;
         }
-      });
-    }
+
+        const outRow = document.createElement('div');
+        outRow.className = 'terminal-line';
+        outRow.style.color = '#ffffff';
+        outRow.style.whiteSpace = 'pre-wrap';
+
+        if (commands[cmd]) {
+          outRow.textContent = commands[cmd];
+          if (cmd === 'sudo hire') {
+            setTimeout(() => {
+              window.open('https://wa.me/8801722081109?text=Hi%20Yaser!%20I%20used%20sudo%20hire%20in%20your%20lab%20terminal%20and%20want%20to%20hire%20you.', '_blank');
+            }, 1800);
+          }
+        } else if (cmd === '') {
+          return;
+        } else {
+          outRow.textContent = `zsh: command not found: ${raw}. Type 'help' for valid commands.`;
+          outRow.style.color = '#ff6b6b';
+        }
+
+        terminalOutput.appendChild(outRow);
+        document.getElementById('terminal')?.scrollTo(0, 99999);
+      }
+    });
   </script>
+
+  <!-- Main JavaScript Bundle -->
+  <script type="module" src="/main.js"></script>
 </body>
 </html>
