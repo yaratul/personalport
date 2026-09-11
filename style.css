@@ -589,6 +589,7 @@ body.cursor-active .custom-cursor-ring {
   padding: 7.2rem 1.5rem 3.8rem;
   position: relative;
   background-color: var(--bg-white);
+  overflow: hidden;
 }
 
 .hero-grid-pattern {
@@ -605,11 +606,63 @@ body.cursor-active .custom-cursor-ring {
   z-index: 0;
 }
 
+/* Hero Right-Side Portrait Showcase (Behind Content) */
+.hero-portrait-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 120px;
+  width: 44vw;
+  max-width: 600px;
+  height: calc(100% - 120px);
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.hero-portrait-ambient-glow {
+  position: absolute;
+  top: 22%;
+  right: 8%;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(230, 0, 38, 0.07) 0%, rgba(230, 0, 38, 0.015) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(50px);
+}
+
+.hero-portrait-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right: clamp(1rem, 3vw, 3.5rem);
+}
+
+.hero-portrait-img {
+  height: auto;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+  opacity: 0.98;
+  filter: contrast(1.04) brightness(1.02);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, rgba(0,0,0,0.5) 6%, black 18%);
+  mask-image: linear-gradient(to top, transparent 0%, rgba(0,0,0,0.5) 6%, black 18%);
+}
+
 .hero-container {
   max-width: 1240px;
   margin: 0 auto;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
 }
 
@@ -644,12 +697,13 @@ body.cursor-active .custom-cursor-ring {
 
 .hero-main-title {
   font-family: var(--font-title);
-  font-size: clamp(3rem, 8.2vw, 7.8rem);
+  font-size: clamp(2.8rem, 5.6vw, 5.6rem);
   font-weight: 800;
-  line-height: 0.92;
+  line-height: 0.94;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   margin-bottom: 1.8rem;
+  max-width: 720px;
 }
 .hero-main-title .hero-red-highlight {
   color: var(--text-red);
@@ -661,13 +715,13 @@ body.cursor-active .custom-cursor-ring {
 }
 
 .hero-sub-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   margin-top: 1.5rem;
   border-top: 1px solid var(--border-medium);
-  padding-top: 2rem;
+  padding-top: 1.8rem;
+  max-width: 680px;
 }
 
 .hero-lead-text {
@@ -2113,6 +2167,15 @@ pre {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .hero-main-title,
+  .hero-sub-grid {
+    max-width: 100%;
+  }
+  .hero-portrait-wrap {
+    width: 48vw;
+    max-width: 440px;
+    opacity: 0.82;
+  }
   .hero-sub-grid,
   .about-grid,
   .contact-hero-grid {
@@ -2132,6 +2195,9 @@ pre {
 }
 
 @media (max-width: 768px) {
+  .hero-portrait-wrap {
+    display: none !important;
+  }
   .custom-cursor-dot,
   .custom-cursor-ring {
     display: none !important;
