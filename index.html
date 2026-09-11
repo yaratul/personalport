@@ -1294,9 +1294,9 @@
                   <span>WhatsApp: +880 1722-081109 (Instant)</span>
                 </a>
 
-                <a href="mailto:yaratul2005@gmail.com" class="contact-channel-link">
+                <a href="mailto:owner@yaratul.com" class="contact-channel-link">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                  <span>Email: yaratul2005@gmail.com</span>
+                  <span>Email: owner@yaratul.com</span>
                 </a>
 
                 <a href="https://github.com/yaratul" target="_blank" rel="noopener noreferrer" class="contact-channel-link">
@@ -1316,35 +1316,43 @@
               <h3>DIRECT INQUIRY</h3>
               <p>Fill out the parameters below for a fast response within 12 hours.</p>
 
-              <form id="direct-inquiry-form" onsubmit="event.preventDefault(); alert('Thank you! Your message has been routed to Yaser Ahmmed Ratul.');">
+              <form id="direct-inquiry-form" class="direct-contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key: Replace with your free key from web3forms.com -->
+                <input type="hidden" name="access_key" id="web3forms-access-key" value="YOUR_ACCESS_KEY_HERE">
+                <input type="hidden" name="subject" value="New Enterprise Inquiry — yaratul.com">
+                <input type="hidden" name="from_name" value="yaratul.com Portfolio Lead">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                 <div class="form-group">
                   <label class="form-label" for="client-name">YOUR NAME / COMPANY</label>
-                  <input type="text" id="client-name" class="form-input" placeholder="e.g. Alex Vance, NorthStar Media" required>
+                  <input type="text" id="client-name" name="name" class="form-input" placeholder="e.g. Alex Vance, NorthStar Media" required>
                 </div>
 
                 <div class="form-group">
                   <label class="form-label" for="client-email">DIRECT EMAIL</label>
-                  <input type="email" id="client-email" class="form-input" placeholder="alex@company.com" required>
+                  <input type="email" id="client-email" name="email" class="form-input" placeholder="alex@company.com" required>
                 </div>
 
                 <div class="form-group">
                   <label class="form-label" for="client-service">SERVICE REQUIRED</label>
-                  <select id="client-service" class="form-select">
-                    <option value="capi">Server-Side Tracking / Meta CAPI Setup</option>
-                    <option value="custom-web">Custom Web &amp; SaaS Application</option>
-                    <option value="wordpress-speed">High-Speed WooCommerce Store</option>
-                    <option value="full-stack">Full-Stack Technical Retainer</option>
-                    <option value="other">Other Architecture Advisory</option>
+                  <select id="client-service" name="service" class="form-select">
+                    <option value="Server-Side Tracking / Meta CAPI Setup">Server-Side Tracking / Meta CAPI Setup</option>
+                    <option value="Custom Web & SaaS Application">Custom Web &amp; SaaS Application</option>
+                    <option value="High-Speed WooCommerce Store">High-Speed WooCommerce Store</option>
+                    <option value="Full-Stack Technical Retainer">Full-Stack Technical Retainer</option>
+                    <option value="Other Architecture Advisory">Other Architecture Advisory</option>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label class="form-label" for="client-msg">PROJECT SCOPE / OBJECTIVES</label>
-                  <textarea id="client-msg" class="form-textarea" placeholder="Describe your technical requirements, ad spend, or launch timeline..."></textarea>
+                  <textarea id="client-msg" name="message" class="form-textarea" placeholder="Describe your technical requirements, ad spend, or launch timeline..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-red" style="width: 100%;">
-                  <span>Dispatch Request</span>
+                <div id="form-status-msg" class="form-status-msg" role="alert"></div>
+
+                <button type="submit" id="form-submit-btn" class="btn btn-red" style="width: 100%;">
+                  <span id="btn-text">Dispatch Request</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
               </form>

@@ -486,6 +486,65 @@ export const initGallery = () => {
 };
 
 // ==========================================================================
+// 12. Asynchronous Contact Form Submission Handler (Web3Forms / owner@yaratul.com)
+// ==========================================================================
+const initContactForm = () => {
+  const form = document.getElementById('direct-inquiry-form');
+  const statusMsg = document.getElementById('form-status-msg');
+  const submitBtn = document.getElementById('form-submit-btn');
+  const btnText = document.getElementById('btn-text');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !statusMsg) return;
+
+    const accessKeyInput = document.getElementById('web3forms-access-key');
+    const accessKey = accessKeyInput ? accessKeyInput.value.trim() : '';
+
+    // If placeholder is still present, guide user
+    if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
+      statusMsg.className = 'form-status-msg error';
+      statusMsg.innerHTML = '⚠️ Please insert your free Web3Forms Access Key or email directly to <a href="mailto:owner@yaratul.com" style="text-decoration: underline; color: inherit; font-weight: bold;">owner@yaratul.com</a>.';
+      return;
+    }
+
+    // Set loading state
+    submitBtn.disabled = true;
+    const origText = btnText ? btnText.textContent : 'Dispatch Request';
+    if (btnText) btnText.textContent = 'Routing Message...';
+    statusMsg.className = 'form-status-msg';
+    statusMsg.style.display = 'none';
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200 && result.success) {
+        statusMsg.className = 'form-status-msg success';
+        statusMsg.textContent = '✓ Request dispatched successfully! Yaser Ahmmed Ratul will respond within 12 hours.';
+        form.reset();
+      } else {
+        throw new Error(result.message || 'Submission failed.');
+      }
+    } catch (error) {
+      statusMsg.className = 'form-status-msg error';
+      statusMsg.innerHTML = `⚠️ Direct transmission encountered an issue. Please reach out directly to <a href="mailto:owner@yaratul.com" style="text-decoration: underline; color: inherit; font-weight: bold;">owner@yaratul.com</a> or WhatsApp.`;
+    } finally {
+      submitBtn.disabled = false;
+      if (btnText) btnText.textContent = origText;
+    }
+  });
+};
+
+// ==========================================================================
 // Application Bootstrap
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -500,4 +559,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initDhakaClock();
   initCookieConsent();
   initGallery();
+  initContactForm();
 });

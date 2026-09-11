@@ -1528,6 +1528,29 @@ body.cursor-active .custom-cursor-ring {
   resize: vertical;
 }
 
+.form-status-msg {
+  padding: 0.85rem 1.1rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  line-height: 1.45;
+  display: none;
+}
+.form-status-msg.success {
+  display: block;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1.5px solid #10b981;
+}
+.form-status-msg.error {
+  display: block;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1.5px solid #e60026;
+}
+
 /* Local Time Indicator */
 .dhaka-time-pill {
   display: inline-flex;
