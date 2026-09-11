@@ -336,6 +336,11 @@ const initLightbox = () => {
   const openModal = (src, alt = '') => {
     modalImg.src = src;
     modalImg.alt = alt;
+    if (src.endsWith('.svg') || src.includes('.svg')) {
+      modalImg.style.width = 'min(88vw, 1100px)';
+    } else {
+      modalImg.style.width = 'auto';
+    }
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   };

@@ -830,6 +830,63 @@ body.cursor-active .custom-cursor-ring {
   gap: 1.2rem;
 }
 
+/* About Side Column: Portrait + Spec Card */
+.about-side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.author-portrait-card {
+  width: 100%;
+}
+
+.portrait-img-box {
+  width: 100%;
+  height: 380px;
+  border: 1.5px solid var(--border-black);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #0a0a0a;
+  box-shadow: var(--shadow-tactile);
+  cursor: pointer;
+}
+
+.portrait-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.portrait-img-box:hover img {
+  transform: scale(1.04);
+}
+
+.portrait-overlay-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  z-index: 2;
+}
+
 /* Technical Specification Card */
 .tech-spec-card {
   background: var(--bg-offwhite);
@@ -1159,22 +1216,31 @@ body.cursor-active .custom-cursor-ring {
 .project-slide-img-box {
   width: 100%;
   height: 100%;
+  min-height: 380px;
   max-height: 480px;
   border: 1.5px solid var(--border-black);
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  background: var(--bg-offwhite);
-  box-shadow: 4px 4px 0px var(--border-medium);
+  background: #0a0a0a;
+  box-shadow: 4px 4px 0px var(--border-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 .project-slide-img-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.project-slide-img-box img.img-contain {
+  object-fit: contain;
+  padding: 0.75rem;
 }
 .project-slide-img-box:hover img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 /* --- 14. SERVICES & CLIENT CAPABILITIES (WHITE WITH RED CARDS) --- */
@@ -1554,18 +1620,29 @@ body.cursor-active .custom-cursor-ring {
 
 .lightbox-content {
   position: relative;
-  max-width: 92vw;
-  max-height: 90vh;
+  max-width: 94vw;
+  max-height: 92vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .lightbox-content img {
-  max-width: 100%;
-  max-height: 88vh;
-  border-radius: 12px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
   border: 2px solid var(--border-white);
+  background: #0a0a0a;
+}
+.lightbox-content img[src$=".svg"],
+.lightbox-content img[src*=".svg"] {
+  width: min(88vw, 1100px);
+  height: auto;
 }
 
 .lightbox-close-btn {

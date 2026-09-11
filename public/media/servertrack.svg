@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #0a0a0a; }
+      .grid-line { stroke: rgba(255,255,255,0.06); stroke-width: 1; }
+      .panel { fill: #111827; stroke: #e60026; stroke-width: 2; rx: 12px; }
+      .panel-sub { fill: #161f33; stroke: rgba(255,255,255,0.18); stroke-width: 1.5; rx: 8px; }
+      .red-box { fill: #e60026; rx: 8px; }
+      .title-text { font-family: 'Outfit', -apple-system, sans-serif; font-size: 20px; font-weight: 800; fill: #ffffff; letter-spacing: -0.02em; }
+      .mono-text { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; fill: #ffffff; }
+      .muted-mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; fill: #9ca3af; }
+      .flow-arrow { stroke: #e60026; stroke-width: 3; stroke-dasharray: 6 4; fill: none; }
+      .badge-green { fill: #10b981; }
+      .badge-pill { rx: 9999px; fill: rgba(255,255,255,0.1); stroke: rgba(255,255,255,0.25); stroke-width: 1; }
+    </style>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="4" dy="4" stdDeviation="0" flood-color="#e60026" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1000" height="620" class="bg" rx="16" />
+  
+  <!-- Subtle Grid Lines -->
+  <line x1="0" y1="80" x2="1000" y2="80" class="grid-line" />
+  <line x1="0" y1="540" x2="1000" y2="540" class="grid-line" />
+  <line x1="320" y1="80" x2="320" y2="540" class="grid-line" />
+  <line x1="680" y1="80" x2="680" y2="540" class="grid-line" />
+
+  <!-- Top Header Bar -->
+  <rect x="24" y="24" width="952" height="46" rx="8" fill="#141923" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+  <circle cx="50" cy="47" r="6" fill="#e60026" />
+  <circle cx="70" cy="47" r="6" fill="#f59e0b" />
+  <circle cx="90" cy="47" r="6" fill="#10b981" />
+  <text x="120" y="52" class="mono-text" fill="#ffffff">SERVERTRACK v6.0.6 // DECENTRALIZED CAPI EDGE GATEWAY</text>
+  <rect x="790" y="34" width="170" height="26" class="badge-pill" />
+  <circle cx="806" cy="47" r="4" class="badge-green" />
+  <text x="818" y="51" class="muted-mono" fill="#10b981">STATUS: 99.8% CAPTURE</text>
+
+  <!-- Column 1: Source Ingestion -->
+  <rect x="40" y="110" width="240" height="400" class="panel-sub" />
+  <rect x="56" y="126" width="208" height="32" class="red-box" />
+  <text x="70" y="147" class="mono-text">01 // CMS INGESTION</text>
+  
+  <rect x="56" y="176" width="208" height="90" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.1)" />
+  <text x="70" y="202" class="title-text" font-size="16px">WooCommerce Hook</text>
+  <text x="70" y="224" class="muted-mono">woocommerce_thankyou</text>
+  <text x="70" y="244" class="muted-mono">Payload: Order, LTV, Items</text>
+
+  <rect x="56" y="280" width="208" height="90" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.1)" />
+  <text x="70" y="306" class="title-text" font-size="16px">First-Party REST API</text>
+  <text x="70" y="328" class="muted-mono">/wp-json/servertrack/v1/</text>
+  <text x="70" y="348" class="muted-mono">Bypasses Browser Blockers</text>
+
+  <rect x="56" y="384" width="208" height="106" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.1)" />
+  <text x="70" y="410" class="mono-text" fill="#e60026">HTTP State Capture</text>
+  <text x="70" y="432" class="muted-mono">• Set-Cookie Header Rewrite</text>
+  <text x="70" y="450" class="muted-mono">• _fbp / _fbc 30-Day Persist</text>
+  <text x="70" y="468" class="muted-mono">• Client IP &amp; User-Agent Ext</text>
+
+  <!-- Flow Connector 1 to 2 -->
+  <path d="M 280 310 L 360 310" class="flow-arrow" />
+  <polygon points="360,310 350,305 350,315" fill="#e60026" />
+
+  <!-- Column 2: Core ServerTrack Edge Engine (Centerpiece) -->
+  <rect x="360" y="100" width="280" height="420" class="panel" filter="url(#shadow)" />
+  <rect x="380" y="120" width="240" height="38" class="red-box" />
+  <text x="398" y="144" class="mono-text">02 // EDGE TELEMETRY</text>
+  
+  <g transform="translate(380, 176)">
+    <rect width="240" height="74" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.12)" />
+    <text x="16" y="28" class="title-text" font-size="15px" fill="#ffffff">Cryptographic Dedupe</text>
+    <text x="16" y="50" class="muted-mono">Transient Time-Bucket Hash</text>
+    <text x="16" y="64" class="muted-mono">Zero Redundant API Calls</text>
+  </g>
+
+  <g transform="translate(380, 264)">
+    <rect width="240" height="74" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.12)" />
+    <text x="16" y="28" class="title-text" font-size="15px" fill="#ffffff">Signal Normalization</text>
+    <text x="16" y="50" class="muted-mono">SHA-256 Phone / Email Hashing</text>
+    <text x="16" y="64" class="muted-mono">GDPR Consent Gatekeeping</text>
+  </g>
+
+  <g transform="translate(380, 352)">
+    <rect width="240" height="74" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.12)" />
+    <text x="16" y="28" class="title-text" font-size="15px" fill="#ffffff">Multi-Target Serializer</text>
+    <text x="16" y="50" class="muted-mono">Concurrent JSON Payload Build</text>
+    <text x="16" y="64" class="muted-mono">Async cURL Dispatch Pool</text>
+  </g>
+
+  <g transform="translate(380, 440)">
+    <rect width="240" height="58" rx="6" fill="#1b2438" stroke="#e60026" stroke-width="1.5" />
+    <text x="16" y="24" class="mono-text" fill="#10b981">LATENCY: 0.18ms</text>
+    <text x="16" y="44" class="muted-mono">Infrastructure Cost: $0/month</text>
+  </g>
+
+  <!-- Flow Connector 2 to 3 -->
+  <path d="M 640 310 L 720 310" class="flow-arrow" />
+  <polygon points="720,310 710,305 710,315" fill="#e60026" />
+
+  <!-- Column 3: Ad Network Endpoints -->
+  <rect x="720" y="110" width="240" height="400" class="panel-sub" />
+  <rect x="736" y="126" width="208" height="32" class="red-box" />
+  <text x="750" y="147" class="mono-text">03 // ATTRIBUTION</text>
+
+  <g transform="translate(736, 176)">
+    <rect width="208" height="90" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.1)" />
+    <text x="16" y="28" class="title-text" font-size="16px">Meta Conversions API</text>
+    <text x="16" y="50" class="mono-text" fill="#10b981">Match Quality: 9.8/10</text>
+    <text x="16" y="70" class="muted-mono">Purchase, AddToCart, Lead</text>
+  </g>
+
+  <g transform="translate(736, 280)">
+    <rect width="208" height="90" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.1)" />
+    <text x="16" y="28" class="title-text" font-size="16px">Google Enhanced Conv.</text>
+    <text x="16" y="50" class="mono-text" fill="#10b981">Signal Loss: 0.0%</text>
+    <text x="16" y="70" class="muted-mono">GTM Server Compatible</text>
+  </g>
+
+  <g transform="translate(736, 384)">
+    <rect width="208" height="90" rx="6" fill="#0d1320" stroke="rgba(255,255,255,0.1)" />
+    <text x="16" y="28" class="title-text" font-size="16px">TikTok Events API</text>
+    <text x="16" y="50" class="mono-text" fill="#10b981">Real-Time Sync</text>
+    <text x="16" y="70" class="muted-mono">Server-Side Verified</text>
+  </g>
+
+  <!-- Bottom Metric Strip -->
+  <rect x="40" y="556" width="920" height="42" rx="8" fill="#141923" stroke="rgba(255,255,255,0.1)" />
+  <text x="60" y="582" class="mono-text" fill="#e60026">KEY METRIC:</text>
+  <text x="170" y="582" class="mono-text" fill="#ffffff">+34.8% Ad Conversion Recovery vs. Client-Side Pixel Alone</text>
+  <text x="820" y="582" class="muted-mono">OPEN-SOURCE GPLv2</text>
+</svg>
