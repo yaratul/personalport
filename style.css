@@ -1209,10 +1209,6 @@ body.cursor-active .custom-cursor-ring {
   border-radius: 24px;
   padding: 2.8rem;
   box-shadow: 8px 8px 0px var(--text-black);
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 3rem;
-  align-items: center;
   flex-shrink: 0;
   transition: box-shadow var(--transition-fast), transform var(--transition-fast);
 }
@@ -1220,10 +1216,63 @@ body.cursor-active .custom-cursor-ring {
   box-shadow: 12px 12px 0px var(--bg-red);
 }
 
-.project-slide-content {
+.project-slide-inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.project-card-back {
+  order: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.project-card-front {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.project-card-front .project-face-header {
+  display: none;
+}
+
+.project-flip-btn {
+  display: none;
+}
+
+.img-zoom-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(10, 10, 10, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+.img-zoom-badge:hover {
+  background: var(--bg-red);
+  transform: scale(1.05);
 }
 
 .project-index-num {
@@ -2184,13 +2233,10 @@ pre {
   }
   .project-rail-slide {
     width: 88vw;
-    grid-template-columns: 1fr;
-    height: auto;
-    max-height: 85vh;
-    overflow-y: auto;
+    height: 100%;
   }
   .project-slide-img-box {
-    max-height: 280px;
+    max-height: 360px;
   }
 }
 
@@ -2262,7 +2308,7 @@ pre {
     grid-template-columns: 1fr;
   }
   
-  /* On Mobile: Unpin projects into a natural clean vertical scroll stack */
+  /* On Mobile: Unpin projects into a natural clean vertical scroll stack of 3D Flip Boxes */
   .projects-pin-wrapper {
     height: auto !important;
     overflow: visible;
@@ -2272,14 +2318,181 @@ pre {
     height: auto !important;
     flex-direction: column;
     padding: 0 1rem;
-    gap: 2rem;
+    gap: 2.5rem;
     transform: none !important;
   }
   .project-rail-slide {
     width: 100% !important;
-    max-width: 100% !important;
-    padding: 1.8rem;
-    grid-template-columns: 1fr;
+    max-width: 440px !important;
+    margin: 0 auto;
+    height: 520px !important;
+    max-height: 520px !important;
+    perspective: 1200px;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    overflow: visible !important;
+  }
+  .project-rail-slide:hover {
+    box-shadow: none !important;
+  }
+  
+  .project-slide-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block !important;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-rail-slide.is-flipped .project-slide-inner {
+    transform: rotateY(180deg);
+  }
+
+  @media (hover: hover) {
+    .project-rail-slide:hover .project-slide-inner {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .project-card-face {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: var(--bg-white);
+    border: 2px solid var(--border-black);
+    border-radius: 20px;
+    padding: 1.5rem 1.4rem;
+    box-shadow: 6px 6px 0px var(--text-black);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .project-rail-slide:hover .project-card-face {
+    box-shadow: 8px 8px 0px var(--bg-red);
+    border-color: var(--border-black);
+  }
+
+  .project-card-front {
+    z-index: 2;
+    transform: rotateY(0deg) !important;
+  }
+  .project-card-front .project-face-header {
+    display: block !important;
+    margin-bottom: 0.6rem;
+  }
+  .project-card-front .project-face-header .project-slide-title {
+    font-size: 1.35rem;
+    margin-bottom: 0;
+  }
+  .project-card-front .project-face-header .project-index-num {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .project-card-front .project-slide-img-box {
+    width: 100%;
+    flex: 1;
+    min-height: 270px !important;
+    max-height: 310px !important;
+    margin: 0.4rem 0;
+    border-radius: 14px;
+    position: relative;
+  }
+
+  .project-card-back {
+    transform: rotateY(180deg) !important;
+    z-index: 1;
+    overflow-y: auto;
+    padding-bottom: 1.2rem;
+  }
+  .project-card-back .project-face-header {
+    margin-bottom: 0.6rem;
+  }
+  .project-card-back .project-face-header .project-slide-title {
+    font-size: 1.35rem;
+    margin-bottom: 0;
+  }
+  .project-card-back .project-face-header .project-index-num {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  .project-card-back .project-slide-desc {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 0.9rem;
+  }
+  .project-card-back .project-tech-pills {
+    margin-bottom: 1.1rem;
+    gap: 0.4rem;
+  }
+  .project-card-back .project-pill {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.65rem;
+  }
+
+  /* Flip Action Buttons */
+  .project-flip-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.72rem 1rem;
+    background: var(--bg-offwhite);
+    border: 1.5px solid var(--border-black);
+    border-radius: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-black);
+    cursor: pointer;
+    margin-top: 0.6rem;
+    box-shadow: 3px 3px 0px var(--border-black);
+    transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  }
+  .project-flip-btn:hover,
+  .project-flip-btn:active {
+    background-color: var(--bg-red);
+    color: #ffffff;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px var(--border-black);
+  }
+  .flip-icon {
+    display: inline-block;
+    font-size: 1.1rem;
+    line-height: 1;
+    font-weight: 800;
+    color: var(--text-red);
+    transition: transform 0.4s ease;
+  }
+  .project-flip-btn:hover .flip-icon,
+  .project-flip-btn:active .flip-icon {
+    color: #ffffff;
+    transform: rotate(180deg);
+  }
+
+  .project-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: auto;
+  }
+  .project-action-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1.2rem;
+    font-size: 0.88rem;
+  }
+  .project-flip-back-btn {
+    margin-top: 0;
   }
 }
 

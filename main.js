@@ -545,6 +545,32 @@ const initContactForm = () => {
 };
 
 // ==========================================================================
+// 13. Project 3D Flip Card Handler (Mobile Click / Tap & Button Triggers)
+// ==========================================================================
+const initProjectFlipCards = () => {
+  const slides = document.querySelectorAll('.project-rail-slide');
+
+  slides.forEach((slide) => {
+    // Tapping the card flips it (unless clicking an actual link or zoom button)
+    slide.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.closest('.img-zoom-badge')) {
+        return;
+      }
+      slide.classList.toggle('is-flipped');
+    });
+
+    // Explicit flip buttons
+    const flipBtns = slide.querySelectorAll('.project-flip-btn');
+    flipBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        slide.classList.toggle('is-flipped');
+      });
+    });
+  });
+};
+
+// ==========================================================================
 // Application Bootstrap
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -553,6 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initHeroAnimations();
   initHorizontalProjectsRail();
+  initProjectFlipCards();
   initCounters();
   initFaqAccordion();
   initLightbox();
