@@ -487,6 +487,7 @@ export const initGallery = () => {
 
 // ==========================================================================
 // 12. Asynchronous Contact Form Submission Handler (Web3Forms / owner@yaratul.com)
+// 12. Direct Inquiry Form Handler (FormSubmit + Web3Forms Dual Relay)
 // ==========================================================================
 const initContactForm = () => {
   const form = document.getElementById('direct-inquiry-form');
@@ -500,16 +501,6 @@ const initContactForm = () => {
     e.preventDefault();
     if (!submitBtn || !statusMsg) return;
 
-    const accessKeyInput = document.getElementById('web3forms-access-key');
-    const accessKey = accessKeyInput ? accessKeyInput.value.trim() : '';
-
-    // If placeholder is still present, guide user
-    if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
-      statusMsg.className = 'form-status-msg error';
-      statusMsg.innerHTML = '⚠️ Please insert your free Web3Forms Access Key or email directly to <a href="mailto:owner@yaratul.com" style="text-decoration: underline; color: inherit; font-weight: bold;">owner@yaratul.com</a>.';
-      return;
-    }
-
     // Set loading state
     submitBtn.disabled = true;
     const origText = btnText ? btnText.textContent : 'Dispatch Request';
@@ -518,25 +509,76 @@ const initContactForm = () => {
     statusMsg.style.display = 'none';
 
     const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    const accessKeyInput = document.getElementById('web3forms-access-key');
+    const accessKey = accessKeyInput ? accessKeyInput.value.trim() : '';
+    const hasWeb3Key = accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE';
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
+      let response, result;
 
-      const result = await response.json();
-
-      if (response.status === 200 && result.success) {
-        statusMsg.className = 'form-status-msg success';
-        statusMsg.textContent = '✓ Request dispatched successfully! Yaser Ahmmed Ratul will respond within 12 hours.';
-        form.reset();
+      if (hasWeb3Key) {
+        // Option A: If an explicit Web3Forms key is provided, route via Web3Forms
+        response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        result = await response.json();
+        if (response.status !== 200 || !result.success) {
+          throw new Error(result.message || 'Submission failed.');
+        }
       } else {
-        throw new Error(result.message || 'Submission failed.');
+        // Option B: Direct delivery to owner@yaratul.com via FormSubmit AJAX relay
+        response = await fetch('https://formsubmit.co/ajax/owner@yaratul.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            service: data.service,
+            message: data.message,
+            _subject: `New Inquiry from ${data.name || 'Client'} (${data.service || 'General'}) — yaratul.com`,
+            _replyto: data.email,
+            _template: 'table',
+            _captcha: 'false'
+          })
+        });
+
+        result = await response.json();
+
+        // Check if FormSubmit requires initial one-time activation
+        if (result.message && result.message.toLowerCase().includes('activation')) {
+          statusMsg.className = 'form-status-msg success';
+          statusMsg.style.display = 'block';
+          statusMsg.innerHTML = '📬 <strong>One-time verification link sent:</strong> FormSubmit sent an activation email to <strong>owner@yaratul.com</strong>. Please check your inbox and click "Activate Form" once to complete direct routing!';
+          form.reset();
+          return;
+        }
+
+        if (result.success !== 'true' && result.success !== true) {
+          throw new Error(result.message || 'Transmission failed.');
+        }
       }
+
+      statusMsg.className = 'form-status-msg success';
+      statusMsg.style.display = 'block';
+      statusMsg.textContent = '✓ Request dispatched successfully! Your inquiry was sent to owner@yaratul.com. Yaser Ahmmed Ratul will respond within 12 hours.';
+      form.reset();
     } catch (error) {
+      console.error('Contact form transmission error:', error);
       statusMsg.className = 'form-status-msg error';
-      statusMsg.innerHTML = `⚠️ Direct transmission encountered an issue. Please reach out directly to <a href="mailto:owner@yaratul.com" style="text-decoration: underline; color: inherit; font-weight: bold;">owner@yaratul.com</a> or WhatsApp.`;
+      statusMsg.style.display = 'block';
+
+      // Smart mailto fallback prefilled with user input
+      const mailtoSubject = encodeURIComponent(`Project Inquiry: ${data.service || 'Web Development'}`);
+      const mailtoBody = encodeURIComponent(`Name: ${data.name || ''}\nEmail: ${data.email || ''}\nService: ${data.service || ''}\n\nProject Scope:\n${data.message || ''}`);
+      const mailtoUrl = `mailto:owner@yaratul.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+      statusMsg.innerHTML = `⚠️ Transmission encountered an issue. <a href="${mailtoUrl}" style="text-decoration: underline; font-weight: bold; color: inherit;">Click here to send directly from your email app</a> or reach out on <a href="https://wa.me/8801722081109" target="_blank" style="text-decoration: underline; font-weight: bold; color: inherit;">WhatsApp</a>.`;
     } finally {
       submitBtn.disabled = false;
       if (btnText) btnText.textContent = origText;

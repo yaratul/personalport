@@ -1728,11 +1728,13 @@
               <h3>DIRECT INQUIRY</h3>
               <p>Fill out the parameters below for a fast response within 12 hours.</p>
 
-              <form id="direct-inquiry-form" class="direct-contact-form" action="https://api.web3forms.com/submit" method="POST">
-                <!-- Web3Forms Access Key: Replace with your free key from web3forms.com -->
-                <input type="hidden" name="access_key" id="web3forms-access-key" value="YOUR_ACCESS_KEY_HERE">
-                <input type="hidden" name="subject" value="New Enterprise Inquiry — yaratul.com">
-                <input type="hidden" name="from_name" value="yaratul.com Portfolio Lead">
+              <form id="direct-inquiry-form" class="direct-contact-form" action="https://formsubmit.co/owner@yaratul.com" method="POST">
+                <!-- Dual Relay: FormSubmit direct to owner@yaratul.com, plus Web3Forms support if key provided -->
+                <input type="hidden" name="access_key" id="web3forms-access-key" value="">
+                <input type="hidden" name="_subject" value="New Enterprise Inquiry — yaratul.com">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="text" name="_honey" style="display:none">
                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
                 <div class="form-group">
