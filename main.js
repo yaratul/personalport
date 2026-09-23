@@ -117,78 +117,116 @@ const initCustomCursor = () => {
 };
 
 // ==========================================================================
-// 3. Navigation Capsule & Indicator Pill
+// 3. Concept Floating Red Squircle Navigation Bar
 // ==========================================================================
 const initNavigation = () => {
   const header = document.querySelector('.header');
-  const mobileToggle = document.querySelector('.mobile-toggle');
-  const nav = document.querySelector('.nav');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const activePill = document.getElementById('nav-active-pill');
-  const navList = document.querySelector('.nav-list');
+  const navItemsContainer = document.getElementById('nav-items');
+  const navItems = document.querySelectorAll('.nav-item');
+  const squircleIndicator = document.getElementById('squircle-indicator');
   const sections = document.querySelectorAll('section[id]');
+  const navbar = document.querySelector('.concept-navbar');
 
-  const updateActivePill = () => {
-    if (window.innerWidth <= 768) {
-      if (activePill) activePill.style.display = 'none';
-      return;
-    }
+  if (!navItemsContainer || !squircleIndicator) return;
 
-    if (activePill && navList) {
-      const activeLink = document.querySelector('.nav-link.active');
-      if (activeLink) {
-        activePill.style.display = 'block';
-        const activeLinkRect = activeLink.getBoundingClientRect();
-        const navListRect = navList.getBoundingClientRect();
-        const left = activeLinkRect.left - navListRect.left;
-        const width = activeLinkRect.width;
-        activePill.style.left = `${left}px`;
-        activePill.style.width = `${width}px`;
-      } else {
-        activePill.style.width = '0px';
-      }
-    }
+  const updateSquircle = (activeItem) => {
+    if (!activeItem || !squircleIndicator || !navbar) return;
+    
+    // Ignore if item is hidden in current viewport
+    if (activeItem.offsetParent === null) return;
+
+    const itemRect = activeItem.getBoundingClientRect();
+    const navbarRect = navbar.getBoundingClientRect();
+    const indicatorWidth = squircleIndicator.offsetWidth || 52;
+    
+    // Center the squircle indicator over the active tab
+    const x = (itemRect.left - navbarRect.left) + (itemRect.width / 2) - (indicatorWidth / 2);
+    squircleIndicator.style.transform = `translateX(${x}px)`;
+    squircleIndicator.style.opacity = '1';
   };
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
-
-    // Active Section Tracking on Scroll
-    let currentId = '';
-    const scrollPos = window.scrollY + 200;
-
-    sections.forEach((sec) => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        currentId = sec.getAttribute('id');
+  const setActiveTab = (targetId) => {
+    let matchedItem = null;
+    navItems.forEach((item) => {
+      const itemTarget = item.getAttribute('data-target');
+      if (itemTarget === targetId) {
+        item.classList.add('active');
+        matchedItem = item;
+      } else {
+        item.classList.remove('active');
       }
     });
 
-    if (currentId) {
-      navLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        if (href === `#${currentId}`) {
-          link.classList.add('active');
-        } else if (href.startsWith('#')) {
-          link.classList.remove('active');
-        }
-      });
-      updateActivePill();
+    if (matchedItem) {
+      updateSquircle(matchedItem);
     }
+  };
+
+  // Instant tactile feedback on click
+  navItems.forEach((item) => {
+    const link = item.querySelector('.nav-item-link');
+    if (!link) return;
+
+    link.addEventListener('click', () => {
+      navItems.forEach((el) => el.classList.remove('active'));
+      item.classList.add('active');
+      updateSquircle(item);
+    });
   });
 
-  mobileToggle?.addEventListener('click', () => {
-    mobileToggle.classList.toggle('active');
-    nav?.classList.toggle('active');
+  // Real-time section tracking on scroll
+  const sectionToTabMap = {
+    hero: 'hero',
+    about: 'about',
+    skills: 'about',
+    credentials: 'projects',
+    projects: 'projects',
+    services: 'services',
+    faq: 'services',
+    contact: 'contact'
+  };
+
+  let isTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!isTicking) {
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 40) {
+          header?.classList.add('scrolled');
+        } else {
+          header?.classList.remove('scrolled');
+        }
+
+        const scrollPos = window.scrollY + window.innerHeight * 0.35;
+        let currentId = '';
+
+        sections.forEach((sec) => {
+          const top = sec.offsetTop;
+          const height = sec.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            currentId = sec.getAttribute('id');
+          }
+        });
+
+        if (currentId) {
+          const mappedTarget = sectionToTabMap[currentId] || currentId;
+          setActiveTab(mappedTarget);
+        }
+        isTicking = false;
+      });
+      isTicking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    const activeItem = document.querySelector('.nav-item.active');
+    if (activeItem) updateSquircle(activeItem);
   });
 
-  window.addEventListener('resize', updateActivePill);
-  setTimeout(updateActivePill, 300);
+  // Calculate initial position once DOM and fonts are ready
+  setTimeout(() => {
+    const activeItem = document.querySelector('.nav-item.active') || navItems[0];
+    if (activeItem) updateSquircle(activeItem);
+  }, 300);
 };
 
 const initHeroAnimations = () => {
