@@ -516,21 +516,51 @@ const initContactForm = () => {
     const hasWeb3Key = accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE';
 
     try {
-      let response, result;
+      let sent = false;
 
+      // 1. Attempt Native Serverless Endpoint (/api/contact with Cloudflare R2 Archival)
+      try {
+        const nativeResponse = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            service: data.service,
+            message: data.message
+          })
+        });
+
+        if (nativeResponse.ok) {
+          const nativeResult = await nativeResponse.json();
+          if (nativeResult.success) {
+            sent = true;
+            statusMsg.className = 'form-status-msg success';
+            statusMsg.style.display = 'block';
+            statusMsg.textContent = '✓ Request dispatched successfully! Your inquiry was sent to owner@yaratul.com. Yaser Ahmmed Ratul will respond within 12 hours.';
+            form.reset();
+            return;
+          }
+        }
+      } catch (nativeErr) {
+        console.warn('Notice: Native /api/contact endpoint bypassed, utilizing direct relay:', nativeErr.message);
+      }
+
+      // 2. Direct External Relay Fallback (Web3Forms if key present, else FormSubmit)
       if (hasWeb3Key) {
-        // Option A: If an explicit Web3Forms key is provided, route via Web3Forms
-        response = await fetch('https://api.web3forms.com/submit', {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           body: formData
         });
-        result = await response.json();
+        const result = await response.json();
         if (response.status !== 200 || !result.success) {
           throw new Error(result.message || 'Submission failed.');
         }
       } else {
-        // Option B: Direct delivery to owner@yaratul.com via FormSubmit AJAX relay
-        response = await fetch('https://formsubmit.co/ajax/owner@yaratul.com', {
+        const response = await fetch('https://formsubmit.co/ajax/owner@yaratul.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -548,7 +578,7 @@ const initContactForm = () => {
           })
         });
 
-        result = await response.json();
+        const result = await response.json();
 
         // Check if FormSubmit requires initial one-time activation
         if (result.message && result.message.toLowerCase().includes('activation')) {

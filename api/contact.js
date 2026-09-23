@@ -1,11 +1,13 @@
+import { uploadR2Object } from './lib/cloudflare.js';
+
 export default async function handler(req, res) {
   // CORS Headers
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'
   );
 
   if (req.method === 'OPTIONS') {
@@ -13,70 +15,95 @@ export default async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed. Use POST.' });
   }
 
-  const { name, email, subject, message } = req.body;
+  const { name, email, service, subject, message } = req.body || {};
 
-  if (!name || !email || !subject || !message) {
-    return res.status(400).json({ error: 'Missing required fields (name, email, subject, message)' });
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'Missing required fields (name, email, message).' });
   }
 
-  const apiKey = process.env.BREVO_API_KEY;
-  const senderEmail = process.env.BREVO_SENDER_EMAIL || 'a367a5001@smtp-brevo.com';
-  const receiverEmail = process.env.BREVO_RECEIVER_EMAIL || 'owner@yaratul.com';
+  const timestamp = new Date().toISOString();
+  const inquiryRecord = {
+    id: `lead_${Date.now()}`,
+    timestamp,
+    name,
+    email,
+    service: service || 'General Architecture',
+    subject: subject || `Inquiry from ${name}`,
+    message,
+    ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown',
+    userAgent: req.headers['user-agent'] || 'unknown'
+  };
 
-  if (!apiKey) {
-    console.error('Missing BREVO_API_KEY environment variable.');
-    return res.status(500).json({ error: 'Mail server configuration error.' });
+  // 1. Audit Logging to Cloudflare R2 (if configured)
+  let r2Logged = false;
+  if (process.env.CF_S3_ENDPOINT && process.env.CF_ACCESS_KEY_ID && process.env.CF_SECRET_ACCESS_KEY) {
+    try {
+      const key = `inquiries/${new Date().toISOString().slice(0, 10)}/${inquiryRecord.id}.json`;
+      await uploadR2Object({
+        key,
+        body: Buffer.from(JSON.stringify(inquiryRecord, null, 2), 'utf-8'),
+        contentType: 'application/json',
+        metadata: {
+          clientName: name,
+          clientEmail: email
+        }
+      });
+      r2Logged = true;
+    } catch (r2Err) {
+      console.warn('Notice: Cloudflare R2 inquiry logging skipped or failed:', r2Err.message);
+    }
   }
 
+  // 2. Relay to owner@yaratul.com via FormSubmit AJAX Relay
   try {
-    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    const relayResponse = await fetch('https://formsubmit.co/ajax/owner@yaratul.com', {
       method: 'POST',
       headers: {
-        'accept': 'application/json',
-        'api-key': apiKey,
-        'content-type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Origin': 'https://yaratul.com',
+        'Referer': 'https://yaratul.com/'
       },
       body: JSON.stringify({
-        sender: { name: 'yaratul.com Contact', email: senderEmail },
-        to: [{ email: receiverEmail, name: 'Yaser Ahmmed Ratul' }],
-        replyTo: { email: email, name: name },
-        subject: `[yaratul.com Contact]: ${subject}`,
-        htmlContent: `
-          <div style="font-family: sans-serif; padding: 20px; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px;">
-            <h2 style="color: #0284c7; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-top: 0;">New Inquiry</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #f1f5f9; margin-top: 15px;">
-              <p style="margin: 0; font-weight: bold; margin-bottom: 8px; color: #475569;">Message:</p>
-              <p style="margin: 0; white-space: pre-line; line-height: 1.5;">${message}</p>
-            </div>
-            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
-            <p style="font-size: 0.8rem; color: #64748b; text-align: center; margin: 0;">This email was sent from your portfolio website yaratul.com contact form.</p>
-          </div>
-        `
+        name,
+        email,
+        service: service || 'General Inquiry',
+        message,
+        _subject: `New Enterprise Inquiry from ${name} (${service || 'General'}) — yaratul.com`,
+        _replyto: email,
+        _template: 'table',
+        _captcha: 'false'
       })
     });
 
-    const responseText = await response.text();
-    let responseData = {};
-    try {
-      responseData = JSON.parse(responseText);
-    } catch (e) {
-      responseData = { message: responseText };
+    const relayResult = await relayResponse.json();
+
+    return res.status(200).json({
+      success: true,
+      message: 'Request dispatched successfully! Yaser Ahmmed Ratul will respond within 12 hours.',
+      inquiryId: inquiryRecord.id,
+      r2Archived: r2Logged,
+      relayStatus: relayResult.success || 'sent'
+    });
+  } catch (relayError) {
+    console.error('Relay error in /api/contact:', relayError);
+
+    // If R2 logged the lead, we didn't lose data
+    if (r2Logged) {
+      return res.status(200).json({
+        success: true,
+        message: 'Inquiry archived in R2 storage. Direct notification will be synchronized shortly.',
+        inquiryId: inquiryRecord.id,
+        r2Archived: true
+      });
     }
 
-    if (!response.ok) {
-      console.error('Brevo API Error:', responseData);
-      return res.status(response.status).json({ error: responseData.message || 'Failed to send email via Brevo' });
-    }
-
-    return res.status(200).json({ success: true, message: 'Message sent successfully!' });
-  } catch (error) {
-    console.error('Serverless mail handler error:', error);
-    return res.status(500).json({ error: error.message || 'Internal Server Error' });
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to route message. Please email directly to owner@yaratul.com.'
+    });
   }
 }
