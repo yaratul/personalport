@@ -123,7 +123,8 @@ const initNavigation = () => {
   const header = document.querySelector('.header');
   const capsuleShell = document.getElementById('capsule-shell') || document.querySelector('.unified-nav-capsule');
   const logoHome = document.getElementById('capsule-logo-home');
-  const mobileLogo = document.getElementById('mobile-top-logo');
+  const mobileTopBar = document.getElementById('mobile-top-bar');
+  const mobileTopPill = document.getElementById('mobile-top-pill');
   const navItemsContainer = document.getElementById('nav-items');
   const navItems = document.querySelectorAll('.nav-item');
   const movingTracker = document.getElementById('moving-tracker');
@@ -171,14 +172,14 @@ const initNavigation = () => {
 
     if (targetId === 'hero') {
       logoHome?.classList.add('active');
-      mobileLogo?.classList.add('active');
+      mobileTopPill?.classList.add('active');
       navItems.forEach((item) => item.classList.remove('active'));
       positionNotchAtItem(null);
       return;
     }
 
     logoHome?.classList.remove('active');
-    mobileLogo?.classList.remove('active');
+    mobileTopPill?.classList.remove('active');
     let matchedItem = null;
     navItems.forEach((item) => {
       const itemTarget = item.getAttribute('data-target');
@@ -224,8 +225,13 @@ const initNavigation = () => {
     setActiveTab('hero');
   });
 
-  mobileLogo?.addEventListener('click', () => {
+  mobileTopPill?.addEventListener('click', (e) => {
     setActiveTab('hero');
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 
   // Re-align notch when capsule width morphing transition ends
@@ -258,8 +264,10 @@ const initNavigation = () => {
         const isScrolledNow = window.scrollY > 50;
         if (isScrolledNow) {
           header?.classList.add('scrolled');
+          mobileTopBar?.classList.add('scrolled');
         } else {
           header?.classList.remove('scrolled');
+          mobileTopBar?.classList.remove('scrolled');
           if (window.scrollY < 30) {
             setActiveTab('hero');
           }

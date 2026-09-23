@@ -437,10 +437,19 @@
     </defs>
   </svg>
 
-  <!-- Mobile Top-Left Floating Brand Logo (Fixed at top-left on mobile, hidden on desktop) -->
-  <a href="#hero" class="mobile-top-logo active" id="mobile-top-logo" aria-label="Home">
-    <img src="https://cdn.yaratul.com/newlogo.svg" alt="Yaser Ahmmed Ratul Logo" width="30" height="30">
-  </a>
+  <!-- Mobile Top Combined Brand & Status Pill (Shrinks to Centered Logo on Scroll) -->
+  <div class="mobile-top-bar" id="mobile-top-bar">
+    <a href="#hero" class="mobile-top-pill active" id="mobile-top-pill" aria-label="Home and Status">
+      <span class="mobile-top-logo-circle">
+        <img src="https://cdn.yaratul.com/newlogo.svg" alt="Yaser Ahmmed Ratul Logo" width="28" height="28" class="mobile-top-logo-img">
+      </span>
+      <span class="mobile-top-divider" aria-hidden="true"></span>
+      <span class="mobile-top-status">
+        <span class="status-pulse-dot"></span>
+        <span class="mobile-status-text">AVAILABLE FOR CONTRACTS</span>
+      </span>
+    </a>
+  </div>
 
   <!-- Floating Unified Navigation Capsule with Concave Curved Notch Cutout -->
   <header class="header">
@@ -544,8 +553,9 @@
         <!-- Hero Right-Side Portrait Showcase (Behind Content) -->
         <div class="hero-portrait-wrap" aria-hidden="true">
           <div class="hero-portrait-ambient-glow"></div>
+          <div class="hero-portrait-shape"></div>
           <div class="hero-portrait-inner">
-            <img src="/gallery/yaratul_cutout.png" alt="Yaser Ahmmed Ratul - Full-Stack Engineer" class="hero-portrait-img">
+            <img src="https://cdn.yaratul.com/media/yaratul_cutout.png" alt="Yaser Ahmmed Ratul - Full-Stack Engineer" class="hero-portrait-img" width="580" height="720">
           </div>
         </div>
 
