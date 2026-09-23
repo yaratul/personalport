@@ -72,3 +72,20 @@
   1. Ensure changes are tested and verified.
   2. Run `npm run build` to confirm zero compilation errors and update `dist/`.
   3. Stage files (`git add ...`), commit with descriptive conventional commit messages (`feat(...)`, `fix(...)`), and push to `origin main`.
+
+---
+
+## 5. Cloudflare & Vercel Infrastructure Credentials
+The following production environment variables are stored in Vercel (`personalport` project) for Cloudflare integration:
+- **Cloudflare R2 Object Storage (S3 API Compatible)**:
+  - `CF_S3_ENDPOINT`: Cloudflare R2 bucket S3 API endpoint URI
+  - `CF_ACCESS_KEY_ID`: Cloudflare R2 Access Key ID
+  - `CF_SECRET_ACCESS_KEY`: Cloudflare R2 Secret Access Key
+- **Cloudflare Management API**:
+  - `CF_ACCOUNT_ID`: Cloudflare Account ID
+  - `CF_API_TOKEN`: Cloudflare Scoped API Token (DNS, Cache Purge, Workers)
+  - `CF_GLOBAL_API_KEY`: Cloudflare Global API Key
+- **Primary Use Cases**:
+  - Direct zero-egress asset storage & CDN media delivery via Cloudflare R2.
+  - Automated Cloudflare edge cache purging upon deployment.
+  - Cloudflare Workers / Email Routing integrations and API endpoints.
