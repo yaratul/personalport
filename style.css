@@ -351,48 +351,49 @@ body.cursor-active .custom-cursor-ring {
   will-change: transform;
 }
 
-/* --- 6. FLOATING CAPSULE NAVIGATION & ELEVATED FLUID NOTCH BAR --- */
+/* --- 6. FLOATING UNIFIED CAPSULE NAVIGATION --- */
 .header {
   position: fixed;
-  top: 22px;
+  top: 24px;
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 0 1.75rem;
-  transition: all var(--transition-normal);
-  pointer-events: none;
-}
-
-.header-container {
-  max-width: 1360px;
-  margin: 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: auto;
+  justify-content: center;
+  padding: 0 1.5rem;
+  pointer-events: none;
+  transition: all var(--transition-normal);
 }
 
-/* Brand Logo Pill with Cloudflare R2 SVG Emblem */
-.header-brand {
+/* Single Unified Floating White Capsule */
+.unified-nav-capsule {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid var(--text-black);
-  border-radius: 9999px;
-  padding: 7px 18px 7px 10px;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  background: #ffffff;
+  border-radius: 36px;
+  height: 68px;
+  padding: 0 12px 0 10px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  border: 1.5px solid rgba(10, 10, 10, 0.07);
   pointer-events: auto;
+  transition: all 0.3s ease;
 }
-.header-brand:hover {
-  transform: translateY(-2px);
-  box-shadow: 3px 3px 0px var(--text-black);
+
+/* Left Brand Section inside Capsule */
+.capsule-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  text-decoration: none;
+  border-radius: 28px;
+  transition: background-color 0.2s ease;
 }
-.brand-logo-img {
+.capsule-brand:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+.capsule-brand-img {
   width: 38px;
   height: 38px;
   object-fit: contain;
@@ -400,45 +401,43 @@ body.cursor-active .custom-cursor-ring {
   display: block;
   background: #ffffff;
 }
-.brand-text-group {
+.capsule-brand-info {
   display: flex;
   flex-direction: column;
 }
-.brand-name {
+.capsule-brand-name {
   font-family: var(--font-title);
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   letter-spacing: -0.02em;
   color: var(--text-black);
   line-height: 1.1;
+  white-space: nowrap;
 }
-.brand-role {
+.capsule-brand-role {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.60rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--bg-red);
   text-transform: uppercase;
-  margin-top: 2px;
+  margin-top: 1px;
+  white-space: nowrap;
 }
 
-/* Concept Red Squircle Navigation Bar */
-.concept-navbar-wrap {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  pointer-events: auto;
+/* Subtle Vertical Divider between Brand and Nav Items */
+.capsule-divider {
+  width: 1px;
+  height: 34px;
+  background: rgba(10, 10, 10, 0.1);
+  margin: 0 6px 0 2px;
 }
-.concept-navbar {
+
+/* Navigation items container */
+.nav-tabs-container {
   position: relative;
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border-radius: 34px;
-  height: 68px;
-  padding: 0 14px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
-  border: 1.5px solid rgba(10, 10, 10, 0.06);
 }
 
 /* Floating Crimson Red Squircle Indicator */
@@ -467,7 +466,6 @@ body.cursor-active .custom-cursor-ring {
   padding: 0;
   position: relative;
   z-index: 20;
-  gap: 0;
 }
 
 .nav-item {
@@ -519,6 +517,8 @@ body.cursor-active .custom-cursor-ring {
   stroke: currentColor;
   fill: none;
 }
+
+/* Active icon rises into the elevated red squircle */
 .nav-item.active .nav-icon {
   transform: translateY(-16px);
   color: #ffffff;
@@ -535,59 +535,6 @@ body.cursor-active .custom-cursor-ring {
 .nav-item.active .nav-label {
   font-weight: 700;
   color: #b01432;
-}
-
-/* Action Group: Gallery, Research & High-Converting CTA */
-.header-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  pointer-events: auto;
-}
-
-.header-sublink {
-  font-family: var(--font-title);
-  font-size: 0.84rem;
-  font-weight: 700;
-  color: var(--text-black);
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid var(--text-black);
-  padding: 0.55rem 1rem;
-  border-radius: 9999px;
-  text-decoration: none;
-  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-.header-sublink:hover {
-  background: var(--text-black);
-  color: var(--text-white);
-  transform: translateY(-2px);
-  box-shadow: 2px 2px 0px var(--bg-red);
-}
-
-.btn-header-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--bg-red);
-  color: var(--text-white);
-  font-family: var(--font-title);
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.65rem 1.35rem;
-  border-radius: 9999px;
-  border: 1.5px solid var(--text-black);
-  box-shadow: 0 8px 24px rgba(230, 0, 38, 0.25);
-  text-decoration: none;
-  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s, box-shadow 0.25s ease;
-}
-.btn-header-cta:hover {
-  background: var(--text-black);
-  border-color: var(--text-black);
-  transform: translateY(-2px);
-  box-shadow: 3px 3px 0px var(--bg-red);
 }
 
 /* --- 7. BUTTONS & TACTILE CTAS --- */
@@ -2335,43 +2282,58 @@ pre {
   .header {
     padding: 0 1rem;
     top: 14px;
+    justify-content: flex-start;
   }
-  .header-container {
+  .unified-nav-capsule {
+    height: auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
     padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
-  .brand-role {
+  .capsule-brand {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(10, 10, 10, 0.08);
+    border-radius: 9999px;
+    padding: 6px 14px 6px 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  .capsule-brand-role {
     display: none;
   }
-  .header-actions .header-sublink {
+  .capsule-divider {
     display: none;
-  }
-  .btn-header-cta span {
-    display: none;
-  }
-  .btn-header-cta {
-    padding: 10px;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    justify-content: center;
   }
   
   /* Mobile Fluid Squircle Bottom Bar */
-  .concept-navbar-wrap {
+  .nav-tabs-container {
     position: fixed;
     bottom: 18px;
     top: auto;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
+    z-index: 10005;
     pointer-events: auto;
     width: max-content;
-  }
-  .concept-navbar {
+    background: #ffffff;
     height: 64px;
     border-radius: 32px;
-    padding: 0 10px;
+    padding: 0 8px;
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(10, 10, 10, 0.08);
+  }
+  
+  .cookie-banner {
+    bottom: 90px;
+    left: 1rem;
+    right: 1rem;
+    max-width: calc(100% - 2rem);
+    padding: 1.15rem;
   }
   .squircle-indicator {
     width: 48px;
@@ -2380,7 +2342,7 @@ pre {
     top: -16px;
   }
   .nav-item {
-    width: 64px;
+    width: 62px;
     height: 64px;
   }
   .nav-item-link {
@@ -2391,6 +2353,9 @@ pre {
   }
   .nav-item.active .nav-icon {
     transform: translateY(-15px);
+  }
+  .nav-label {
+    font-size: 10.5px;
   }
   
   .hero-metrics-strip {

@@ -125,22 +125,22 @@ const initNavigation = () => {
   const navItems = document.querySelectorAll('.nav-item');
   const squircleIndicator = document.getElementById('squircle-indicator');
   const sections = document.querySelectorAll('section[id]');
-  const navbar = document.querySelector('.concept-navbar');
+  const navContainer = document.querySelector('.nav-tabs-container') || document.querySelector('.concept-navbar');
 
   if (!navItemsContainer || !squircleIndicator) return;
 
   const updateSquircle = (activeItem) => {
-    if (!activeItem || !squircleIndicator || !navbar) return;
+    if (!activeItem || !squircleIndicator || !navContainer) return;
     
     // Ignore if item is hidden in current viewport
     if (activeItem.offsetParent === null) return;
 
     const itemRect = activeItem.getBoundingClientRect();
-    const navbarRect = navbar.getBoundingClientRect();
+    const navRect = navContainer.getBoundingClientRect();
     const indicatorWidth = squircleIndicator.offsetWidth || 52;
     
     // Center the squircle indicator over the active tab
-    const x = (itemRect.left - navbarRect.left) + (itemRect.width / 2) - (indicatorWidth / 2);
+    const x = (itemRect.left - navRect.left) + (itemRect.width / 2) - (indicatorWidth / 2);
     squircleIndicator.style.transform = `translateX(${x}px)`;
     squircleIndicator.style.opacity = '1';
   };
