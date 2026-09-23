@@ -81,6 +81,7 @@ The following production environment variables are stored in Vercel (`personalpo
   - `CF_S3_ENDPOINT`: Cloudflare R2 bucket S3 API endpoint URI
   - `CF_ACCESS_KEY_ID`: Cloudflare R2 Access Key ID
   - `CF_SECRET_ACCESS_KEY`: Cloudflare R2 Secret Access Key
+  - `R2_PUBLIC_DOMAIN`: `https://cdn.yaratul.com` (Cloudflare R2 Custom Domain for zero-egress asset delivery)
 - **Cloudflare Management API**:
   - `CF_ACCOUNT_ID`: Cloudflare Account ID
   - `CF_API_TOKEN`: Cloudflare Scoped API Token (DNS, Cache Purge, Workers)
