@@ -422,8 +422,8 @@
   <!-- SVG Mask for Concave Dynamic Curved Notch Cutout -->
   <svg class="mask-def" aria-hidden="true" style="position: absolute; width: 0; height: 0; pointer-events: none;">
     <defs>
-      <mask id="dynamic-notch-mask" maskUnits="userSpaceOnUse" x="0" y="-40" width="1400" height="200">
-        <rect x="-100" y="-40" width="1600" height="200" fill="white" />
+      <mask id="dynamic-notch-mask" maskUnits="userSpaceOnUse" x="-100" y="-40" width="2400" height="200">
+        <rect x="-100" y="-40" width="2400" height="200" fill="white" />
         <g id="mask-cutout-group" transform="translate(-400, 0)" style="transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform;">
           <path d="M -45.44 0 
                    A 16 16 0 0 1 -29.97 11.91 
@@ -436,6 +436,11 @@
       </mask>
     </defs>
   </svg>
+
+  <!-- Mobile Top-Left Floating Brand Logo (Fixed at top-left on mobile, hidden on desktop) -->
+  <a href="#hero" class="mobile-top-logo active" id="mobile-top-logo" aria-label="Home">
+    <img src="https://cdn.yaratul.com/newlogo.svg" alt="Yaser Ahmmed Ratul Logo" width="30" height="30">
+  </a>
 
   <!-- Floating Unified Navigation Capsule with Concave Curved Notch Cutout -->
   <header class="header">
@@ -466,13 +471,17 @@
 
       <!-- 4. Interactive Capsule Content -->
       <div class="capsule-content">
-        <!-- Integrated Brand / Home Logo on the Left -->
-        <a href="#hero" class="capsule-logo-home active" id="capsule-logo-home" aria-label="Home">
-          <img src="https://cdn.yaratul.com/newlogo.svg" alt="Yaser Ahmmed Ratul Logo" class="capsule-logo-img" width="34" height="34">
-        </a>
-
-        <!-- Vertical Hairline Divider -->
-        <div class="capsule-divider" aria-hidden="true"></div>
+        <!-- Integrated Brand / Home Logo on the Left + Divider + Editorial Wide Badge -->
+        <div class="capsule-left-group">
+          <a href="#hero" class="capsule-logo-home active" id="capsule-logo-home" aria-label="Home">
+            <img src="https://cdn.yaratul.com/newlogo.svg" alt="Yaser Ahmmed Ratul Logo" class="capsule-logo-img" width="34" height="34">
+          </a>
+          <div class="capsule-divider" aria-hidden="true"></div>
+          <div class="capsule-wide-badge" aria-hidden="true">
+            <span class="pulse-dot"></span>
+            <span>AVAILABLE FOR ENTERPRISE CONTRACTS</span>
+          </div>
+        </div>
 
         <!-- Navigation Tabs -->
         <nav class="nav-tabs-container" aria-label="Primary Navigation">

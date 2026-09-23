@@ -123,6 +123,7 @@ const initNavigation = () => {
   const header = document.querySelector('.header');
   const capsuleShell = document.getElementById('capsule-shell') || document.querySelector('.unified-nav-capsule');
   const logoHome = document.getElementById('capsule-logo-home');
+  const mobileLogo = document.getElementById('mobile-top-logo');
   const navItemsContainer = document.getElementById('nav-items');
   const navItems = document.querySelectorAll('.nav-item');
   const movingTracker = document.getElementById('moving-tracker');
@@ -170,12 +171,14 @@ const initNavigation = () => {
 
     if (targetId === 'hero') {
       logoHome?.classList.add('active');
+      mobileLogo?.classList.add('active');
       navItems.forEach((item) => item.classList.remove('active'));
       positionNotchAtItem(null);
       return;
     }
 
     logoHome?.classList.remove('active');
+    mobileLogo?.classList.remove('active');
     let matchedItem = null;
     navItems.forEach((item) => {
       const itemTarget = item.getAttribute('data-target');
@@ -221,6 +224,20 @@ const initNavigation = () => {
     setActiveTab('hero');
   });
 
+  mobileLogo?.addEventListener('click', () => {
+    setActiveTab('hero');
+  });
+
+  // Re-align notch when capsule width morphing transition ends
+  capsuleShell?.addEventListener('transitionend', (e) => {
+    if (e.propertyName === 'max-width' || e.propertyName === 'width') {
+      if (currentActiveTarget !== 'hero') {
+        const activeItem = document.querySelector('.nav-item.active');
+        if (activeItem) positionNotchAtItem(activeItem);
+      }
+    }
+  });
+
   // Real-time section tracking on scroll
   const sectionToTabMap = {
     hero: 'hero',
@@ -233,14 +250,30 @@ const initNavigation = () => {
     contact: 'contact'
   };
 
+  let wasScrolled = false;
   let isTicking = false;
   window.addEventListener('scroll', () => {
     if (!isTicking) {
       window.requestAnimationFrame(() => {
-        if (window.scrollY > 40) {
+        const isScrolledNow = window.scrollY > 50;
+        if (isScrolledNow) {
           header?.classList.add('scrolled');
         } else {
           header?.classList.remove('scrolled');
+          if (window.scrollY < 30) {
+            setActiveTab('hero');
+          }
+        }
+
+        // If scroll state crossed threshold, re-align notch after morph
+        if (isScrolledNow !== wasScrolled) {
+          wasScrolled = isScrolledNow;
+          setTimeout(() => {
+            if (currentActiveTarget !== 'hero') {
+              const active = document.querySelector('.nav-item.active');
+              if (active) positionNotchAtItem(active);
+            }
+          }, 200);
         }
 
         const scrollPos = window.scrollY + window.innerHeight * 0.35;

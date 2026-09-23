@@ -362,35 +362,65 @@ body.cursor-active .custom-cursor-ring {
   justify-content: center;
   padding: 0 1.5rem;
   pointer-events: none;
-  transition: all var(--transition-normal);
+  transition: top 0.4s ease;
 }
 
-/* Master Floating Unified White Capsule with Dynamic Concave Notch */
+.header.scrolled {
+  top: 16px;
+}
+
+/* Mobile-only floating brand logo (hidden on desktop) */
+.mobile-top-logo {
+  display: none !important;
+}
+
+/* Master Floating Unified Capsule: Wide at top -> Shrinks to Pill on scroll */
 .unified-nav-capsule {
   position: relative;
   display: inline-flex;
   align-items: center;
   height: 68px;
-  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.08)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.03));
+  width: 90%;
+  max-width: 1160px;
   pointer-events: auto;
-  transition: all 0.3s ease;
+  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.08)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.03));
+  transition: max-width 0.45s cubic-bezier(0.2, 0.9, 0.2, 1),
+              width 0.45s cubic-bezier(0.2, 0.9, 0.2, 1),
+              filter 0.4s ease;
+  will-change: width, max-width, filter;
 }
 
-/* 1. Masked White Background with Dynamic Transparent Notch Cutout */
+/* SHRUNK STATE ON SCROLL */
+.header.scrolled .unified-nav-capsule {
+  width: auto;
+  max-width: 412px;
+  filter: drop-shadow(0 22px 50px rgba(0, 0, 0, 0.16)) drop-shadow(0 4px 14px rgba(176, 20, 50, 0.12));
+}
+
+/* 1. Masked White Background with Dynamic Transparent Notch Cutout & Glossy Glass */
 .capsule-bg-masked {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 68px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-radius: 36px;
   mask: url(#dynamic-notch-mask);
   -webkit-mask: url(#dynamic-notch-mask);
   pointer-events: none;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
 }
 
-/* 2. Masked Capsule Border with Matching Dynamic Notch Cutout */
+.header.scrolled .capsule-bg-masked {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* 2. Masked Capsule Border with Matching Dynamic Notch Cutout & Glossy Rim */
 .capsule-border-masked {
   position: absolute;
   top: 0;
@@ -399,9 +429,16 @@ body.cursor-active .custom-cursor-ring {
   height: 68px;
   border-radius: 36px;
   border: 1.5px solid rgba(10, 10, 10, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.03);
   mask: url(#dynamic-notch-mask);
   -webkit-mask: url(#dynamic-notch-mask);
   pointer-events: none;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.header.scrolled .capsule-border-masked {
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* 3. Moving Notch Tracker (Concave SVG Rim Line + Floating Elevated Circle) */
@@ -458,11 +495,60 @@ body.cursor-active .custom-cursor-ring {
 /* Interactive Capsule Content Layer */
 .capsule-content {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   height: 68px;
-  padding: 0 12px 0 10px;
+  padding: 0 18px 0 12px;
   z-index: 20;
+  transition: padding 0.4s ease;
+}
+
+.header.scrolled .capsule-content {
+  justify-content: flex-start;
+  padding: 0 12px 0 10px;
+}
+
+/* Left Group: Logo + Divider + Wide Status Badge */
+.capsule-left-group {
+  display: flex;
+  align-items: center;
+}
+
+/* Editorial Wide Status Badge (Visible when wide at top, fades out on scroll) */
+.capsule-wide-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-black, #0a0a0a);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 1;
+  max-width: 320px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 6px;
+  transition: opacity 0.3s ease, max-width 0.4s ease, margin 0.3s ease;
+}
+
+.capsule-wide-badge .pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00c853;
+  box-shadow: 0 0 8px rgba(0, 200, 83, 0.6);
+  flex-shrink: 0;
+}
+
+.header.scrolled .capsule-wide-badge {
+  opacity: 0;
+  max-width: 0;
+  margin: 0;
+  pointer-events: none;
 }
 
 /* Left Brand / Home Logo Button inside Capsule */
@@ -2347,65 +2433,73 @@ pre {
   }
   
   .header {
-    position: fixed;
-    top: 12px;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 0 8px;
-    pointer-events: none;
-    z-index: 10000;
+    position: static;
+    padding: 0;
   }
-  .unified-nav-capsule {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    transform: none;
-    height: 60px;
-    display: inline-flex;
+  
+  /* Mobile Top-Left Floating Brand Logo */
+  .mobile-top-logo {
+    display: flex !important;
+    position: fixed;
+    top: 14px;
+    left: 1rem;
+    z-index: 10006;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
     align-items: center;
-    padding: 0 4px;
-    filter: drop-shadow(0 14px 35px rgba(0, 0, 0, 0.12));
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(10, 10, 10, 0.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
     pointer-events: auto;
+    transition: all 0.3s ease;
+  }
+  .mobile-top-logo:hover,
+  .mobile-top-logo.active {
+    background: rgba(176, 20, 50, 0.08);
+    border-color: rgba(176, 20, 50, 0.35);
+    box-shadow: 0 2px 12px rgba(176, 20, 50, 0.2);
+  }
+  .mobile-top-logo img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  /* Bottom Docked Capsule Navigation */
+  .unified-nav-capsule {
+    position: fixed !important;
+    bottom: 18px !important;
+    top: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 10005 !important;
+    height: 64px !important;
+    width: auto !important;
+    max-width: calc(100% - 2rem) !important;
+    filter: drop-shadow(0 20px 48px rgba(0, 0, 0, 0.2)) !important;
+    pointer-events: auto !important;
   }
   .capsule-bg-masked,
   .capsule-border-masked {
-    height: 60px;
-    border-radius: 30px;
+    height: 64px !important;
+    border-radius: 32px !important;
   }
   .capsule-content {
-    height: 60px;
-    padding: 0 4px;
+    height: 64px !important;
+    padding: 0 8px !important;
+    justify-content: center !important;
   }
-  .capsule-logo-home {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 40px;
-    height: 40px;
-    box-shadow: none;
-    border: 1.5px solid transparent;
-  }
-  .capsule-logo-home.active {
-    background: rgba(176, 20, 50, 0.08);
-    border-color: rgba(176, 20, 50, 0.35);
-    box-shadow: 0 2px 10px rgba(176, 20, 50, 0.15);
-  }
-  .capsule-logo-img {
-    width: 26px;
-    height: 26px;
-  }
-  .capsule-divider {
-    display: block;
-    width: 1px;
-    height: 28px;
-    background: rgba(10, 10, 10, 0.1);
-    margin: 0 4px;
+  .capsule-left-group {
+    display: none !important;
   }
   .nav-tabs-container {
     position: relative;
-    height: 60px;
+    height: 64px !important;
     background: transparent;
     box-shadow: none;
     border-radius: 0;
@@ -2413,41 +2507,41 @@ pre {
   }
   .nav-items {
     display: flex;
-    height: 60px;
+    height: 64px !important;
   }
   .nav-item {
-    width: 62px;
-    height: 60px;
+    width: 70px !important;
+    height: 64px !important;
   }
   .nav-item-link {
-    padding-bottom: 7px;
+    padding-bottom: 9px !important;
   }
   .nav-icon {
-    top: 9px;
+    top: 11px !important;
   }
   .nav-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 20px !important;
+    height: 20px !important;
   }
   .nav-label {
-    font-size: 10px;
+    font-size: 10.5px !important;
   }
   .moving-notch-tracker {
-    height: 60px;
+    height: 64px !important;
   }
   .floating-circle-bubble {
-    top: -18px;
-    width: 44px;
-    height: 44px;
-    left: calc(50% - 22px);
+    top: -20px !important;
+    width: 48px !important;
+    height: 48px !important;
+    left: calc(50% - 24px) !important;
   }
   .floating-circle-bubble svg {
-    width: 20px;
-    height: 20px;
+    width: 22px !important;
+    height: 22px !important;
   }
   
   .cookie-banner {
-    bottom: 20px;
+    bottom: 96px !important;
     left: 1rem;
     right: 1rem;
     max-width: calc(100% - 2rem);
