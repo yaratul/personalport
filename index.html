@@ -601,103 +601,113 @@
           </div>
 
           <!-- Hero Metrics Ticker Strip: Architectural Brutalist Cards with Watermark SVGs -->
-          <div class="hero-metrics-strip">
-            <!-- 1. Google PageSpeed Score -->
-            <div class="metric-card">
-              <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <circle cx="50" cy="50" r="42" stroke-dasharray="190 260" stroke-linecap="round" stroke-dashoffset="-35"/>
-                <circle cx="50" cy="50" r="32" stroke-dasharray="140 220" stroke-linecap="round" stroke-dashoffset="-40" stroke-width="1.2" opacity="0.6"/>
-                <line x1="50" y1="12" x2="50" y2="18" stroke-width="2.5"/>
-                <line x1="22" y1="22" x2="26" y2="26"/>
-                <line x1="12" y1="50" x2="18" y2="50"/>
-                <line x1="78" y1="22" x2="74" y2="26"/>
-                <line x1="88" y1="50" x2="82" y2="50"/>
-                <path d="M50 50 L68 32 M68 32 L60 32 M68 32 L68 40" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="50" cy="50" r="5" fill="currentColor"/>
-              </svg>
-              <div class="metric-card-header">
-                <span class="metric-card-chip">
-                  <span class="chip-dot"></span>
-                  <span>PERF AUDIT</span>
-                </span>
-                <span class="metric-card-corner" aria-hidden="true">+</span>
+          <div class="hero-metrics-slider-wrapper" id="hero-metrics-slider-wrapper">
+            <div class="hero-metrics-strip" id="hero-metrics-strip">
+              <!-- 1. Google PageSpeed Score -->
+              <div class="metric-card">
+                <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" stroke-dasharray="190 260" stroke-linecap="round" stroke-dashoffset="-35"/>
+                  <circle cx="50" cy="50" r="32" stroke-dasharray="140 220" stroke-linecap="round" stroke-dashoffset="-40" stroke-width="1.2" opacity="0.6"/>
+                  <line x1="50" y1="12" x2="50" y2="18" stroke-width="2.5"/>
+                  <line x1="22" y1="22" x2="26" y2="26"/>
+                  <line x1="12" y1="50" x2="18" y2="50"/>
+                  <line x1="78" y1="22" x2="74" y2="26"/>
+                  <line x1="88" y1="50" x2="82" y2="50"/>
+                  <path d="M50 50 L68 32 M68 32 L60 32 M68 32 L68 40" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                </svg>
+                <div class="metric-card-header">
+                  <span class="metric-card-chip">
+                    <span class="chip-dot"></span>
+                    <span>PERF AUDIT</span>
+                  </span>
+                  <span class="metric-card-corner" aria-hidden="true">+</span>
+                </div>
+                <div class="metric-card-body">
+                  <div class="metric-value counter-metric" data-target="99">0</div>
+                  <div class="metric-label">Google PageSpeed Score</div>
+                </div>
               </div>
-              <div class="metric-card-body">
-                <div class="metric-value counter-metric" data-target="99">0</div>
-                <div class="metric-label">Google PageSpeed Score</div>
+
+              <!-- 2. CAPI Event Attribution -->
+              <div class="metric-card">
+                <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <circle cx="50" cy="50" r="44" stroke-dasharray="6 6" opacity="0.4"/>
+                  <circle cx="50" cy="50" r="34" opacity="0.6"/>
+                  <circle cx="50" cy="50" r="22"/>
+                  <circle cx="50" cy="50" r="8" fill="currentColor"/>
+                  <path d="M12 50 H32 L38 30 L46 70 L54 24 L62 62 L68 50 H88" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="38" cy="30" r="3" fill="currentColor"/>
+                  <circle cx="54" cy="24" r="3" fill="currentColor"/>
+                  <circle cx="46" cy="70" r="3" fill="currentColor"/>
+                </svg>
+                <div class="metric-card-header">
+                  <span class="metric-card-chip">
+                    <span class="chip-dot"></span>
+                    <span>TELEMETRY</span>
+                  </span>
+                  <span class="metric-card-corner" aria-hidden="true">+</span>
+                </div>
+                <div class="metric-card-body">
+                  <div class="metric-value counter-metric" data-target="100" data-suffix="%">0%</div>
+                  <div class="metric-label">CAPI Event Attribution</div>
+                </div>
+              </div>
+
+              <!-- 3. Flagship Software Projects -->
+              <div class="metric-card">
+                <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M50 16 L80 32 L50 48 L20 32 Z" stroke-width="2"/>
+                  <path d="M20 32 V58 L50 74 V48 Z"/>
+                  <path d="M80 32 V58 L50 74"/>
+                  <path d="M34 44 L28 48 L34 52" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M66 44 L72 48 L66 52" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="52" y1="42" x2="48" y2="54" stroke-linecap="round"/>
+                  <path d="M50 68 L76 82 L50 96 L24 82 Z" stroke-dasharray="4 4" opacity="0.5"/>
+                </svg>
+                <div class="metric-card-header">
+                  <span class="metric-card-chip">
+                    <span class="chip-dot"></span>
+                    <span>ARCHITECT</span>
+                  </span>
+                  <span class="metric-card-corner" aria-hidden="true">+</span>
+                </div>
+                <div class="metric-card-body">
+                  <div class="metric-value counter-metric" data-target="6" data-suffix="+">0</div>
+                  <div class="metric-label">Flagship Software Projects</div>
+                </div>
+              </div>
+
+              <!-- 4. Google AI & Meta Verified -->
+              <div class="metric-card">
+                <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M50 12 L78 22 V50 C78 68 50 86 50 86 C50 86 22 68 22 50 V22 Z" stroke-width="2"/>
+                  <circle cx="50" cy="42" r="14" stroke-dasharray="4 4" opacity="0.6"/>
+                  <path d="M40 48 L48 56 L64 38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M50 20 V26 M50 58 V64 M32 42 H38 M62 42 H68" stroke-linecap="round"/>
+                  <circle cx="78" cy="22" r="2.5" fill="currentColor"/>
+                  <circle cx="22" cy="22" r="2.5" fill="currentColor"/>
+                </svg>
+                <div class="metric-card-header">
+                  <span class="metric-card-chip">
+                    <span class="chip-dot"></span>
+                    <span>CREDENTIALS</span>
+                  </span>
+                  <span class="metric-card-corner" aria-hidden="true">+</span>
+                </div>
+                <div class="metric-card-body">
+                  <div class="metric-value counter-metric" data-target="2" data-suffix="×">0</div>
+                  <div class="metric-label">Google AI &amp; Meta Verified</div>
+                </div>
               </div>
             </div>
 
-            <!-- 2. CAPI Event Attribution -->
-            <div class="metric-card">
-              <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <circle cx="50" cy="50" r="44" stroke-dasharray="6 6" opacity="0.4"/>
-                <circle cx="50" cy="50" r="34" opacity="0.6"/>
-                <circle cx="50" cy="50" r="22"/>
-                <circle cx="50" cy="50" r="8" fill="currentColor"/>
-                <path d="M12 50 H32 L38 30 L46 70 L54 24 L62 62 L68 50 H88" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="38" cy="30" r="3" fill="currentColor"/>
-                <circle cx="54" cy="24" r="3" fill="currentColor"/>
-                <circle cx="46" cy="70" r="3" fill="currentColor"/>
-              </svg>
-              <div class="metric-card-header">
-                <span class="metric-card-chip">
-                  <span class="chip-dot"></span>
-                  <span>TELEMETRY</span>
-                </span>
-                <span class="metric-card-corner" aria-hidden="true">+</span>
-              </div>
-              <div class="metric-card-body">
-                <div class="metric-value counter-metric" data-target="100" data-suffix="%">0%</div>
-                <div class="metric-label">CAPI Event Attribution</div>
-              </div>
-            </div>
-
-            <!-- 3. Flagship Software Projects -->
-            <div class="metric-card">
-              <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M50 16 L80 32 L50 48 L20 32 Z" stroke-width="2"/>
-                <path d="M20 32 V58 L50 74 V48 Z"/>
-                <path d="M80 32 V58 L50 74"/>
-                <path d="M34 44 L28 48 L34 52" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M66 44 L72 48 L66 52" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="52" y1="42" x2="48" y2="54" stroke-linecap="round"/>
-                <path d="M50 68 L76 82 L50 96 L24 82 Z" stroke-dasharray="4 4" opacity="0.5"/>
-              </svg>
-              <div class="metric-card-header">
-                <span class="metric-card-chip">
-                  <span class="chip-dot"></span>
-                  <span>ARCHITECT</span>
-                </span>
-                <span class="metric-card-corner" aria-hidden="true">+</span>
-              </div>
-              <div class="metric-card-body">
-                <div class="metric-value counter-metric" data-target="6" data-suffix="+">0</div>
-                <div class="metric-label">Flagship Software Projects</div>
-              </div>
-            </div>
-
-            <!-- 4. Google AI & Meta Verified -->
-            <div class="metric-card">
-              <svg class="metric-svg-bg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                <path d="M50 12 L78 22 V50 C78 68 50 86 50 86 C50 86 22 68 22 50 V22 Z" stroke-width="2"/>
-                <circle cx="50" cy="42" r="14" stroke-dasharray="4 4" opacity="0.6"/>
-                <path d="M40 48 L48 56 L64 38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M50 20 V26 M50 58 V64 M32 42 H38 M62 42 H68" stroke-linecap="round"/>
-                <circle cx="78" cy="22" r="2.5" fill="currentColor"/>
-                <circle cx="22" cy="22" r="2.5" fill="currentColor"/>
-              </svg>
-              <div class="metric-card-header">
-                <span class="metric-card-chip">
-                  <span class="chip-dot"></span>
-                  <span>CREDENTIALS</span>
-                </span>
-                <span class="metric-card-corner" aria-hidden="true">+</span>
-              </div>
-              <div class="metric-card-body">
-                <div class="metric-value counter-metric" data-target="2" data-suffix="×">0</div>
-                <div class="metric-label">Google AI &amp; Meta Verified</div>
-              </div>
+            <!-- Mobile Pagination Dots (Hidden on Desktop) -->
+            <div class="hero-metrics-pagination" id="hero-metrics-pagination" aria-label="Metrics Slider Pagination">
+              <button class="metric-dot active" data-slide="0" aria-label="Go to metric 1"></button>
+              <button class="metric-dot" data-slide="1" aria-label="Go to metric 2"></button>
+              <button class="metric-dot" data-slide="2" aria-label="Go to metric 3"></button>
+              <button class="metric-dot" data-slide="3" aria-label="Go to metric 4"></button>
             </div>
           </div>
 

@@ -338,7 +338,7 @@ const initHeroAnimations = () => {
   }
 
   // Fade-in elements
-  gsap.from('.hero-status-pill, .hero-lead-text, .hero-actions, .hero-metrics-strip', {
+  gsap.from('.hero-status-pill, .hero-lead-text, .hero-actions, .hero-metrics-slider-wrapper, .hero-metrics-strip', {
     opacity: 0,
     y: 24,
     duration: 1,
@@ -413,6 +413,230 @@ const initCounters = () => {
           }
         });
       }
+    });
+  });
+};
+
+// ==========================================================================
+// 6b. Mobile Auto-Sliding Hero Metrics Carousel
+// ==========================================================================
+const initMobileMetricsSlider = () => {
+  const wrapper = document.getElementById('hero-metrics-slider-wrapper');
+  const strip = document.getElementById('hero-metrics-strip');
+  const pagination = document.getElementById('hero-metrics-pagination');
+  if (!wrapper || !strip) return;
+
+  const originalCards = Array.from(strip.querySelectorAll('.metric-card:not(.metric-card-clone)'));
+  const totalOriginal = originalCards.length;
+  if (totalOriginal === 0) return;
+
+  const dots = pagination ? Array.from(pagination.querySelectorAll('.metric-dot')) : [];
+
+  let currentIndex = 0;
+  let slideTimer = null;
+  let isTransitioning = false;
+  let hasClone = false;
+  let cloneCard = null;
+
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+  const getStep = () => {
+    const card = strip.querySelector('.metric-card');
+    if (!card) return 0;
+    const cardRect = card.getBoundingClientRect();
+    const style = window.getComputedStyle(strip);
+    const gap = parseFloat(style.columnGap || style.gap) || 14;
+    return cardRect.width + gap;
+  };
+
+  const updateDots = (index) => {
+    const activeDotIndex = index % totalOriginal;
+    dots.forEach((dot, i) => {
+      if (i === activeDotIndex) {
+        dot.classList.add('active');
+        dot.setAttribute('aria-current', 'true');
+      } else {
+        dot.classList.remove('active');
+        dot.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  const setPosition = (index, animate = true) => {
+    const step = getStep();
+    if (!animate) {
+      strip.style.transition = 'none';
+    } else {
+      strip.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+    }
+    strip.style.transform = `translateX(-${index * step}px)`;
+    if (!animate) {
+      strip.offsetHeight; // Force reflow
+      strip.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+    }
+  };
+
+  const goToSlide = (index) => {
+    if (!isMobile() || isTransitioning) return;
+    currentIndex = index;
+    updateDots(currentIndex);
+    setPosition(currentIndex, true);
+  };
+
+  const nextSlide = () => {
+    if (!isMobile() || isTransitioning) return;
+    isTransitioning = true;
+    currentIndex++;
+    updateDots(currentIndex);
+    setPosition(currentIndex, true);
+
+    if (currentIndex === totalOriginal) {
+      setTimeout(() => {
+        setPosition(0, false);
+        currentIndex = 0;
+        isTransitioning = false;
+      }, 560);
+    } else {
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 560);
+    }
+  };
+
+  const prevSlide = () => {
+    if (!isMobile() || isTransitioning) return;
+    isTransitioning = true;
+    if (currentIndex === 0) {
+      setPosition(totalOriginal, false);
+      currentIndex = totalOriginal - 1;
+      updateDots(currentIndex);
+      setTimeout(() => {
+        setPosition(currentIndex, true);
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 560);
+      }, 20);
+    } else {
+      currentIndex--;
+      updateDots(currentIndex);
+      setPosition(currentIndex, true);
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 560);
+    }
+  };
+
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    if (!isMobile()) return;
+    slideTimer = setInterval(() => {
+      if (document.hidden) return;
+      const rect = wrapper.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        nextSlide();
+      }
+    }, 3200);
+  };
+
+  const stopAutoSlide = () => {
+    if (slideTimer) {
+      clearInterval(slideTimer);
+      slideTimer = null;
+    }
+  };
+
+  const setupMobile = () => {
+    if (!hasClone) {
+      cloneCard = originalCards[0].cloneNode(true);
+      cloneCard.classList.add('metric-card-clone');
+      cloneCard.setAttribute('aria-hidden', 'true');
+      const cloneVal = cloneCard.querySelector('.metric-value');
+      if (cloneVal) cloneVal.textContent = '99';
+      strip.appendChild(cloneCard);
+      hasClone = true;
+    }
+    currentIndex = 0;
+    updateDots(0);
+    setPosition(0, false);
+    startAutoSlide();
+  };
+
+  const teardownMobile = () => {
+    stopAutoSlide();
+    if (hasClone && cloneCard) {
+      cloneCard.remove();
+      hasClone = false;
+      cloneCard = null;
+    }
+    strip.style.transform = '';
+    strip.style.transition = '';
+    currentIndex = 0;
+  };
+
+  if (isMobile()) {
+    setupMobile();
+  }
+
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (isMobile()) {
+        if (!hasClone) {
+          setupMobile();
+        } else {
+          setPosition(currentIndex, false);
+        }
+      } else {
+        teardownMobile();
+      }
+    }, 150);
+  });
+
+  // Touch Swipe Gesture Support
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchIsHorizontal = null;
+
+  wrapper.addEventListener('touchstart', (e) => {
+    stopAutoSlide();
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchIsHorizontal = null;
+  }, { passive: true });
+
+  wrapper.addEventListener('touchmove', (e) => {
+    if (touchIsHorizontal === null) {
+      const dx = Math.abs(e.touches[0].clientX - touchStartX);
+      const dy = Math.abs(e.touches[0].clientY - touchStartY);
+      if (dx > 5 || dy > 5) {
+        touchIsHorizontal = dx > dy;
+      }
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchend', (e) => {
+    if (touchIsHorizontal) {
+      const diffX = e.changedTouches[0].clientX - touchStartX;
+      if (diffX < -35) {
+        nextSlide();
+      } else if (diffX > 35) {
+        prevSlide();
+      }
+    }
+    startAutoSlide();
+  }, { passive: true });
+
+  wrapper.addEventListener('mouseenter', stopAutoSlide);
+  wrapper.addEventListener('mouseleave', startAutoSlide);
+
+  // Pagination Dot Clicks
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      stopAutoSlide();
+      goToSlide(idx);
+      startAutoSlide();
     });
   });
 };
@@ -787,6 +1011,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHorizontalProjectsRail();
   initProjectFlipCards();
   initCounters();
+  initMobileMetricsSlider();
   initFaqAccordion();
   initLightbox();
   initDhakaClock();

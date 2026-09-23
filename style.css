@@ -929,7 +929,15 @@ body.cursor-active .custom-cursor-ring {
   align-items: center;
 }
 
-/* Hero Metrics Ticker Strip: Architectural Brutalist Cards with Watermark SVGs */
+/* Hero Metrics Slider Wrapper & Ticker Strip */
+.hero-metrics-slider-wrapper {
+  position: relative;
+  width: 100%;
+}
+.hero-metrics-pagination {
+  display: none !important;
+}
+
 .hero-metrics-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2810,37 +2818,93 @@ pre {
     padding: 1.15rem;
   }
   
+  .hero-section {
+    padding: 5.5rem 1.25rem 6.8rem;
+    min-height: auto;
+  }
+
+  /* Mobile Auto-Sliding Hero Metrics Carousel */
+  .hero-metrics-slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2.2rem;
+    padding: 6px 4px 12px;
+    touch-action: pan-y pinch-zoom;
+  }
+  
   .hero-metrics-strip {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.85rem;
-    margin-top: 2.5rem;
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 14px;
+    margin-top: 0 !important;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+    width: max-content;
   }
+  
   .metric-card {
-    padding: 1.1rem 1rem 1rem;
-    min-height: 130px;
-    border-radius: 14px;
-    box-shadow: 3px 3px 0px var(--border-black);
+    flex: 0 0 calc(100vw - 3rem - 44px);
+    width: calc(100vw - 3rem - 44px);
+    max-width: 325px;
+    min-height: 125px;
+    padding: 1.15rem 1.15rem 1rem;
+    border-radius: 16px;
+    box-shadow: 4px 4px 0px var(--border-black);
+    user-select: none;
+    -webkit-user-select: none;
   }
+  
   .metric-card-header {
     margin-bottom: 0.65rem;
   }
+  
   .metric-card-chip {
     font-size: 8.5px;
-    padding: 2px 5px;
+    padding: 2px 6px;
   }
+  
   .metric-value {
-    font-size: clamp(1.8rem, 6vw, 2.3rem);
+    font-size: clamp(2rem, 6.5vw, 2.4rem);
   }
+  
   .metric-label {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     margin-top: 0.35rem;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
   }
+  
   .metric-svg-bg {
-    width: 85px;
-    height: 85px;
+    width: 92px;
+    height: 92px;
     right: -8px;
     bottom: -8px;
+    opacity: 0.12;
+  }
+
+  .hero-metrics-pagination {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .metric-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(10, 10, 10, 0.2);
+    border: 1.5px solid var(--border-black);
+    padding: 0;
+    cursor: pointer;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease;
+  }
+
+  .metric-dot.active {
+    width: 24px;
+    background: var(--bg-red);
   }
   
   .credentials-grid {
@@ -3042,25 +3106,23 @@ pre {
 }
 
 @media (max-width: 480px) {
-  .hero-metrics-strip {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
   .metric-card {
-    padding: 0.9rem 0.8rem 0.8rem;
-    min-height: 115px;
-    border-radius: 12px;
+    flex: 0 0 calc(100vw - 3rem - 32px);
+    width: calc(100vw - 3rem - 32px);
+    max-width: 300px;
+    padding: 1.05rem 1rem 0.95rem;
+    min-height: 120px;
   }
   .metric-value {
-    font-size: 1.85rem;
+    font-size: 2.1rem;
   }
   .metric-label {
-    font-size: 0.62rem;
+    font-size: 0.68rem;
     line-height: 1.25;
   }
   .metric-svg-bg {
-    width: 65px;
-    height: 65px;
+    width: 85px;
+    height: 85px;
     right: -6px;
     bottom: -6px;
   }
