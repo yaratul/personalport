@@ -419,64 +419,106 @@
   <div class="custom-cursor-dot" id="cursor-dot"></div>
   <div class="custom-cursor-ring" id="cursor-ring"></div>
 
-  <!-- Floating Unified Navigation Capsule -->
+  <!-- SVG Mask for Concave Dynamic Curved Notch Cutout -->
+  <svg class="mask-def" aria-hidden="true" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+    <defs>
+      <mask id="dynamic-notch-mask" maskUnits="userSpaceOnUse" x="0" y="-40" width="1400" height="200">
+        <rect x="-100" y="-40" width="1600" height="200" fill="white" />
+        <g id="mask-cutout-group" transform="translate(-400, 0)" style="transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform;">
+          <path d="M -45.44 0 
+                   A 16 16 0 0 1 -29.97 11.91 
+                   A 31 31 0 0 0 29.97 11.91 
+                   A 16 16 0 0 1 45.44 0 
+                   L 46 -30 
+                   L -46 -30 
+                   Z" fill="black" />
+        </g>
+      </mask>
+    </defs>
+  </svg>
+
+  <!-- Floating Unified Navigation Capsule with Concave Curved Notch Cutout -->
   <header class="header">
-    <div class="unified-nav-capsule">
-      <!-- Integrated Brand / Home Logo on the Left -->
-      <a href="#hero" class="capsule-logo-home active" id="capsule-logo-home" aria-label="Home">
-        <img src="https://cdn.yaratul.com/newlogo.svg" alt="Yaser Ahmmed Ratul Logo" class="capsule-logo-img" width="34" height="34">
-      </a>
+    <div class="unified-nav-capsule" id="capsule-shell">
+      <!-- 1. Masked White Background with Dynamic Transparent Cutout -->
+      <div class="capsule-bg-masked"></div>
 
-      <!-- Vertical Hairline Divider -->
-      <div class="capsule-divider" aria-hidden="true"></div>
+      <!-- 2. Masked Border with Matching Dynamic Notch Cutout -->
+      <div class="capsule-border-masked"></div>
 
-      <!-- Navigation Tabs with Elevated Crimson Red Squircle (Home Icon Removed) -->
-      <nav class="nav-tabs-container" aria-label="Primary Navigation">
-        <!-- Floating Crimson Red Squircle Indicator -->
-        <div class="squircle-indicator" id="squircle-indicator" aria-hidden="true"></div>
+      <!-- 3. Moving Notch Tracker (Border Rim + Floating Elevated Circle) -->
+      <div class="moving-notch-tracker" id="moving-tracker" aria-hidden="true">
+        <svg class="notch-rim-svg" viewBox="-46 0 92 36">
+          <path d="M -45.44 0 
+                   A 16 16 0 0 1 -29.97 11.91 
+                   A 31 31 0 0 0 29.97 11.91 
+                   A 16 16 0 0 1 45.44 0" 
+                fill="none" 
+                stroke="rgba(10, 10, 10, 0.12)" 
+                stroke-width="1.5" />
+        </svg>
+        <div class="floating-circle-bubble" id="floating-bubble">
+          <svg id="floating-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="7" r="4"></circle><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+          </svg>
+        </div>
+      </div>
 
-        <ul class="nav-items" id="nav-items">
-          <!-- 1. Manifesto / About -->
-          <li class="nav-item" data-target="about">
-            <a href="#about" class="nav-item-link" aria-label="Navigate to Manifesto">
-              <div class="nav-icon">
-                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"></circle><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path></svg>
-              </div>
-              <span class="nav-label">Manifesto</span>
-            </a>
-          </li>
+      <!-- 4. Interactive Capsule Content -->
+      <div class="capsule-content">
+        <!-- Integrated Brand / Home Logo on the Left -->
+        <a href="#hero" class="capsule-logo-home active" id="capsule-logo-home" aria-label="Home">
+          <img src="https://cdn.yaratul.com/newlogo.svg" alt="Yaser Ahmmed Ratul Logo" class="capsule-logo-img" width="34" height="34">
+        </a>
 
-          <!-- 2. Projects -->
-          <li class="nav-item" data-target="projects">
-            <a href="#projects" class="nav-item-link" aria-label="Navigate to Projects">
-              <div class="nav-icon">
-                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
-              </div>
-              <span class="nav-label">Projects</span>
-            </a>
-          </li>
+        <!-- Vertical Hairline Divider -->
+        <div class="capsule-divider" aria-hidden="true"></div>
 
-          <!-- 3. Services -->
-          <li class="nav-item" data-target="services">
-            <a href="#services" class="nav-item-link" aria-label="Navigate to Services">
-              <div class="nav-icon">
-                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-              </div>
-              <span class="nav-label">Services</span>
-            </a>
-          </li>
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs-container" aria-label="Primary Navigation">
+          <ul class="nav-items" id="nav-items">
+            <!-- 1. Manifesto / About -->
+            <li class="nav-item" data-target="about" data-icon="manifesto">
+              <a href="#about" class="nav-item-link" aria-label="Navigate to Manifesto">
+                <div class="nav-icon">
+                  <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"></circle><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path></svg>
+                </div>
+                <span class="nav-label">Manifesto</span>
+              </a>
+            </li>
 
-          <!-- 4. Contact -->
-          <li class="nav-item" data-target="contact">
-            <a href="#contact" class="nav-item-link" aria-label="Navigate to Contact">
-              <div class="nav-icon">
-                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </div>
-              <span class="nav-label">Contact</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+            <!-- 2. Projects -->
+            <li class="nav-item" data-target="projects" data-icon="projects">
+              <a href="#projects" class="nav-item-link" aria-label="Navigate to Projects">
+                <div class="nav-icon">
+                  <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                </div>
+                <span class="nav-label">Projects</span>
+              </a>
+            </li>
+
+            <!-- 3. Services -->
+            <li class="nav-item" data-target="services" data-icon="services">
+              <a href="#services" class="nav-item-link" aria-label="Navigate to Services">
+                <div class="nav-icon">
+                  <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <span class="nav-label">Services</span>
+              </a>
+            </li>
+
+            <!-- 4. Contact -->
+            <li class="nav-item" data-target="contact" data-icon="contact">
+              <a href="#contact" class="nav-item-link" aria-label="Navigate to Contact">
+                <div class="nav-icon">
+                  <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </div>
+                <span class="nav-label">Contact</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 

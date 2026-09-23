@@ -117,42 +117,61 @@ const initCustomCursor = () => {
 };
 
 // ==========================================================================
-// 3. Concept Floating Red Squircle Navigation Bar
+// 3. Dynamic Concave Notch Navigation Capsule with Hover Physics
 // ==========================================================================
 const initNavigation = () => {
   const header = document.querySelector('.header');
+  const capsuleShell = document.getElementById('capsule-shell') || document.querySelector('.unified-nav-capsule');
   const logoHome = document.getElementById('capsule-logo-home');
   const navItemsContainer = document.getElementById('nav-items');
   const navItems = document.querySelectorAll('.nav-item');
-  const squircleIndicator = document.getElementById('squircle-indicator');
+  const movingTracker = document.getElementById('moving-tracker');
+  const maskCutoutGroup = document.getElementById('mask-cutout-group');
+  const floatingIcon = document.getElementById('floating-icon');
   const sections = document.querySelectorAll('section[id]');
-  const navContainer = document.querySelector('.nav-tabs-container') || document.querySelector('.concept-navbar');
 
-  if (!navItemsContainer || !squircleIndicator) return;
+  if (!navItemsContainer || !movingTracker || !maskCutoutGroup) return;
 
-  const updateSquircle = (activeItem) => {
-    if (!squircleIndicator || !navContainer) return;
+  const navIcons = {
+    manifesto: '<circle cx="12" cy="7" r="4"></circle><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>',
+    about: '<circle cx="12" cy="7" r="4"></circle><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>',
+    projects: '<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>',
+    services: '<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>',
+    contact: '<line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>'
+  };
 
-    if (!activeItem || activeItem.offsetParent === null) {
-      squircleIndicator.style.opacity = '0';
+  let currentActiveTarget = 'about';
+
+  const positionNotchAtItem = (item) => {
+    navItems.forEach((i) => i.classList.remove('is-hovered'));
+    if (!item || !capsuleShell) {
+      movingTracker.classList.remove('visible');
+      maskCutoutGroup.setAttribute('transform', 'translate(-400, 0)');
       return;
     }
 
-    const itemRect = activeItem.getBoundingClientRect();
-    const navRect = navContainer.getBoundingClientRect();
-    const indicatorWidth = squircleIndicator.offsetWidth || 52;
-    
-    // Center the squircle indicator over the active tab
-    const x = (itemRect.left - navRect.left) + (itemRect.width / 2) - (indicatorWidth / 2);
-    squircleIndicator.style.transform = `translateX(${x}px)`;
-    squircleIndicator.style.opacity = '1';
+    item.classList.add('is-hovered');
+    const itemRect = item.getBoundingClientRect();
+    const shellRect = capsuleShell.getBoundingClientRect();
+    const centerX = (itemRect.left - shellRect.left) + (itemRect.width / 2);
+
+    movingTracker.style.transform = `translateX(${centerX - 46}px)`;
+    maskCutoutGroup.setAttribute('transform', `translate(${centerX}, 0)`);
+    movingTracker.classList.add('visible');
+
+    const iconType = item.getAttribute('data-icon') || item.getAttribute('data-target');
+    if (navIcons[iconType] && floatingIcon) {
+      floatingIcon.innerHTML = navIcons[iconType];
+    }
   };
 
   const setActiveTab = (targetId) => {
+    currentActiveTarget = targetId;
+
     if (targetId === 'hero') {
       logoHome?.classList.add('active');
       navItems.forEach((item) => item.classList.remove('active'));
-      updateSquircle(null);
+      positionNotchAtItem(null);
       return;
     }
 
@@ -169,23 +188,37 @@ const initNavigation = () => {
     });
 
     if (matchedItem) {
-      updateSquircle(matchedItem);
+      positionNotchAtItem(matchedItem);
     }
   };
 
-  // Instant tactile feedback on click
-  logoHome?.addEventListener('click', () => {
-    setActiveTab('hero');
+  // Hover transitions: glide notch smoothly to hovered tab, and return to active item on mouseleave
+  navItems.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      positionNotchAtItem(item);
+    });
+
+    const link = item.querySelector('.nav-item-link');
+    if (link) {
+      link.addEventListener('click', (e) => {
+        const target = item.getAttribute('data-target');
+        setActiveTab(target);
+      });
+    }
   });
 
-  navItems.forEach((item) => {
-    const link = item.querySelector('.nav-item-link');
-    if (!link) return;
+  navItemsContainer.addEventListener('mouseleave', () => {
+    navItems.forEach((i) => i.classList.remove('is-hovered'));
+    if (currentActiveTarget === 'hero') {
+      positionNotchAtItem(null);
+    } else {
+      const active = document.querySelector('.nav-item.active');
+      if (active) positionNotchAtItem(active);
+    }
+  });
 
-    link.addEventListener('click', () => {
-      const target = item.getAttribute('data-target');
-      setActiveTab(target);
-    });
+  logoHome?.addEventListener('click', () => {
+    setActiveTab('hero');
   });
 
   // Real-time section tracking on scroll
@@ -232,8 +265,12 @@ const initNavigation = () => {
   }, { passive: true });
 
   window.addEventListener('resize', () => {
-    const activeItem = document.querySelector('.nav-item.active');
-    if (activeItem) updateSquircle(activeItem);
+    if (currentActiveTarget === 'hero') {
+      positionNotchAtItem(null);
+    } else {
+      const activeItem = document.querySelector('.nav-item.active');
+      if (activeItem) positionNotchAtItem(activeItem);
+    }
   });
 
   // Calculate initial position once DOM and fonts are ready
@@ -242,9 +279,9 @@ const initNavigation = () => {
       setActiveTab('hero');
     } else {
       const activeItem = document.querySelector('.nav-item.active');
-      if (activeItem) updateSquircle(activeItem);
+      if (activeItem) positionNotchAtItem(activeItem);
     }
-  }, 300);
+  }, 250);
 };
 
 const initHeroAnimations = () => {
