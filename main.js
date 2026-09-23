@@ -121,6 +121,7 @@ const initCustomCursor = () => {
 // ==========================================================================
 const initNavigation = () => {
   const header = document.querySelector('.header');
+  const logoHome = document.getElementById('capsule-logo-home');
   const navItemsContainer = document.getElementById('nav-items');
   const navItems = document.querySelectorAll('.nav-item');
   const squircleIndicator = document.getElementById('squircle-indicator');
@@ -130,10 +131,12 @@ const initNavigation = () => {
   if (!navItemsContainer || !squircleIndicator) return;
 
   const updateSquircle = (activeItem) => {
-    if (!activeItem || !squircleIndicator || !navContainer) return;
-    
-    // Ignore if item is hidden in current viewport
-    if (activeItem.offsetParent === null) return;
+    if (!squircleIndicator || !navContainer) return;
+
+    if (!activeItem || activeItem.offsetParent === null) {
+      squircleIndicator.style.opacity = '0';
+      return;
+    }
 
     const itemRect = activeItem.getBoundingClientRect();
     const navRect = navContainer.getBoundingClientRect();
@@ -146,6 +149,14 @@ const initNavigation = () => {
   };
 
   const setActiveTab = (targetId) => {
+    if (targetId === 'hero') {
+      logoHome?.classList.add('active');
+      navItems.forEach((item) => item.classList.remove('active'));
+      updateSquircle(null);
+      return;
+    }
+
+    logoHome?.classList.remove('active');
     let matchedItem = null;
     navItems.forEach((item) => {
       const itemTarget = item.getAttribute('data-target');
@@ -163,14 +174,17 @@ const initNavigation = () => {
   };
 
   // Instant tactile feedback on click
+  logoHome?.addEventListener('click', () => {
+    setActiveTab('hero');
+  });
+
   navItems.forEach((item) => {
     const link = item.querySelector('.nav-item-link');
     if (!link) return;
 
     link.addEventListener('click', () => {
-      navItems.forEach((el) => el.classList.remove('active'));
-      item.classList.add('active');
-      updateSquircle(item);
+      const target = item.getAttribute('data-target');
+      setActiveTab(target);
     });
   });
 
@@ -224,8 +238,12 @@ const initNavigation = () => {
 
   // Calculate initial position once DOM and fonts are ready
   setTimeout(() => {
-    const activeItem = document.querySelector('.nav-item.active') || navItems[0];
-    if (activeItem) updateSquircle(activeItem);
+    if (window.scrollY < 120) {
+      setActiveTab('hero');
+    } else {
+      const activeItem = document.querySelector('.nav-item.active');
+      if (activeItem) updateSquircle(activeItem);
+    }
   }, 300);
 };
 
