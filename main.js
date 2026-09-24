@@ -338,7 +338,7 @@ const initHeroAnimations = () => {
   }
 
   // Fade-in elements
-  gsap.from('.hero-status-pill, .hero-lead-text, .hero-actions, .hero-metrics-slider-wrapper, .hero-metrics-strip', {
+  gsap.from('.hero-lead-text, .hero-actions, .hero-metrics-slider-wrapper, .hero-metrics-strip', {
     opacity: 0,
     y: 24,
     duration: 1,
