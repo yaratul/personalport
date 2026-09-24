@@ -681,6 +681,45 @@ const initFaqAccordion = () => {
 };
 
 // ==========================================================================
+// 7B. Section 3 Client Hiring Guide Cards Interactivity
+// ==========================================================================
+const initHiringCards = () => {
+  const cards = document.querySelectorAll('.hiring-card:not(.hiring-cta-card)');
+
+  cards.forEach((card) => {
+    const trigger = card.querySelector('.hiring-card-trigger');
+    const body = card.querySelector('.hiring-card-body');
+    if (!trigger || !body) return;
+
+    if (card.classList.contains('open')) {
+      body.style.maxHeight = `${body.scrollHeight + 30}px`;
+      trigger.setAttribute('aria-expanded', 'true');
+    } else {
+      body.style.maxHeight = '0px';
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', () => {
+      const isOpen = card.classList.contains('open');
+
+      if (isOpen) {
+        card.classList.remove('open');
+        body.style.maxHeight = '0px';
+        trigger.setAttribute('aria-expanded', 'false');
+      } else {
+        card.classList.add('open');
+        body.style.maxHeight = `${body.scrollHeight + 30}px`;
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    });
+  });
+};
+
+// ==========================================================================
 // 8. Interactive Fullscreen Lightbox Modal
 // ==========================================================================
 const initLightbox = () => {
@@ -1013,6 +1052,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initMobileMetricsSlider();
   initFaqAccordion();
+  initHiringCards();
   initLightbox();
   initDhakaClock();
   initCookieConsent();

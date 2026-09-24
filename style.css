@@ -1328,6 +1328,210 @@ body.cursor-active .custom-cursor-ring {
   color: var(--text-red);
 }
 
+/* --- 10B. CLIENT HIRING HUB & AESTHETIC Q&A CARDS --- */
+.client-hiring-hub {
+  margin-top: 4.5rem;
+  padding-top: 3.5rem;
+  border-top: 1.5px dashed var(--border-subtle);
+}
+.hiring-hub-header {
+  margin-bottom: 2.2rem;
+}
+.hiring-hub-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-red);
+  background: rgba(230, 0, 38, 0.06);
+  border: 1px solid rgba(230, 0, 38, 0.2);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 0.85rem;
+}
+.hub-bullet {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bg-red);
+}
+.hiring-hub-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--text-black);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.hiring-hub-desc {
+  font-size: 1.02rem;
+  color: var(--text-gray);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+.hiring-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.hiring-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-black);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0px var(--border-black);
+  padding: 1.4rem 1.6rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+.hiring-card:hover {
+  border-color: var(--bg-red);
+  box-shadow: 4px 4px 0px var(--bg-red);
+  transform: translateY(-2px);
+}
+.hiring-card.open {
+  border-color: var(--border-black);
+  box-shadow: 4px 4px 0px var(--bg-red);
+}
+
+.hiring-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+.hiring-card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-gray);
+  letter-spacing: 0.04em;
+}
+.hiring-takeaway-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-red);
+  background: rgba(230, 0, 38, 0.08);
+  border: 1px solid rgba(230, 0, 38, 0.2);
+  border-radius: 6px;
+  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.hiring-card-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.hiring-card-question {
+  font-family: var(--font-title);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-black);
+  line-height: 1.35;
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+.hiring-card:hover .hiring-card-question {
+  color: var(--text-red);
+}
+.hiring-card-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  background: var(--bg-white);
+  color: var(--text-black);
+  transition: transform 0.3s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  margin-top: -2px;
+}
+.hiring-card.open .hiring-card-toggle {
+  transform: rotate(45deg);
+  background-color: var(--bg-red);
+  border-color: var(--bg-red);
+  color: #ffffff;
+}
+
+.hiring-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-out-expo);
+}
+.hiring-card.open .hiring-card-body {
+  max-height: 500px;
+}
+.hiring-card-answer {
+  padding-top: 1rem;
+  font-size: 0.94rem;
+  line-height: 1.68;
+  color: var(--text-black);
+  margin: 0;
+}
+
+/* 8th Action Card */
+.hiring-card.hiring-cta-card {
+  background: #0a0a0a !important;
+  border: 2px solid var(--bg-red) !important;
+  box-shadow: 4px 4px 0px var(--bg-red) !important;
+  color: #ffffff !important;
+}
+.hiring-card.hiring-cta-card .hiring-card-tag {
+  color: var(--bg-red) !important;
+}
+.hiring-card.hiring-cta-card .hiring-card-top {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+.hiring-card.hiring-cta-card .hiring-cta-title,
+.section-white .hiring-card.hiring-cta-card h4.hiring-cta-title {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+}
+.hiring-card.hiring-cta-card .hiring-cta-desc,
+.section-white .hiring-card.hiring-cta-card p.hiring-cta-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.88) !important;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.hiring-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hiring-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- 11. CORE COMPETENCIES & TECHNICAL STACK --- */
 .skills-section {
   padding: 6.5rem 1.5rem;
@@ -1844,6 +2048,61 @@ body.cursor-active .custom-cursor-ring {
   font-size: 0.98rem;
   line-height: 1.7;
   color: var(--text-black);
+}
+
+/* FAQ Hub Redirect Banner */
+.faq-hub-redirect {
+  background: var(--bg-white);
+  border: 2px solid var(--border-black);
+  border-radius: 14px;
+  padding: 1.5rem 1.8rem;
+  box-shadow: 4px 4px 0px var(--border-black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+.faq-hub-redirect:hover {
+  border-color: var(--bg-red);
+  box-shadow: 4px 4px 0px var(--bg-red);
+}
+.faq-redirect-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.faq-redirect-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-red);
+  letter-spacing: 0.03em;
+}
+.faq-redirect-desc {
+  font-size: 0.95rem;
+  color: var(--text-black);
+  line-height: 1.5;
+  margin: 0;
+}
+.faq-redirect-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .faq-hub-redirect {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .faq-redirect-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* --- 16. HIGH-CONVERTING RED OUTRO / CONTACT STAGE --- */
