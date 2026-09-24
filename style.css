@@ -1241,83 +1241,16 @@ body.cursor-active .custom-cursor-ring {
   border-radius: 6px;
 }
 
-/* Stage Grid */
+/* Stage Grid / Body */
 .bd-stage-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 3rem;
-  padding: 2.5rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  padding: 3rem 2rem;
   position: relative;
 }
 
-/* Left Editorial Column */
-.bd-editorial-col {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  z-index: 2;
-}
-.manifesto-quote {
-  font-family: var(--font-title);
-  font-size: 1.55rem;
-  font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  color: var(--text-black);
-  border-left: 4px solid var(--bg-red);
-  padding-left: 1.25rem;
-  margin: 0;
-}
-.manifesto-quote em {
-  color: var(--text-red);
-  font-style: normal;
-}
-.bd-bio-text {
-  font-size: 1.02rem;
-  line-height: 1.7;
-  color: var(--text-black);
-  margin: 0;
-}
-
-/* Feature Chips */
-.bd-feature-chips {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.85rem;
-  margin-top: 0.3rem;
-}
-.bd-chip {
-  background: var(--bg-white);
-  border: 1.5px solid var(--border-black);
-  border-radius: 10px;
-  padding: 0.85rem 1rem;
-  box-shadow: 3px 3px 0px var(--border-black);
-}
-.bd-chip-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--text-red);
-  text-transform: uppercase;
-  margin-bottom: 0.25rem;
-  display: block;
-}
-.bd-chip-val {
-  font-family: var(--font-title);
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--text-black);
-}
-
-.bd-action-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  margin-top: 0.5rem;
-}
-
-/* Right Map Canvas */
+/* Bangladesh Map Canvas Showcase */
 .bd-map-canvas-wrap {
   position: relative;
   display: flex;
@@ -1325,15 +1258,18 @@ body.cursor-active .custom-cursor-ring {
   justify-content: center;
   width: 100%;
   aspect-ratio: 1 / 1;
-  max-width: 520px;
+  max-width: 640px;
   margin: 0 auto;
 }
 .bd-map-glow {
   position: absolute;
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle, rgba(230, 0, 38, 0.18) 0%, rgba(230, 0, 38, 0) 70%);
-  filter: blur(25px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(230, 0, 38, 0.22) 0%, rgba(230, 0, 38, 0) 70%);
+  filter: blur(35px);
   pointer-events: none;
   z-index: 1;
 }
@@ -1345,7 +1281,7 @@ body.cursor-active .custom-cursor-ring {
   top: 0;
   left: 0;
   z-index: 2;
-  filter: drop-shadow(4px 8px 20px rgba(230, 0, 38, 0.25));
+  filter: drop-shadow(4px 8px 24px rgba(230, 0, 38, 0.28));
 }
 
 /* Tactical Telemetry Overlay */
@@ -1364,14 +1300,13 @@ body.cursor-active .custom-cursor-ring {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 480px;
-  height: 480px;
-  margin-top: -240px;
-  margin-left: -240px;
+  width: 90%;
+  height: 90%;
   border-radius: 50%;
-  border: 1px dashed rgba(230, 0, 38, 0.3);
+  border: 1.5px dashed rgba(230, 0, 38, 0.35);
   pointer-events: none;
   z-index: 2;
+  transform: translate(-50%, -50%) rotate(0deg);
   animation: radarSweepRotate 12s linear infinite;
 }
 .radar-sweep-disc::before {
@@ -1386,8 +1321,8 @@ body.cursor-active .custom-cursor-ring {
   border-bottom: 2px solid rgba(230, 0, 38, 0.7);
 }
 @keyframes radarSweepRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 @media (max-width: 900px) {
@@ -1402,26 +1337,10 @@ body.cursor-active .custom-cursor-ring {
     font-size: 0.68rem;
   }
   .bd-stage-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 1.5rem 1.1rem;
-  }
-  .bd-feature-chips {
-    grid-template-columns: 1fr;
+    padding: 1.5rem 0.85rem;
   }
   .bd-map-canvas-wrap {
-    max-width: 350px;
-    order: -1;
-  }
-  .radar-sweep-disc {
-    width: 320px;
-    height: 320px;
-    margin-top: -160px;
-    margin-left: -160px;
-  }
-  .bd-action-row .btn {
-    width: 100%;
-    justify-content: center;
+    max-width: 100%;
   }
 }
 
