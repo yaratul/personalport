@@ -2187,6 +2187,43 @@ body.cursor-active .custom-cursor-ring {
   color: var(--bg-red);
 }
 
+/* Responsive Trustpilot Standard Widget */
+.footer-trustpilot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.footer-trustpilot .trustpilot-widget {
+  width: 100%;
+  max-width: 100%;
+  min-height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-trustpilot .trustpilot-widget iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 52px !important;
+}
+.footer-trustpilot .trustpilot-widget a {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.4rem;
+  border: 1.5px solid #00b67a;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #0a0a0a;
+}
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -2196,6 +2233,34 @@ body.cursor-active .custom-cursor-ring {
   margin-top: 2rem;
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1.15rem 6.5rem;
+  }
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.4rem;
+    padding-bottom: 1.8rem;
+  }
+  .footer-nav {
+    justify-content: center;
+    gap: 1.1rem 1.4rem;
+  }
+  .footer-trustpilot {
+    padding: 1.4rem 0;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+  }
 }
 
 /* --- 18. MODALS & LIGHTBOXES --- */
